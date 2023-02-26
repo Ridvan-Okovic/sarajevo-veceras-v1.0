@@ -2,7 +2,13 @@
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        open: ['Open Sans'],
+        montserrat: ['Montserrat'],
+        arimo: ['Arimo'],
+      },
+    },
   },
   plugins: [],
 };

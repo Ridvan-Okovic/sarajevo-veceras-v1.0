@@ -63,7 +63,15 @@ const eventData = [
   },
 ];
 
-const EventContainer = () => {
+const EventContainer = (props) => {
+  let searchValue = props.searchValue;
+
+  let isSearching = false;
+
+  if (searchValue.trim() !== '') {
+    isSearching = true;
+  }
+
   const events = eventData.map((eventInfo) => {
     return (
       <Event
@@ -79,9 +87,31 @@ const EventContainer = () => {
     );
   });
 
+  const filtered = eventData.filter((eventInfo) => {
+    return eventInfo.ime
+      .toLocaleLowerCase()
+      .includes(searchValue.toLocaleLowerCase());
+  });
+
+  const filteredEvents = filtered.map((eventInfo) => {
+    return (
+      <Event
+        key={eventInfo.id}
+        id={eventInfo.id}
+        poster={eventInfo.poster}
+        name={eventInfo.ime}
+        opis={eventInfo.opis}
+        time={eventInfo.vrijeme}
+        address={eventInfo.adresa}
+        date={eventInfo.datum}
+      />
+    );
+  });
+
   return (
-    <div className="flex flex-row flex-wrap px-[10%] items-center justify-center gap-[3.5rem] w-full mt-[8rem]">
-      {events}
+    <div className="flex flex-row flex-wrap px-[10%] items-center justify-center gap-[3.5rem] w-full my-[8rem]">
+      {!isSearching && events}
+      {isSearching && filteredEvents}
     </div>
   );
 };
