@@ -6,7 +6,13 @@ import { MdCelebration } from 'react-icons/md';
 const Event = (props) => {
   return (
     <div className="w-[20rem] font-montserrat shadow-[0px_10px_15px_rgba(0,0,0,0.2)] rounded-xl hover:scale-[1.02] transition-all duration-300">
-      <img className="rounded-t-lg" src={props.poster} alt="Mjesto" />
+      <div className="w-full h-[213.5px]">
+        <img
+          className="rounded-t-lg object-contain"
+          src={props.poster}
+          alt="Mjesto"
+        />
+      </div>
 
       <h2 className="text-center mx-[10%] text-2xl mt-4 mb-2 font-bold">
         {props.name}
