@@ -108,10 +108,20 @@ const EventContainer = (props) => {
     );
   });
 
+  let content = (
+    <p className="font-montserrat font-normal text-3xl ">
+      Pokušajte drugo mjesto.
+    </p>
+  );
+
+  if (isSearching && filteredEvents.length > 0) {
+    content = filteredEvents;
+  }
+
   return (
     <div className="flex flex-row flex-wrap px-[10%] items-center justify-center gap-[3.5rem] w-full my-[8rem]">
       {!isSearching && events}
-      {isSearching && filteredEvents}
+      {content}
     </div>
   );
 };
