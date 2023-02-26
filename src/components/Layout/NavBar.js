@@ -13,15 +13,15 @@ const NavBar = (props) => {
   };
 
   return (
-    <div className="w-full h-[5rem] px-[10%] flex flex-row items-center justify-between bg-[#22252c] shadow-xl">
+    <nav className="sticky top-0 z-10 w-full h-[5rem] px-[10%] flex flex-row items-center justify-between bg-[#22252c]">
       <h2 className="text-2xl font-semibold text-[#e14658]">Logo</h2>
       <div className="flex gap-10 text-xl text-[#e14658] items-baseline">
         {/* //TODO: Change a tags to be Links using React Router! */}
         <a href="#">Home</a>
-        <a href="#">Favorites</a>
+        <a href="#">Liked</a>
         <a href="#">Filter</a>
       </div>
-      <div className="flex items-center">
+      <div className="flex items-center justify-end">
         {isSearchOpen && (
           <input
             onChange={searchChangeHandler}
@@ -34,7 +34,7 @@ const NavBar = (props) => {
           className="text-xl text-[#e14658] cursor-pointer"
         />
       </div>
-    </div>
+    </nav>
   );
 };
 
