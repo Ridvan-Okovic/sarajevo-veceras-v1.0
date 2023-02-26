@@ -108,11 +108,15 @@ const EventContainer = (props) => {
     );
   });
 
-  let content = (
-    <p className="font-montserrat font-normal text-3xl ">
-      Pokušajte drugo mjesto.
-    </p>
-  );
+  let content = '';
+
+  if (filteredEvents.length === 0) {
+    content = (
+      <p className="font-montserrat font-normal text-3xl ">
+        Pokušajte drugo mjesto.
+      </p>
+    );
+  }
 
   if (isSearching && filteredEvents.length > 0) {
     content = filteredEvents;
