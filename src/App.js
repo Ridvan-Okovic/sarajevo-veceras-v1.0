@@ -6,10 +6,10 @@ const App = () => {
   const [searchValue, setSearchValue] = useState('');
 
   return (
-    <>
+    <div className="w-full min-h-[100vh]">
       <NavBar onAddSearchTermHandler={setSearchValue} />
       <EventContainer searchValue={searchValue} />
-    </>
+    </div>
   );
 };
 
