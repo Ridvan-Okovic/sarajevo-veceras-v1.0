@@ -67,12 +67,16 @@ import Event from './Event';
 
 const EventContainer = (props) => {
   const [events, setEvents] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const today = new Date();
 
   const URL =
     'https://sarajevo-veceras-default-rtdb.europe-west1.firebasedatabase.app/events.json';
 
   useEffect(() => {
     const fetchEvent = async () => {
+      setIsLoading(true);
       const response = await fetch(URL);
       const data = await response.json();
 
@@ -96,6 +100,7 @@ const EventContainer = (props) => {
       );
 
       setEvents(sortedEvents);
+      setIsLoading(false);
     };
     fetchEvent();
   }, []);
@@ -108,7 +113,12 @@ const EventContainer = (props) => {
     isSearching = true;
   }
 
-  const event = events.map((eventInfo) => {
+  // * Ovdje gledam da je datum veci od danasnjeg datuma
+  const eventDateFilter = events.filter((eventInfo) => {
+    return new Date(eventInfo.datum) >= today;
+  });
+
+  const event = eventDateFilter.map((eventInfo) => {
     return (
       <Event
         key={eventInfo.id}
@@ -123,12 +133,14 @@ const EventContainer = (props) => {
     );
   });
 
-  const filtered = events.filter((eventInfo) => {
+  // * Ovo je searchHandling funkcija
+  const filtered = eventDateFilter.filter((eventInfo) => {
     return eventInfo.ime
       .toLocaleLowerCase()
       .includes(searchValue.toLocaleLowerCase());
   });
 
+  // * Ovdje filtriram eventove po search term
   const filteredEvents = filtered.map((eventInfo) => {
     return (
       <Event
@@ -144,11 +156,15 @@ const EventContainer = (props) => {
     );
   });
 
-  let content = '';
+  let content = (
+    <p className="font-montserrat font-normal text-3xl">
+      Nema pronađenih eventova. Molimo pokušajte kasnije!
+    </p>
+  );
 
-  if (filteredEvents.length === 0) {
+  if (isSearching && filteredEvents.length === 0) {
     content = (
-      <p className="font-montserrat font-normal text-3xl ">
+      <p className="font-montserrat font-normal text-3xl">
         Pokušajte drugo mjesto.
       </p>
     );
@@ -158,9 +174,20 @@ const EventContainer = (props) => {
     content = filteredEvents;
   }
 
+  if (isLoading) {
+    content = (
+      <p className="font-montserrat font-normal text-3xl">
+        Prikupljamo informacije o eventovima...
+      </p>
+    );
+  }
+
+  if (!isLoading && !isSearching) {
+    content = event;
+  }
+
   return (
     <div className="flex flex-row flex-wrap px-[10%] items-center justify-center gap-[3.5rem] w-full my-[8rem]">
-      {!isSearching && event}
       {content}
     </div>
   );
