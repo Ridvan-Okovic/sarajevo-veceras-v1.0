@@ -139,7 +139,7 @@ const EventContainer = (props) => {
         opis={eventInfo.opis}
         time={eventInfo.vrijeme}
         address={eventInfo.adresa}
-        date={eventInfo.datum}
+        date={new Date(eventInfo.datum)}
       />
     );
   });
