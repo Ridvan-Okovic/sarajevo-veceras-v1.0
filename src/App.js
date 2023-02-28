@@ -9,8 +9,6 @@ const App = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [isFilterOpened, setIsFilterOpened] = useState(false);
 
-  console.log(isChecked);
-
   return (
     <div className="w-full min-h-[100vh]">
       <NavBar
