@@ -1,6 +1,6 @@
 import React from 'react';
 import EventDate from './EventDate';
-import { FaMapPin, FaClock, FaCalendar } from 'react-icons/fa';
+import { FaMapPin, FaClock, FaCalendar, FaHeart } from 'react-icons/fa';
 import { MdCelebration } from 'react-icons/md';
 
 const Event = (props) => {
@@ -36,9 +36,9 @@ const Event = (props) => {
           <EventDate datum={props.date} />
         </h3>
       </div>
-      <div className="px-[10%]">
-        <button className="w-full h-[2.2rem] bg-[#e14658] my-4 rounded-full font-normal">
-          Dodaj u favorite
+      <div className="px-[10%] flex justify-center">
+        <button className="flex justify-center items-center w-full h-[2.2rem] bg-[#e14658] my-4 rounded-full text-lg">
+          <FaHeart />
         </button>
       </div>
     </div>
