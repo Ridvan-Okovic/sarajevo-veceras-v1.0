@@ -127,7 +127,7 @@ const EventContainer = (props) => {
   }
 
   return (
-    <div className="flex flex-row flex-wrap px-[10%] items-center justify-center gap-[3.5rem] w-full my-[8rem]">
+    <div className="flex flex-row flex-wrap px-[10%] items-center justify-center gap-[3.5rem] w-full my-[4rem]">
       {content}
     </div>
   );
