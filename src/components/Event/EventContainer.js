@@ -5,7 +5,8 @@ const EventContainer = (props) => {
   const [events, setEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const today = new Date().toLocaleDateString();
+  let today = new Date();
+  let todayString = new Date().toString().slice(0, 10);
 
   const URL =
     'https://sarajevo-veceras-default-rtdb.europe-west1.firebasedatabase.app/events.json';
@@ -27,7 +28,7 @@ const EventContainer = (props) => {
           adresa: data[key].address,
           poster: data[key].poster,
           tip: data[key].type,
-          datum: data[key].date,
+          datum: new Date(data[key].date),
         });
       }
 
@@ -51,7 +52,10 @@ const EventContainer = (props) => {
 
   // * Ovdje gledam da je datum veci od danasnjeg datuma
   const eventDateFilter = events.filter((eventInfo) => {
-    return new Date(eventInfo.datum).toLocaleDateString() >= today;
+    return (
+      eventInfo.datum > today ||
+      eventInfo.datum.toString().slice(0, 10) === todayString
+    );
   });
 
   const event = eventDateFilter.map((eventInfo) => {
