@@ -30,7 +30,7 @@ const NavBar = (props) => {
           Filter
         </button>
       </div>
-      <div className="flex items-center justify-end">
+      <div className="flex justify-end">
         {isSearchOpen && (
           <input
             onChange={searchChangeHandler}
@@ -40,7 +40,7 @@ const NavBar = (props) => {
         )}
         <FaSearch
           onClick={searchBarHandler}
-          className="text-xl text-[#e14658] cursor-pointer"
+          className="text-xl text-[#e14658] cursor-pointer w-[54.86px]"
         />
       </div>
     </nav>

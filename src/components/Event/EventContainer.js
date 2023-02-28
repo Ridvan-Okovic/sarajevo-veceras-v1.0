@@ -96,6 +96,28 @@ const EventContainer = (props) => {
     );
   });
 
+  const checkboxFilter = eventDateFilter.filter((eventInfo) => {
+    return (
+      eventInfo.tip.toLocaleLowerCase() ===
+      props.checkedValue.toLocaleLowerCase()
+    );
+  });
+
+  const checkboxFilteredEvents = checkboxFilter.map((eventInfo) => {
+    return (
+      <Event
+        key={eventInfo.id}
+        id={eventInfo.id}
+        poster={eventInfo.poster}
+        name={eventInfo.ime}
+        opis={eventInfo.opis}
+        time={eventInfo.vrijeme}
+        address={eventInfo.adresa}
+        date={new Date(eventInfo.datum)}
+      />
+    );
+  });
+
   let content = (
     <p className="font-montserrat font-normal text-3xl">
       Nema pronađenih eventova. Molimo pokušajte kasnije!
@@ -124,6 +146,10 @@ const EventContainer = (props) => {
 
   if (!isLoading && !isSearching) {
     content = event;
+  }
+
+  if (props.isChecked) {
+    content = checkboxFilteredEvents;
   }
 
   return (

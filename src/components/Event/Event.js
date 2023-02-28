@@ -19,26 +19,26 @@ const Event = (props) => {
       </h2>
 
       <div className="flex flex-col mx-[10%] text-lg font-light">
-        <h3 className="flex flex-row items-center mb-2 border-b-[1px] border-gray-400">
+        <h3 className="flex flex-row items-center mb-2 border-b-[1px] border-gray-300">
           <MdCelebration className="text-[#e14658] mr-2" />
           {props.opis}
         </h3>
-        <h3 className="flex flex-row items-center mb-2 border-b-[1px] border-gray-400">
+        <h3 className="flex flex-row items-center mb-2 border-b-[1px] border-gray-300">
           <FaMapPin className="text-[#e14658] mr-2" />
           {props.address}
         </h3>
-        <h3 className="flex flex-row items-center mb-2 border-b-[1px] border-gray-400">
+        <h3 className="flex flex-row items-center mb-2 border-b-[1px] border-gray-300">
           <FaClock className="text-[#e14658] mr-2" />
           {props.time}
         </h3>
-        <h3 className="flex flex-row items-center border-b-[1px] border-gray-400">
+        <h3 className="flex flex-row items-center border-b-[1px] border-gray-300">
           <FaCalendar className="text-[#e14658] mr-2" />
           <EventDate datum={props.date} />
         </h3>
       </div>
       <div className="px-[10%] flex justify-center">
-        <button className="flex justify-center items-center w-full h-[2.2rem] bg-[#e14658] my-4 rounded-full text-lg">
-          <FaHeart />
+        <button className="flex text-[#eee] justify-center shadow-md items-center w-full h-[2.5rem] bg-[#e14658] my-4 rounded-full text-lg hover:text-black hover:text-xl transition-all duration-300">
+          <FaHeart className="" />
         </button>
       </div>
     </div>
