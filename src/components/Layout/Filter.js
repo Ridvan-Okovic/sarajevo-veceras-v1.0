@@ -21,6 +21,24 @@ const Filter = (props) => {
             onChange={handleCheckboxChange}
           ></input>
         </label>
+        <label className="font-montserrat text-md font-normal flex gap-4">
+          Pub
+          <input
+            type="checkbox"
+            name="pub"
+            value={checked}
+            onChange={handleCheckboxChange}
+          ></input>
+        </label>
+        <label className="font-montserrat text-md font-normal flex gap-4">
+          Open Air
+          <input
+            type="checkbox"
+            name="open air"
+            value={checked}
+            onChange={handleCheckboxChange}
+          ></input>
+        </label>
       </div>
     </div>
   );

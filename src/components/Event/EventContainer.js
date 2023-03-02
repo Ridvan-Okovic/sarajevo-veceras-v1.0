@@ -97,10 +97,7 @@ const EventContainer = (props) => {
   });
 
   const checkboxFilter = eventDateFilter.filter((eventInfo) => {
-    return (
-      eventInfo.tip.toLocaleLowerCase() ===
-      props.checkedValue.toLocaleLowerCase()
-    );
+    return props.checkedValue.includes(eventInfo.tip.toLocaleLowerCase());
   });
 
   const checkboxFilteredEvents = checkboxFilter.map((eventInfo) => {
