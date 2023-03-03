@@ -9,6 +9,7 @@ const App = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [isFilterOpened, setIsFilterOpened] = useState(false);
 
+  // !When an event is unclicked the filter for that checkbox should be removed from the filtered array
   const onAddCheckedValue = (item) => {
     setCheckedValue((prevValue) => {
       return [...prevValue, item];
