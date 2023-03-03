@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 const Filter = (props) => {
+  // *Todo fix filtering so that when a single checkbox is clicked false its discarded from the filtered array
   const [checked, setIsChecked] = useState(false);
 
   const handleCheckboxChange = (e) => {
