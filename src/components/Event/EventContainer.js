@@ -99,7 +99,11 @@ const EventContainer = (props) => {
   const checkboxFilter = eventDateFilter.filter((eventInfo) => {
     return (
       eventInfo.tip.toLocaleLowerCase() ===
-      props.checkedValue.toLocaleLowerCase()
+        props.checkedClubValue.toLocaleLowerCase() ||
+      eventInfo.tip.toLocaleLowerCase() ===
+        props.checkedPubValue.toLocaleLowerCase() ||
+      eventInfo.tip.toLocaleLowerCase() ===
+        props.checkedOpenValue.toLocaleLowerCase()
     );
   });
 
@@ -148,7 +152,10 @@ const EventContainer = (props) => {
     content = event;
   }
 
-  if (props.isChecked) {
+  if (
+    (props.isClubChecked || props.isPubChecked || props.isOpenChecked) &&
+    checkboxFilteredEvents.length > 0
+  ) {
     content = checkboxFilteredEvents;
   }
 

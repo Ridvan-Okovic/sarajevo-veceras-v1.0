@@ -1,24 +1,49 @@
-import { useState } from 'react';
-
 const Filter = (props) => {
-  const [checked, setIsChecked] = useState(false);
+  const handleClubCheckboxChange = (event) => {
+    props.setIsClubChecked(event.target.checked);
+    props.setCheckedClubValue(event.target.name);
+  };
 
-  const handleCheckboxChange = (e) => {
-    setIsChecked((prev) => !prev);
-    props.setCheckedValue(e.target.name);
-    props.setIsChecked(e.target.checked);
+  const handlePubCheckboxChange = (event) => {
+    props.setIsPubChecked(event.target.checked);
+    props.setCheckedPubValue(event.target.name);
+  };
+
+  const handleOpenCheckboxChange = (event) => {
+    props.setIsOpenChecked(event.target.checked);
+    props.setCheckedOpenValue(event.target.name);
   };
 
   return (
-    <div className="flex items-center justify-center h-[7rem] shadow-xl bg-inherit">
-      <div className="flex flex-row gap-4">
-        <label className="font-montserrat text-md font-normal flex gap-4">
+    <div className="flex items-center justify-center h-[7rem] shadow-lg bg-inherit">
+      <div className="flex flex-row gap-10">
+        <label className="font-montserrat text-lg font-normal flex gap-4">
           Club
           <input
+            className="w-4"
             type="checkbox"
             name="club"
-            value={checked}
-            onChange={handleCheckboxChange}
+            onChange={handleClubCheckboxChange}
+          ></input>
+        </label>
+
+        <label className="font-montserrat text-lg font-normal flex gap-4">
+          Pub
+          <input
+            className="w-4"
+            type="checkbox"
+            name="pub"
+            onChange={handlePubCheckboxChange}
+          ></input>
+        </label>
+
+        <label className="font-montserrat text-lg font-normal flex gap-4">
+          Open Air
+          <input
+            className="w-4"
+            type="checkbox"
+            name="open air"
+            onChange={handleOpenCheckboxChange}
           ></input>
         </label>
       </div>

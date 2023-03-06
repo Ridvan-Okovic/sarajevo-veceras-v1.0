@@ -17,7 +17,7 @@ const NavBar = (props) => {
   };
 
   return (
-    <nav className="sticky top-0 z-10 w-full h-[5rem] px-[10%] flex flex-row items-center justify-between bg-[#585BE9] text-white uppercase">
+    <nav className="sticky top-0 z-10 w-full h-[6rem] px-[10%] flex flex-row items-center justify-between bg-[#1F1926] text-white uppercase">
       <h2 className="text-2xl font-semibold">Logo</h2>
       <div className="flex gap-10 text-lg items-baseline">
         {/* //TODO: Change a tags to be Links using React Router! */}
