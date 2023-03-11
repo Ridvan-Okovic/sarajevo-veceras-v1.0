@@ -6,10 +6,7 @@ const EventProvider = (props) => {
   const [isLikedShown, setIsLikedShown] = useState(false);
 
   const addEventsToLiked = (event) => {
-    setLikedEvents({
-      ...likedEvents,
-      event,
-    });
+    setLikedEvents([event, ...likedEvents]);
   };
 
   const setIsLikedPanelDisplayed = () => {
