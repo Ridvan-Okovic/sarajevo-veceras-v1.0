@@ -1,9 +1,23 @@
-import React from 'react';
 import EventDate from './EventDate';
+import { useContext } from 'react';
+import EventContext from '../context/event-context';
 import { FaMapPin, FaClock, FaCalendar, FaHeart } from 'react-icons/fa';
 import { MdCelebration } from 'react-icons/md';
 
 const Event = (props) => {
+  const ctx = useContext(EventContext);
+
+  const addEventToLiked = () => {
+    ctx.addEvent({
+      poster: props.poster,
+      name: props.name,
+      description: props.opis,
+      address: props.address,
+      time: props.time,
+      date: props.date,
+    });
+  };
+
   return (
     <div className="w-[20rem] font-montserrat shadow-[0px_10px_15px_rgba(0,0,0,0.2)] rounded-xl hover:scale-[1.02] transition-all duration-300 bg-white">
       <div className="w-full h-[213.5px]">
@@ -37,7 +51,10 @@ const Event = (props) => {
         </h3>
       </div>
       <div className="px-[10%] flex justify-center">
-        <button className="flex text-[#fff] justify-center shadow-md items-center w-full h-[2.5rem] bg-gradient-to-r from-[#4E10B4] to-[#7A3BDD] my-4 rounded-full text-lg hover:text-[#F2A6FF] hover:text-xl transition-all duration-300">
+        <button
+          onClick={addEventToLiked}
+          className="flex text-[#fff] justify-center shadow-md items-center w-full h-[2.5rem] bg-gradient-to-r from-[#4E10B4] to-[#7A3BDD] my-4 rounded-full text-lg hover:text-[#F2A6FF] hover:text-xl transition-all duration-300"
+        >
           <FaHeart className="" />
         </button>
       </div>

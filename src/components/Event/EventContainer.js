@@ -1,7 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import EventContext from '../context/event-context';
+import LikedEvents from '../LikedEvents/LikedEvents';
 import Event from './Event';
 
 const EventContainer = (props) => {
+  const ctx = useContext(EventContext);
   const [events, setEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -193,6 +196,7 @@ const EventContainer = (props) => {
   return (
     <div className="flex flex-row flex-wrap px-[10%] items-center justify-center gap-[3.5rem] w-full my-[4rem]">
       {content}
+      {ctx.isLikedPanelShown && <LikedEvents />}
     </div>
   );
 };

@@ -1,8 +1,15 @@
 import { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
+import EventContext from '../context/event-context';
+import { useContext } from 'react';
 
 const NavBar = (props) => {
+  const ctx = useContext(EventContext);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  const showLiked = () => {
+    ctx.setIsLikedPanelShown();
+  };
 
   const searchChangeHandler = (event) => {
     props.onAddSearchTermHandler(event.target.value);
@@ -19,13 +26,15 @@ const NavBar = (props) => {
   return (
     <nav className="sticky top-0 z-10 w-full h-[6rem] px-[10%] flex flex-row items-center justify-between bg-[#1F1926] text-white uppercase">
       <h2 className="text-2xl font-semibold">Logo</h2>
-      <div className="flex gap-10 text-lg items-baseline">
+      <div className="flex gap-10 text-lg items-baseline ">
         {/* //TODO: Change a tags to be Links using React Router! */}
-        <a href="#">Home</a>
-        <a href="#">Liked</a>
+        <button className="uppercase">Home</button>
+        <button onClick={showLiked} className="uppercase">
+          Liked
+        </button>
         <button
           onClick={openFilterHandler}
-          className="border-2 border-white text-white uppercase py-1 px-6 hover:border-[#eee] hover:text-[#eee] active:border-[#eee] active:text-[#eee] transition-all duration-300"
+          className="border-2 border-white text-white uppercase  py-1 px-6 hover:border-[#eee] hover:text-[#eee] active:border-[#eee] active:text-[#eee] transition-all duration-300"
         >
           Filter
         </button>

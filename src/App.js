@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import EventContainer from './components/Event/EventContainer';
 import Filter from './components/Layout/Filter';
 import NavBar from './components/Layout/NavBar';
+import EventProvider from './components/context/EventProvider';
 
 const App = () => {
   const [searchValue, setSearchValue] = useState('');
@@ -46,7 +47,7 @@ const App = () => {
   }, [isClubChecked, isPubChecked, isOpenChecked]);
 
   return (
-    <>
+    <EventProvider>
       <NavBar
         onAddSearchTermHandler={setSearchValue}
         setIsFilterOpened={setIsFilterOpened}
@@ -75,7 +76,7 @@ const App = () => {
         isOpenChecked={isOpenChecked}
         checkedOpenValue={checkedOpenValue}
       />
-    </>
+    </EventProvider>
   );
 };
 
