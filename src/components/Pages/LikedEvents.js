@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import NavBar from '../Layout/NavBar';
 import Filter from '../Layout/Filter';
 import LikedEventContainer from '../LikedEvents/LikedEventContainer';
-import EventProvider from '../context/EventProvider';
 
 const LikedEvents = () => {
   const [searchValue, setSearchValue] = useState('');
