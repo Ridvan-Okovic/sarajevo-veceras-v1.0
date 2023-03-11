@@ -8,6 +8,9 @@ const EventContainer = (props) => {
   const [events, setEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  const isChecked =
+    props.isClubChecked || props.isPubChecked || props.isOpenChecked;
+
   let today = new Date();
   let todayString = new Date().toString().slice(0, 10);
 
@@ -185,11 +188,7 @@ const EventContainer = (props) => {
     content = checkboxFilteredEvents;
   }
 
-  if (
-    (props.isClubChecked || props.isPubChecked || props.isOpenChecked) &&
-    checkboxFilteredEvents.length > 0 &&
-    isSearching
-  ) {
+  if (isChecked && checkboxFilteredEvents.length > 0 && isSearching) {
     content = checkboxFilteredEventsSearchFilter;
   }
 
