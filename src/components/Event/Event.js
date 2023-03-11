@@ -19,16 +19,12 @@ const Event = (props) => {
   };
 
   return (
-    <div className="w-[20rem] font-montserrat shadow-[0px_10px_15px_rgba(0,0,0,0.2)] rounded-xl hover:scale-[1.02] transition-all duration-300 bg-white">
-      <div className="w-full h-[213.5px]">
-        <img
-          className="rounded-t-lg object-contain"
-          src={props.poster}
-          alt="Mjesto"
-        />
+    <div className="max-w-[20rem] font-montserrat shadow-[0px_10px_15px_rgba(0,0,0,0.2)] rounded-xl hover:scale-[1.02] transition-all duration-300 bg-white overflow-hidden">
+      <div className="w-full">
+        <img src={props.poster} alt="Mjesto" />
       </div>
 
-      <h2 className="text-center mx-[10%] text-2xl mt-4 mb-2 font-semibold text-[#000]">
+      <h2 className="text-center text-2xl mt-4 mb-2 font-semibold text-black">
         {props.name}
       </h2>
 
@@ -53,7 +49,7 @@ const Event = (props) => {
       <div className="px-[10%] flex justify-center">
         <button
           onClick={addEventToLiked}
-          className="flex text-[#fff] justify-center shadow-md items-center w-full h-[2.5rem] bg-gradient-to-r from-[#4E10B4] to-[#7A3BDD] my-4 rounded-full text-lg hover:text-[#F2A6FF] hover:text-xl transition-all duration-300"
+          className="flex text-white justify-center shadow-md items-center w-full h-[2.5rem] bg-gradient-to-r from-[#4E10B4] to-[#7A3BDD] my-4 rounded-full text-lg hover:text-[#F2A6FF] hover:text-xl transition-all duration-300"
         >
           <FaHeart className="" />
         </button>
