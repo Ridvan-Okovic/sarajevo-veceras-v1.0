@@ -9,6 +9,8 @@ const Event = (props) => {
 
   const addEventToLiked = () => {
     ctx.addEvent({
+      key: props.id,
+      id: props.id,
       poster: props.poster,
       name: props.name,
       description: props.opis,
