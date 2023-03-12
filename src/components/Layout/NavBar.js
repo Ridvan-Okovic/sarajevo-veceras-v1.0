@@ -38,7 +38,7 @@ const NavBar = (props) => {
 
         <button
           onClick={openFilterHandler}
-          className="border-2 border-white text-white uppercase  py-1 px-6 hover:border-[#eee] hover:text-[#eee] active:border-[#eee] active:text-[#eee] transition-all duration-300"
+          className="border-[1px] border-white text-white uppercase py-1 px-6 hover:border-white  active:border-white transition-all duration-300"
         >
           Filter
         </button>
@@ -48,9 +48,10 @@ const NavBar = (props) => {
           <input
             onChange={searchChangeHandler}
             className="outline-none bg-transparent border-b-[2px] placeholder:text-gray-300 text-white border-white mr-4"
-            placeholder="Sloga..."
+            placeholder="Sloga"
           />
         )}
+
         <FaSearch
           onClick={searchBarHandler}
           className="text-xl text-white cursor-pointer w-[54.86px]"
