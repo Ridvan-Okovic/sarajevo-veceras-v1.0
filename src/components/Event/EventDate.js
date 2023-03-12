@@ -4,13 +4,13 @@ const EventDate = (props) => {
   const dayindex = props.datum.getDay();
 
   const days = [
+    'Nedelja',
     'Ponedeljak',
     'Utorak',
     'Srijeda',
     'Četvrtak',
     'Petak',
     'Subota',
-    'Nedelja',
   ];
 
   return (
