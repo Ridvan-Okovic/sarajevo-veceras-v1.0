@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 
 import Event from './Event';
+import SearchBar from '../Layout/SearchBar';
 
 const EventContainer = (props) => {
   const [events, setEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const isChecked =
     props.isClubChecked || props.isPubChecked || props.isOpenChecked;
@@ -46,11 +48,9 @@ const EventContainer = (props) => {
     fetchEvent();
   }, []);
 
-  let searchValue = props.searchValue;
-
   let isSearching = false;
 
-  if (searchValue.trim() !== '') {
+  if (searchTerm.trim() !== '') {
     isSearching = true;
   }
 
@@ -81,7 +81,7 @@ const EventContainer = (props) => {
   const filtered = eventDateFilter.filter((eventInfo) => {
     return eventInfo.ime
       .toLocaleLowerCase()
-      .includes(searchValue.toLocaleLowerCase());
+      .includes(searchTerm.toLocaleLowerCase());
   });
 
   // * Ovdje filtriram eventove po search term
@@ -191,9 +191,12 @@ const EventContainer = (props) => {
   }
 
   return (
-    <div className="flex flex-row flex-wrap px-[10%] items-center justify-center gap-[3.5rem] w-full my-[4rem]">
-      {content}
-    </div>
+    <>
+      <SearchBar setSearchTerm={setSearchTerm} />
+      <div className="flex flex-row flex-wrap px-[10%] items-center justify-center gap-[3.5rem] w-full my-[4rem]">
+        {content}
+      </div>
+    </>
   );
 };
 

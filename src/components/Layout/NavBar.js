@@ -1,24 +1,15 @@
-import EventContext from '../context/event-context';
-import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import { FaSearch } from 'react-icons/fa';
-
 const NavBar = (props) => {
-  const ctx = useContext(EventContext);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  // const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-  const showLiked = () => {
-    ctx.setIsLikedPanelShown();
-  };
+  // const searchChangeHandler = (event) => {
+  //   props.onAddSearchTermHandler(event.target.value);
+  // };
 
-  const searchChangeHandler = (event) => {
-    props.onAddSearchTermHandler(event.target.value);
-  };
-
-  const searchBarHandler = () => {
-    setIsSearchOpen((prev) => !prev);
-  };
+  // const searchBarHandler = () => {
+  //   setIsSearchOpen((prev) => !prev);
+  // };
 
   const openFilterHandler = () => {
     props.setIsFilterOpened((prev) => !prev);
@@ -32,7 +23,7 @@ const NavBar = (props) => {
           <Link to="/">Home</Link>
         </button>
 
-        <button onClick={showLiked} className="uppercase">
+        <button className="uppercase">
           <Link to="/liked">Liked</Link>
         </button>
 
@@ -42,20 +33,6 @@ const NavBar = (props) => {
         >
           Filter
         </button>
-      </div>
-      <div className="flex items-center justify-center">
-        {isSearchOpen && (
-          <input
-            onChange={searchChangeHandler}
-            className="outline-none bg-transparent border-b-[2px] placeholder:text-gray-300 text-white border-white mr-4"
-            placeholder="Sloga"
-          />
-        )}
-
-        <FaSearch
-          onClick={searchBarHandler}
-          className="text-xl text-white cursor-pointer w-[54.86px]"
-        />
       </div>
     </nav>
   );

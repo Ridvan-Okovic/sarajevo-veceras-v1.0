@@ -1,6 +1,6 @@
 import EventDate from './EventDate';
 import { useContext } from 'react';
-import EventContext from '../context/event-context';
+import EventContext from '../../context/event-context';
 import { FaMapPin, FaClock, FaCalendar, FaHeart } from 'react-icons/fa';
 import { MdCelebration } from 'react-icons/md';
 

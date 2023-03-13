@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import EventProvider from './components/context/EventProvider';
+import EventProvider from './context/EventProvider';
 
 import HomePage from './components/Pages/HomePage';
 import LikedEvents from './components/Pages/LikedEvents';

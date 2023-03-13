@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import NavBar from '../Layout/NavBar';
 import Filter from '../Layout/Filter';
 import EventContainer from '../Event/EventContainer';
-import EventProvider from '../context/EventProvider';
 
 const HomePage = () => {
   const [searchValue, setSearchValue] = useState('');
