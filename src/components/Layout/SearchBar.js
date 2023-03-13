@@ -6,11 +6,11 @@ const SearchBar = (props) => {
   };
 
   return (
-    <div className="flex flex-row items-center justify-center w-full h-10 mt-12">
+    <div className="group w-full mt-12 flex flex-row items-center justify-center h-10">
       <input
         placeholder="Search"
         onChange={searchChangeHandler}
-        className="outline-[#4E10B4] border-2 border-r-0 rounded-l-lg px-4 py-2 w-[40%] h-full"
+        className="focus:border-[#4E10B4] outline-none border-2 border-r-0 rounded-l-lg w-[40%] px-4 py-2 gr  h-full"
       />
       <button className="h-full px-4 bg-[#4E10B4] rounded-r-lg">
         <FaSearch className="text-xl text-white cursor-pointer" />
