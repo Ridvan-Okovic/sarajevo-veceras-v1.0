@@ -1,17 +1,9 @@
-import React, { useState } from 'react';
+import { useReducer } from 'react';
 import EventContext from './event-context';
 
 const EventProvider = (props) => {
-  const [likedEvents, setLikedEvents] = useState([]);
-
-  const addEventsToLiked = (event) => {
-    setLikedEvents([event, ...likedEvents]);
-  };
-
-  const eventContext = {
-    events: likedEvents,
-    addEvent: addEventsToLiked,
-  };
+  useReducer();
+  const eventContext = '';
 
   return (
     <EventContext.Provider value={eventContext}>
