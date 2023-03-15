@@ -1,8 +1,15 @@
+import { useContext } from 'react';
 import { FaMapPin, FaCalendar, FaClock } from 'react-icons/fa';
 import { MdOutlineRemoveCircle, MdCelebration } from 'react-icons/md';
+import EventContext from '../../context/event-context';
 import EventDate from '../Event/EventDate';
 
 const LikedEvent = (props) => {
+  const ctx = useContext(EventContext);
+
+  const removeEventFromLiked = () => {
+    ctx.removeEvent(props.id);
+  };
   return (
     <div className="max-w-[20rem] font-montserrat shadow-[0px_10px_15px_rgba(0,0,0,0.2)] rounded-xl hover:scale-[1.02] transition-all duration-300 bg-white overflow-hidden">
       <div className="w-full">
@@ -32,7 +39,10 @@ const LikedEvent = (props) => {
         </h3>
       </div>
       <div className="px-[10%] flex justify-center">
-        <button className="flex text-white justify-center shadow-md items-center w-full h-[2.5rem] bg-gradient-to-r from-[#4E10B4] to-[#7A3BDD] my-4 rounded-full text-lg hover:text-[#F2A6FF] hover:text-xl transition-all duration-300">
+        <button
+          onClick={removeEventFromLiked}
+          className="flex text-white justify-center shadow-md items-center w-full h-[2.5rem] bg-gradient-to-r from-[#4E10B4] to-[#7A3BDD] my-4 rounded-full text-lg hover:text-[#F2A6FF] hover:text-xl transition-all duration-300"
+        >
           <MdOutlineRemoveCircle />
         </button>
       </div>
