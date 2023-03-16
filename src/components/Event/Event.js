@@ -17,6 +17,7 @@ const Event = (props) => {
       address: props.address,
       time: props.time,
       date: props.date,
+      amount: 1,
     });
   };
 
