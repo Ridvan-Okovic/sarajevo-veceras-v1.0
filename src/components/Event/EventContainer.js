@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import { filterByDateAscending } from '../../utils/filter';
 import Event from './Event';
 import SearchBar from '../Layout/SearchBar';
 
@@ -10,9 +11,6 @@ const EventContainer = (props) => {
 
   const isChecked =
     props.isClubChecked || props.isPubChecked || props.isOpenChecked;
-
-  let today = new Date();
-  let todayString = new Date().toString().slice(0, 10);
 
   const URL =
     'https://sarajevo-veceras-default-rtdb.europe-west1.firebasedatabase.app/events.json';
@@ -55,14 +53,9 @@ const EventContainer = (props) => {
   }
 
   // * Ovdje gledam da je datum veci od danasnjeg datuma
-  const eventDateFilter = events.filter((eventInfo) => {
-    return (
-      eventInfo.datum > today ||
-      eventInfo.datum.toString().slice(0, 10) === todayString
-    );
-  });
+  const dateFilter = filterByDateAscending(events);
 
-  const event = eventDateFilter.map((eventInfo) => {
+  const eventsByDate = dateFilter.map((eventInfo) => {
     return (
       <Event
         key={eventInfo.id}
@@ -77,30 +70,7 @@ const EventContainer = (props) => {
     );
   });
 
-  // * Ovo je searchHandling funkcija
-  const filtered = eventDateFilter.filter((eventInfo) => {
-    return eventInfo.ime
-      .toLocaleLowerCase()
-      .includes(searchTerm.toLocaleLowerCase());
-  });
-
-  // * Ovdje filtriram eventove po search term
-  const filteredEvents = filtered.map((eventInfo) => {
-    return (
-      <Event
-        key={eventInfo.id}
-        id={eventInfo.id}
-        poster={eventInfo.poster}
-        name={eventInfo.ime}
-        opis={eventInfo.opis}
-        time={eventInfo.vrijeme}
-        address={eventInfo.adresa}
-        date={new Date(eventInfo.datum)}
-      />
-    );
-  });
-
-  const checkboxFilter = eventDateFilter.filter((eventInfo) => {
+  const checkboxFilter = dateFilter.filter((eventInfo) => {
     return (
       eventInfo.tip.toLocaleLowerCase() ===
         props.checkedClubValue.toLocaleLowerCase() ||
@@ -126,34 +96,42 @@ const EventContainer = (props) => {
     );
   });
 
-  const checkboxFilteredEventsSearch = checkboxFilter.filter((eventInfo) => {
+  // * Ovo je searchHandling funkcija
+  const filtered = dateFilter.filter((eventInfo) => {
     return eventInfo.ime
       .toLocaleLowerCase()
-      .includes(props.searchValue.toLocaleLowerCase());
+      .includes(searchTerm.toLocaleLowerCase());
   });
 
-  const checkboxFilteredEventsSearchFilter = checkboxFilteredEventsSearch.map(
-    (eventInfo) => {
-      return (
-        <Event
-          key={eventInfo.id}
-          id={eventInfo.id}
-          poster={eventInfo.poster}
-          name={eventInfo.ime}
-          opis={eventInfo.opis}
-          time={eventInfo.vrijeme}
-          address={eventInfo.adresa}
-          date={new Date(eventInfo.datum)}
-        />
-      );
-    }
-  );
+  // * Ovdje filtriram eventove po search term
+  const filteredEvents = filtered.map((eventInfo) => {
+    return (
+      <Event
+        key={eventInfo.id}
+        id={eventInfo.id}
+        poster={eventInfo.poster}
+        name={eventInfo.ime}
+        opis={eventInfo.opis}
+        time={eventInfo.vrijeme}
+        address={eventInfo.adresa}
+        date={new Date(eventInfo.datum)}
+      />
+    );
+  });
 
   let content = (
     <p className="font-montserrat font-normal text-3xl">
       Nema pronađenih eventova. Molimo pokušajte kasnije!
     </p>
   );
+
+  if (isLoading) {
+    content = (
+      <p className="font-montserrat font-normal text-3xl">
+        Prikupljamo informacije o eventovima...
+      </p>
+    );
+  }
 
   if (isSearching && filteredEvents.length === 0) {
     content = (
@@ -167,32 +145,25 @@ const EventContainer = (props) => {
     content = filteredEvents;
   }
 
-  if (isLoading) {
+  if (!isLoading && !isSearching) {
+    content = eventsByDate;
+  }
+
+  if (isChecked && checkboxFilteredEvents.length > 0) {
+    content = checkboxFilteredEvents;
+  }
+
+  if (isChecked && checkboxFilteredEvents.length === 0) {
     content = (
       <p className="font-montserrat font-normal text-3xl">
-        Prikupljamo informacije o eventovima...
+        Za željeni filter nema eventova!
       </p>
     );
   }
 
-  if (!isLoading && !isSearching) {
-    content = event;
-  }
-
-  if (
-    (props.isClubChecked || props.isPubChecked || props.isOpenChecked) &&
-    checkboxFilteredEvents.length > 0
-  ) {
-    content = checkboxFilteredEvents;
-  }
-
-  if (isChecked && checkboxFilteredEvents.length > 0 && isSearching) {
-    content = checkboxFilteredEventsSearchFilter;
-  }
-
   return (
     <>
-      <SearchBar setSearchTerm={setSearchTerm} />
+      {!isChecked && <SearchBar setSearchTerm={setSearchTerm} />}
       <div className="flex flex-row flex-wrap px-[10%] items-center justify-center gap-[3.5rem] w-full my-[4rem]">
         {content}
       </div>
