@@ -3,10 +3,12 @@ import EventContext from './event-context';
 
 const defaultLikedEventsState = {
   events: [],
+  amount: 0,
 };
 
 const eventReducer = (state, action) => {
   if (action.type === 'ADD') {
+    let updatedTotalAmount;
     let updatedEvents;
 
     const existingEventIndex = state.events.findIndex(
@@ -17,16 +19,20 @@ const eventReducer = (state, action) => {
 
     if (existingEvent) {
       updatedEvents = [...state.events];
+      updatedTotalAmount = state.amount;
     } else {
       updatedEvents = state.events.concat(action.event);
+      updatedTotalAmount = state.amount + action.event.amount;
     }
 
     return {
       events: updatedEvents,
+      amount: updatedTotalAmount,
     };
   }
 
   if (action.type === 'REMOVE') {
+    let updatedTotalAmount;
     const existingEventIndex = state.events.findIndex(
       (event) => event.id === action.id
     );
@@ -37,10 +43,12 @@ const eventReducer = (state, action) => {
 
     if (existingEvent) {
       updatedEvents = state.events.filter((event) => event.id !== action.id);
+      updatedTotalAmount = state.amount - 1;
     }
 
     return {
       events: updatedEvents,
+      amount: updatedTotalAmount,
     };
   }
 
@@ -63,6 +71,7 @@ const EventProvider = (props) => {
 
   const eventContext = {
     events: eventState.events,
+    amount: eventState.amount,
     addEvent: addEventToLiked,
     removeEvent: removeEventFromLiked,
   };
