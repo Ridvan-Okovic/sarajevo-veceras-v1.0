@@ -1,12 +1,9 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import EventContext from '../../context/event-context';
 import LikedEvent from './LikedEvent';
-import SearchBar from '../Layout/SearchBar';
 
 const LikedEventContainer = () => {
   const ctx = useContext(EventContext);
-
-  const [searchTerm, setSearchTerm] = useState('');
 
   let content = (
     <p className="font-montserrat font-normal text-3xl">
@@ -35,7 +32,6 @@ const LikedEventContainer = () => {
 
   return (
     <>
-      <SearchBar />
       <div className="flex flex-row flex-wrap px-[10%] items-center justify-center gap-[3.5rem] w-full my-[4rem]">
         {content}
       </div>
