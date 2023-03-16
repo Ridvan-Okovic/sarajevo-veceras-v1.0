@@ -1,16 +1,9 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import EventContext from '../../context/event-context';
 
 const NavBar = (props) => {
-  // const [isSearchOpen, setIsSearchOpen] = useState(false);
-
-  // const searchChangeHandler = (event) => {
-  //   props.onAddSearchTermHandler(event.target.value);
-  // };
-
-  // const searchBarHandler = () => {
-  //   setIsSearchOpen((prev) => !prev);
-  // };
-
+  const ctx = useContext(EventContext);
   const openFilterHandler = () => {
     props.setIsFilterOpened((prev) => !prev);
   };
@@ -23,9 +16,16 @@ const NavBar = (props) => {
           <Link to="/">Home</Link>
         </button>
 
-        <button className="uppercase">
-          <Link to="/liked">Liked</Link>
-        </button>
+        <div className="relative">
+          <button className="uppercase relative z-10">
+            <Link to="/liked">Liked</Link>
+          </button>
+          {ctx.amount !== 0 && (
+            <span className="absolute -top-[0.6rem] -right-[0.9rem] bg-[#4E10B4] font-montserrat font-normal text-xs w-6 h-6 grid items-center justify-center rounded-full">
+              {ctx.amount}
+            </span>
+          )}
+        </div>
 
         <button
           onClick={openFilterHandler}
