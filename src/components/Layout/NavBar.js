@@ -22,7 +22,7 @@ const NavBar = (props) => {
             <Link to="/liked">Liked</Link>
           </button>
           {ctx.amount !== 0 && (
-            <span className="absolute -top-[0.5rem] -right-[0.7rem] bg-[#4E10B4]  font-normal text-xs w-[1.3rem] h-[1.3rem] grid items-center justify-center rounded-full">
+            <span className="absolute -top-[0.5rem] -right-[0.7rem] bg-[#4E10B4] z-20 font-normal text-[10px] leading-[14px] w-[1.3rem] h-[1.3rem] grid items-center justify-center rounded-full">
               {ctx.amount}
             </span>
           )}
