@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import EventContext from '../../context/event-context';
-import { VscFilter } from 'react-icons/vsc';
+import { BsFilterRight } from 'react-icons/bs';
 
 const NavBar = (props) => {
   const ctx = useContext(EventContext);
@@ -34,7 +34,7 @@ const NavBar = (props) => {
         >
           <span className="flex flex-row items-center justify-baseline gap-1">
             Filter
-            <VscFilter />
+            <BsFilterRight />
           </span>
         </button>
       </div>

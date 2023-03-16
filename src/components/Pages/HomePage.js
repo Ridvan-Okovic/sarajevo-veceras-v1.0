@@ -54,6 +54,7 @@ const HomePage = () => {
       />
       {isFilterOpened && (
         <Filter
+          // ----------------------------------- //
           setIsPubChecked={setIsPubChecked}
           setCheckedPubValue={setCheckedPubValue}
           // ----------------------------------- //
