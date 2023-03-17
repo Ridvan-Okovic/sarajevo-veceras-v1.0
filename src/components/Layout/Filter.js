@@ -1,5 +1,3 @@
-import { BsFilterRight } from 'react-icons/bs';
-
 const Filter = (props) => {
   const handleClubCheckboxChange = (event) => {
     props.setIsClubChecked(event.target.checked);
@@ -15,8 +13,6 @@ const Filter = (props) => {
     props.setIsOpenChecked(event.target.checked);
     props.setCheckedOpenValue(event.target.name);
   };
-
-  // const removeFilterHandler = () => {};
 
   return (
     <div className="flex items-center justify-center h-[5rem] shadow-lg bg-inherit">
@@ -51,10 +47,6 @@ const Filter = (props) => {
           ></input>
         </label>
       </div>
-      {/* <div onClick={removeFilterHandler} className="relative">
-        <BsFilterRight className="text-2xl text-black" />
-        <div className="absolute top-[0.7rem] -right-[0.2rem] w-6 border-b-2 border-black -rotate-[45deg]"></div>
-      </div> */}
     </div>
   );
 };

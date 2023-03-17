@@ -1,12 +1,13 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, useOutletContext } from 'react-router-dom';
 import EventContext from '../../context/event-context';
 import { BsFilterRight } from 'react-icons/bs';
 
 const NavBar = (props) => {
   const ctx = useContext(EventContext);
+
   const openFilterHandler = () => {
-    props.setIsFilterOpened((prev) => !prev);
+    props.setIsFilterShown((prev) => !prev);
   };
 
   return (
@@ -14,12 +15,15 @@ const NavBar = (props) => {
       <h2 className="text-2xl font-semibold">Logo</h2>
       <div className="flex gap-10 text-xl items-baseline ">
         <button className="uppercase py-1 hover:border-b-[0.1rem] focus:border-b-[0.1rem] active:border-b-[0.1rem] transition-all duration-75">
-          <Link to="/">Events</Link>
+          <NavLink to="/">Home</NavLink>
+        </button>
+        <button className="uppercase py-1 hover:border-b-[0.1rem] focus:border-b-[0.1rem] active:border-b-[0.1rem] transition-all duration-75">
+          <NavLink to="/events">Events</NavLink>
         </button>
 
         <div className="relative">
           <button className="uppercase pb-1 relative z-10 hover:border-b-[0.1rem] focus:border-b-[0.1rem] active:border-b-[0.1rem] transition-all duration-75">
-            <Link to="/liked">Liked</Link>
+            <NavLink to="/liked">Liked</NavLink>
           </button>
           {ctx.amount !== 0 && (
             <span className="absolute -top-[0.5rem] -right-[0.7rem] bg-[#4E10B4] z-20 font-normal text-[10px] leading-[14px] w-[1.3rem] h-[1.3rem] grid items-center justify-center rounded-full">

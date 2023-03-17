@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { useOutletContext } from 'react-router-dom';
 
 import Filter from '../Layout/Filter';
-import LikedEventContainer from '../LikedEvents/LikedEventContainer';
+import EventContainer from '../Event/EventContainer';
 
-const LikedEvents = () => {
+const EventsPage = () => {
   const isFilterShown = useOutletContext();
   // * Checkbox logic for club
   const [isClubChecked, setIsClubChecked] = useState(false);
@@ -48,6 +48,7 @@ const LikedEvents = () => {
     <>
       {isFilterShown && (
         <Filter
+          // ----------------------------------- //
           setIsPubChecked={setIsPubChecked}
           setCheckedPubValue={setCheckedPubValue}
           // ----------------------------------- //
@@ -59,7 +60,7 @@ const LikedEvents = () => {
         />
       )}
 
-      <LikedEventContainer
+      <EventContainer
         isClubChecked={isClubChecked}
         checkedClubValue={checkedClubValue}
         // ------------------------------------ //
@@ -73,4 +74,4 @@ const LikedEvents = () => {
   );
 };
 
-export default LikedEvents;
+export default EventsPage;
