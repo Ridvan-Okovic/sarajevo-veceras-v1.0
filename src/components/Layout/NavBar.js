@@ -14,7 +14,7 @@ const NavBar = (props) => {
       <h2 className="text-2xl font-semibold">Logo</h2>
       <div className="flex gap-10 text-xl items-baseline ">
         <button className="uppercase py-1 hover:border-b-[0.1rem] focus:border-b-[0.1rem] active:border-b-[0.1rem] transition-all duration-75">
-          <Link to="/">Home</Link>
+          <Link to="/">Events</Link>
         </button>
 
         <div className="relative">
