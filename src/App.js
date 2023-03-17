@@ -1,5 +1,4 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import EventProvider from './context/EventProvider';
 
 import HomePage from './components/Pages/HomePage';
 import EventsPage from './components/Pages/EventsPage';
@@ -9,28 +8,16 @@ import RootLayout from './components/Pages/RootLayout';
 const router = createBrowserRouter([
   {
     path: '/',
-    element: (
-      <EventProvider>
-        <RootLayout />
-      </EventProvider>
-    ),
+    element: <RootLayout />,
     children: [
       { path: '', element: <HomePage /> },
       {
         path: '/events',
-        element: (
-          <EventProvider>
-            <EventsPage />
-          </EventProvider>
-        ),
+        element: <EventsPage />,
       },
       {
         path: '/liked',
-        element: (
-          <EventProvider>
-            <LikedEvents />
-          </EventProvider>
-        ),
+        element: <LikedEvents />,
       },
     ],
   },
