@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { NavLink, useOutletContext } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import EventContext from '../../context/event-context';
 import { BsFilterRight } from 'react-icons/bs';
 
