@@ -13,12 +13,12 @@ const NavBar = (props) => {
     <nav className="sticky top-0 z-10 w-full h-[6rem] px-[10%] flex flex-row items-center justify-between bg-[#1F1926] text-white uppercase font-montserrat">
       <h2 className="text-2xl font-semibold">Logo</h2>
       <div className="flex gap-10 text-xl items-baseline ">
-        <button className="uppercase py-1 hover:border-b-[0.1rem] focus:border-b-[0.1rem] active:border-b-[0.1rem] transition-all">
+        <button className="uppercase py-1 hover:border-b-[0.1rem] focus:border-b-[0.1rem] active:border-b-[0.1rem] transition-all duration-75">
           <Link to="/">Home</Link>
         </button>
 
         <div className="relative">
-          <button className="uppercase pb-1 relative z-10 hover:border-b-[0.1rem] focus:border-b-[0.1rem] active:border-b-[0.1rem] transition-all">
+          <button className="uppercase pb-1 relative z-10 hover:border-b-[0.1rem] focus:border-b-[0.1rem] active:border-b-[0.1rem] transition-all duration-75">
             <Link to="/liked">Liked</Link>
           </button>
           {ctx.amount !== 0 && (
@@ -30,7 +30,7 @@ const NavBar = (props) => {
 
         <button
           onClick={openFilterHandler}
-          className="border-[0.1rem] border-white text-white uppercase py-1 px-6 hover:border-white rounded-full active:border-white transition-all duration-300"
+          className="border-[0.1rem] border-white text-white uppercase py-1 px-6 rounded-full "
         >
           <span className="flex flex-row items-center justify-baseline gap-1">
             Filter

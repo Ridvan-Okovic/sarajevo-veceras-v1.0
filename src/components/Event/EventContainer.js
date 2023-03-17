@@ -164,7 +164,7 @@ const EventContainer = (props) => {
   return (
     <>
       {!isChecked && <SearchBar setSearchTerm={setSearchTerm} />}
-      <div className="flex flex-row flex-wrap px-[10%] items-center justify-center gap-[3.5rem] w-full my-[4rem]">
+      <div className="flex flex-row flex-wrap px-[10%] items-center justify-center gap-[3.5rem] w-full my-[2rem]">
         {content}
       </div>
     </>

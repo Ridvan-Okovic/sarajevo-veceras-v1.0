@@ -19,7 +19,7 @@ const Filter = (props) => {
   // const removeFilterHandler = () => {};
 
   return (
-    <div className="flex items-center justify-center h-[7rem] shadow-lg bg-inherit">
+    <div className="flex items-center justify-center h-[5rem] shadow-lg bg-inherit">
       <div className="flex flex-row gap-10">
         <label className="font-montserrat font-semibold text-lg flex gap-4">
           Club

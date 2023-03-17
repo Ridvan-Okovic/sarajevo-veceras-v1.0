@@ -6,7 +6,7 @@ const SearchBar = (props) => {
   };
 
   return (
-    <div className="w-full px-[10%] mt-[4rem] flex flex-row items-center justify-center h-10">
+    <div className="w-full px-[10%] mt-[2rem] flex flex-row items-center justify-center h-10">
       <input
         placeholder="Search..."
         onChange={searchChangeHandler}
