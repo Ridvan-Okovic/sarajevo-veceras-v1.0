@@ -3,7 +3,6 @@ import { useOutletContext } from 'react-router-dom';
 
 import Filter from '../Layout/Filter';
 import EventContainer from '../Event/EventContainer';
-import EventProvider from '../../context/EventProvider';
 
 const EventsPage = () => {
   const isFilterShown = useOutletContext();
