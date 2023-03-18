@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 
 import { filterByDateAscending } from '../../utils/filter';
 import Event from './Event';
 import SearchBar from '../Layout/SearchBar';
+import EventContext from '../../context/event-context';
 
 const EventContainer = (props) => {
-  const [events, setEvents] = useState([]);
+  const ctx = useContext(EventContext);
+  // const [events, setEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -40,11 +42,13 @@ const EventContainer = (props) => {
         (a, b) => Date.parse(a.datum) - Date.parse(b.datum)
       );
 
-      setEvents(sortedEvents);
+      ctx.addEvents(sortedEvents);
       setIsLoading(false);
     };
     fetchEvent();
   }, []);
+
+  const events = ctx.events;
 
   let isSearching = false;
 

@@ -1,11 +1,12 @@
 import EventDate from './EventDate';
 import { useContext } from 'react';
-import EventContext from '../../context/event-context';
+import LikedProvider from '../../context/liked-context';
 import { FaMapPin, FaClock, FaCalendar, FaHeart } from 'react-icons/fa';
 import { MdCelebration } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 const Event = (props) => {
-  const ctx = useContext(EventContext);
+  const ctx = useContext(LikedProvider);
 
   const addEventToLiked = () => {
     ctx.addEvent({
@@ -27,9 +28,11 @@ const Event = (props) => {
         <img src={props.poster} alt="Mjesto" />
       </div>
 
-      <h2 className="text-center text-2xl mt-4 mb-2 font-semibold text-black">
-        {props.name}
-      </h2>
+      <Link to={`/events/${props.name.toLocaleLowerCase()}`}>
+        <h2 className="text-center text-2xl mt-4 mb-2 font-semibold text-black">
+          {props.name}
+        </h2>
+      </Link>
 
       <div className="flex flex-col mx-[10%] text-lg font-light">
         <h3 className="flex flex-row items-center mb-2 border-b-[1px] text-black border-gray-300">

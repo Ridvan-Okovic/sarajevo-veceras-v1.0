@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { FaMapPin, FaCalendar, FaClock } from 'react-icons/fa';
 import { MdOutlineRemoveCircle, MdCelebration } from 'react-icons/md';
-import EventContext from '../../context/event-context';
+import EventContext from '../../context/liked-context';
 import EventDate from '../Event/EventDate';
 
 const LikedEvent = (props) => {

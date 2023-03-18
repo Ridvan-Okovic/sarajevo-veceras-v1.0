@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
-import EventContext from '../../context/event-context';
+import EventContext from '../../context/liked-context';
 import { BsFilterRight } from 'react-icons/bs';
 
 const NavBar = (props) => {

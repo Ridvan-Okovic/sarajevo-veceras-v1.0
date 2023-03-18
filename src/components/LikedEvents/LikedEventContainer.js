@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import EventContext from '../../context/event-context';
+import EventContext from '../../context/liked-context';
 import LikedEvent from './LikedEvent';
 
 const LikedEventContainer = () => {
