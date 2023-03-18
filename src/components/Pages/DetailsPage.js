@@ -36,7 +36,9 @@ const DetailsPage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <h1 className="uppercase text-4xl my-8">{params.place}</h1>
+      <h1 className="uppercase text-4xl my-8 font-montserrat">
+        {params.place}
+      </h1>
       <div className="flex flex-row gap-8 flex-wrap">{filteredEvents}</div>
     </div>
   );

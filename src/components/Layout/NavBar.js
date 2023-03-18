@@ -14,16 +14,37 @@ const NavBar = (props) => {
     <nav className="sticky top-0 z-10 w-full h-[6rem] px-[10%] flex flex-row items-center justify-between bg-[#1F1926] text-white uppercase font-montserrat">
       <h2 className="text-2xl font-semibold">Logo</h2>
       <div className="flex gap-10 text-xl items-baseline ">
-        <button className="uppercase py-1 hover:border-b-[0.1rem] focus:border-b-[0.1rem] active:border-b-[0.1rem] transition-all duration-75">
-          <NavLink to="/">Home</NavLink>
+        <button className="uppercase py-1">
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? `border-b-[0.1rem] border-white` : undefined
+            }
+            to="/"
+          >
+            Home
+          </NavLink>
         </button>
-        <button className="uppercase py-1 hover:border-b-[0.1rem] focus:border-b-[0.1rem] active:border-b-[0.1rem] transition-all duration-75">
-          <NavLink to="/events">Events</NavLink>
+        <button className="uppercase py-1">
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? `border-b-[0.1rem] border-white` : undefined
+            }
+            to="/events"
+          >
+            Events
+          </NavLink>
         </button>
 
         <div className="relative">
-          <button className="uppercase pb-1 relative z-10 hover:border-b-[0.1rem] focus:border-b-[0.1rem] active:border-b-[0.1rem] transition-all duration-75">
-            <NavLink to="/liked">Liked</NavLink>
+          <button className="uppercase pb-1 relative">
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? `border-b-[0.1rem] border-white` : undefined
+              }
+              to="/liked"
+            >
+              Liked
+            </NavLink>
           </button>
           {ctx.amount !== 0 && (
             <span className="absolute -top-[0.5rem] -right-[0.7rem] bg-[#4E10B4] z-20 font-normal text-[10px] leading-[14px] w-[1.3rem] h-[1.3rem] grid items-center justify-center rounded-full">
