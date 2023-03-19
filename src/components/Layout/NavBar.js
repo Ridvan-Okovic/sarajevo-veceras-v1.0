@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import EventContext from '../../context/liked-context';
 import { BsFilterRight } from 'react-icons/bs';
+import logo from '../../assets/logo.png';
 
 const NavBar = (props) => {
   const ctx = useContext(EventContext);
@@ -12,7 +13,7 @@ const NavBar = (props) => {
 
   return (
     <nav className="sticky top-0 z-10 w-full h-[6rem] px-[10%] flex flex-row items-center justify-between bg-[#1F1926] text-white uppercase font-montserrat">
-      <h2 className="text-2xl font-semibold">Logo</h2>
+      <img src={logo} className="h-12" alt="logo" />
       <div className="flex gap-10 text-xl items-baseline ">
         <button className="uppercase py-1">
           <NavLink
