@@ -11,3 +11,16 @@ export function filterByDateAscending(events) {
 
   return eventDateFilter;
 }
+
+export function filterBySearchTerm(events) {}
+
+export function filterBycheckBoxInput(events, clubValue, pubValue, openValue) {
+  const checkboxFilter = events.filter((eventInfo) => {
+    return (
+      eventInfo.tip.toLocaleLowerCase() === clubValue.toLocaleLowerCase() ||
+      eventInfo.tip.toLocaleLowerCase() === pubValue.toLocaleLowerCase() ||
+      eventInfo.tip.toLocaleLowerCase() === openValue.toLocaleLowerCase()
+    );
+  });
+  return checkboxFilter;
+}
