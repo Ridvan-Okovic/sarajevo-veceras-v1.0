@@ -1,6 +1,9 @@
 import { useEffect, useState, useContext } from 'react';
 
-import { filterByDateAscending } from '../../utils/filter';
+import {
+  filterByDateAscending,
+  filterBycheckBoxInput,
+} from '../../utils/filter';
 import Event from './Event';
 import SearchBar from '../Layout/SearchBar';
 import EventContext from '../../context/event-context';
@@ -74,16 +77,12 @@ const EventContainer = (props) => {
     );
   });
 
-  const checkboxFilter = dateFilter.filter((eventInfo) => {
-    return (
-      eventInfo.tip.toLocaleLowerCase() ===
-        props.checkedClubValue.toLocaleLowerCase() ||
-      eventInfo.tip.toLocaleLowerCase() ===
-        props.checkedPubValue.toLocaleLowerCase() ||
-      eventInfo.tip.toLocaleLowerCase() ===
-        props.checkedOpenValue.toLocaleLowerCase()
-    );
-  });
+  const checkboxFilter = filterBycheckBoxInput(
+    dateFilter,
+    props.checkedClubValue,
+    props.checkedPubValue,
+    props.checkedOpenValue
+  );
 
   const checkboxFilteredEvents = checkboxFilter.map((eventInfo) => {
     return (
