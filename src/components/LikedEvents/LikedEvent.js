@@ -11,7 +11,7 @@ const LikedEvent = (props) => {
     ctx.removeEvent(props.id);
   };
   return (
-    <div className="max-w-[20rem] font-montserrat shadow-[0px_10px_15px_rgba(0,0,0,0.2)] rounded-xl hover:scale-[1.02] transition-all duration-300 bg-white overflow-hidden">
+    <div className="max-w-[20rem] font-montserrat shadow-[0px_7px_5px_rgba(0,0,0,0.15)] rounded-xl hover:scale-[1.02] transition-all duration-300 bg-white overflow-hidden">
       <div className="w-full">
         <img src={props.poster} alt="Mjesto" />
       </div>
