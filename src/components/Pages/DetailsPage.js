@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import EventContext from '../../context/event-context';
 import Event from '../Event/Event';
+import { FaChevronLeft } from 'react-icons/fa';
 
 const DetailsPage = () => {
+  const navigate = useNavigate();
   const ctx = useContext(EventContext);
   const params = useParams();
 
@@ -15,7 +17,8 @@ const DetailsPage = () => {
   const filter = events.filter((event) => {
     return (
       (event.ime.toLocaleLowerCase() === params.place && event.datum > today) ||
-      event.datum.toString().slice(0, 10) === todayString
+      (event.ime.toLocaleLowerCase() === params.place &&
+        event.datum.toString().slice(0, 10) === todayString)
     );
   });
 
@@ -35,11 +38,21 @@ const DetailsPage = () => {
   });
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <h1 className="uppercase text-4xl my-8 font-montserrat">
+    <div className="flex flex-col items-center justify-center px-[10%]">
+      <h1 className="uppercase text-4xl my-8 font-montserrat tracking-wider">
         {params.place}
       </h1>
-      <div className="flex flex-row gap-8 flex-wrap">{filteredEvents}</div>
+
+      <div className="flex flex-col">
+        <div className="flex flex-row gap-2 items-center justify-start w-full mb-8 text-xl">
+          <FaChevronLeft
+            className="cursor-pointer"
+            onClick={() => navigate(-1)}
+          />
+          <p className="font-montserrat">Nazad</p>
+        </div>
+        <div className="flex flex-row gap-8">{filteredEvents}</div>
+      </div>
     </div>
   );
 };

@@ -1,8 +1,11 @@
 import { useContext } from 'react';
+import { FaChevronLeft } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 import EventContext from '../../context/liked-context';
 import LikedEvent from './LikedEvent';
 
 const LikedEventContainer = () => {
+  const navigate = useNavigate();
   const ctx = useContext(EventContext);
 
   let content = (
@@ -31,11 +34,18 @@ const LikedEventContainer = () => {
   }
 
   return (
-    <>
-      <div className="flex flex-row flex-wrap px-[10%] items-center justify-center gap-[3.5rem] w-full my-[4rem]">
-        {content}
+    <div className="flex flex-col items-center justify-center px-[10%] mt-[4rem]">
+      <div className="flex flex-col">
+        <div className="flex flex-row gap-2 items-center justify-start w-full mb-8 text-xl">
+          <FaChevronLeft
+            className="cursor-pointer"
+            onClick={() => navigate(-1)}
+          />
+          <p className="font-montserrat">Nazad</p>
+        </div>
+        <div className="flex flex-row gap-8">{content}</div>
       </div>
-    </>
+    </div>
   );
 };
 
