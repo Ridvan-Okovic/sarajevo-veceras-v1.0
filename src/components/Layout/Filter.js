@@ -15,9 +15,9 @@ const Filter = (props) => {
   };
 
   return (
-    <div className="flex items-center justify-center h-[5rem] shadow-lg bg-inherit">
+    <div className="flex items-center justify-center h-[5rem] shadow-lg bg-[#f6b162]">
       <div className="flex flex-row gap-10">
-        <label className="font-montserrat font-semibold text-lg flex gap-4">
+        <label className="font-montserrat font-semibold text-lg flex gap-4 text-[#363636]">
           Club
           <input
             className="w-4"
@@ -27,7 +27,7 @@ const Filter = (props) => {
           ></input>
         </label>
 
-        <label className="font-montserrat text-lg font-semibold flex gap-4">
+        <label className="font-montserrat text-lg font-semibold flex gap-4 text-[#363636]">
           Pub
           <input
             className="w-4"
@@ -37,7 +37,7 @@ const Filter = (props) => {
           ></input>
         </label>
 
-        <label className="font-montserrat text-lg font-semibold flex gap-4">
+        <label className="font-montserrat text-lg font-semibold flex gap-4 text-[#363636]">
           Open Air
           <input
             className="w-4"

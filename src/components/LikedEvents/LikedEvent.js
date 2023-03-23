@@ -1,6 +1,7 @@
 import { useContext } from 'react';
-import { FaMapPin, FaCalendar, FaClock } from 'react-icons/fa';
-import { MdOutlineRemoveCircle, MdCelebration } from 'react-icons/md';
+import { Link } from 'react-router-dom';
+import { FaMapPin, FaCalendar, FaClock, FaTrashAlt } from 'react-icons/fa';
+import { MdCelebration } from 'react-icons/md';
 import EventContext from '../../context/liked-context';
 import EventDate from '../Event/EventDate';
 
@@ -11,39 +12,40 @@ const LikedEvent = (props) => {
     ctx.removeEvent(props.id);
   };
   return (
-    <div className="max-w-[20rem] font-montserrat shadow-[0px_7px_5px_rgba(0,0,0,0.15)] rounded-xl hover:scale-[1.02] transition-all duration-300 bg-white overflow-hidden">
-      <div className="w-full">
-        <img src={props.poster} alt="Mjesto" />
+    <div className="w-[18rem] font-montserrat shadow-[0px_10px_7px_rgba(0,0,0,0.35)] rounded-xl hover:scale-[1.01] transition-all duration-300 bg-[#1e1e1e] overflow-hidden">
+      <div className="w-full h-44 rounded-xl mb-2 shadow-2xl">
+        <img src={props.poster} alt="Mjesto" className="w-full h-44" />
       </div>
+      <Link to={`/events/${props.name.toLocaleLowerCase()}`}>
+        <h2 className="text-center text-2xl truncate px-[1rem] font-montserrat tracking-wide text-[#e1e1e1]">
+          {props.name}
+        </h2>
+      </Link>
 
-      <h2 className="text-center text-2xl mt-4 mb-2 font-semibold text-black">
-        {props.name}
-      </h2>
-
-      <div className="flex flex-col mx-[10%] text-lg font-light">
-        <h3 className="flex flex-row items-center mb-2 border-b-[1px] text-black border-gray-300">
-          <MdCelebration className="text-[#4E10B4] mr-2" />
-          {props.opis}
+      <div className="flex flex-col mx-[10%] text-lg font-normal">
+        <h3 className="flex flex-row items-center mb-2 border-b-[1px] text-[#e1e1e1] text-opacity-70 border-gray-300">
+          <MdCelebration className="text-[#ffb560] mr-2 text-lg" />
+          <p className="truncate">{props.opis}</p>
         </h3>
-        <h3 className="flex flex-row items-center mb-2 border-b-[1px] text-black border-gray-300">
-          <FaMapPin className="text-[#4E10B4] mr-2" />
-          {props.address}
+        <h3 className="flex flex-row items-center mb-2 border-b-[1px] text-[#e1e1e1]  text-opacity-70 border-gray-300">
+          <FaMapPin className="text-[#ffb560] mr-2" />
+          <p className="truncate">{props.address}</p>
         </h3>
-        <h3 className="flex flex-row items-center mb-2 border-b-[1px] text-black border-gray-300">
-          <FaClock className="text-[#4E10B4] mr-2" />
+        <h3 className="flex flex-row items-center mb-2 border-b-[1px] text-[#e1e1e1]  text-opacity-70 border-gray-300">
+          <FaClock className="text-[#ffb560] mr-2" />
           {props.time}
         </h3>
-        <h3 className="flex flex-row items-center border-b-[1px] text-black border-gray-300">
-          <FaCalendar className="text-[#4E10B4] mr-2" />
+        <h3 className="flex flex-row items-center border-b-[1px] text-[#e1e1e1]  text-opacity-70 border-gray-300">
+          <FaCalendar className="text-[#ffb560] mr-2" />
           <EventDate datum={props.date} />
         </h3>
       </div>
       <div className="px-[10%] flex justify-center">
         <button
           onClick={removeEventFromLiked}
-          className="flex text-white justify-center shadow-md items-center w-full h-[2.5rem] bg-gradient-to-r from-[#4E10B4] to-[#7A3BDD] my-4 rounded-full text-lg hover:text-[#F2A6FF] hover:text-xl transition-all duration-300"
+          className="flex text-black justify-center shadow-md items-center w-full h-[2.5rem] bg-[#ffb560] my-4 rounded-full text-lg"
         >
-          <MdOutlineRemoveCircle />
+          <FaTrashAlt />
         </button>
       </div>
     </div>

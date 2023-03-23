@@ -123,14 +123,14 @@ const EventContainer = (props) => {
   });
 
   let content = (
-    <p className="font-montserrat font-normal text-3xl">
+    <p className="font-montserrat font-normal text-3xl text-[#e1e1e1]">
       Nema pronađenih eventova. Molimo pokušajte kasnije!
     </p>
   );
 
   if (isLoading) {
     content = (
-      <p className="font-montserrat font-normal text-3xl">
+      <p className="font-montserrat font-normal text-3xl text-[#e1e1e1]">
         Prikupljamo informacije o eventovima...
       </p>
     );
@@ -138,7 +138,7 @@ const EventContainer = (props) => {
 
   if (isSearching && filteredEvents.length === 0) {
     content = (
-      <p className="font-montserrat font-normal text-3xl">
+      <p className="font-montserrat font-normal text-3xl text-[#e1e1e1]">
         Pokušajte drugo mjesto.
       </p>
     );
@@ -158,7 +158,7 @@ const EventContainer = (props) => {
 
   if (isChecked && checkboxFilteredEvents.length === 0) {
     content = (
-      <p className="font-montserrat font-normal text-3xl">
+      <p className="font-montserrat font-normal text-3xl text-[#e1e1e1]">
         Za željeni filter nema eventova!
       </p>
     );
@@ -167,7 +167,10 @@ const EventContainer = (props) => {
   return (
     <>
       {!isChecked && <SearchBar setSearchTerm={setSearchTerm} />}
-      <div className="flex flex-row flex-wrap px-[10%] items-center justify-center gap-[3.5rem] w-full my-[2rem]">
+      <h3 className="text-center text-3xl text-[#e1e1e1] font-montserrat uppercase tracking-wider mt-[2rem]">
+        Upcoming Events
+      </h3>
+      <div className="flex flex-row flex-wrap px-[10%] items-center justify-center gap-8 w-full my-[2rem]">
         {content}
       </div>
     </>

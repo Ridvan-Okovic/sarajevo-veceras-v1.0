@@ -9,8 +9,8 @@ const LikedEventContainer = () => {
   const ctx = useContext(EventContext);
 
   let content = (
-    <p className="font-montserrat font-normal text-3xl">
-      Trenutno nemate lajkanih eventova
+    <p className="font-montserrat font-normal text-3xl text-[#e1e1e1]">
+      Trenutno nemate lajkanih eventova!
     </p>
   );
 
@@ -36,12 +36,15 @@ const LikedEventContainer = () => {
   return (
     <div className="flex flex-col items-center justify-center px-[10%] mt-[4rem]">
       <div className="flex flex-col">
+        <h3 className="text-center tracking-wider uppercase text-[#e1e1e1] text-3xl mb-2">
+          Liked Events
+        </h3>
         <div className="flex flex-row gap-2 items-center justify-start w-full mb-8 text-xl">
           <FaChevronLeft
-            className="cursor-pointer"
+            className="cursor-pointer text-[#e1e1e1]"
             onClick={() => navigate(-1)}
           />
-          <p className="font-montserrat">Nazad</p>
+          <p className="font-montserrat text-[#e1e1e1] text-2xl">Nazad</p>
         </div>
         <div className="flex flex-row gap-8">{content}</div>
       </div>
