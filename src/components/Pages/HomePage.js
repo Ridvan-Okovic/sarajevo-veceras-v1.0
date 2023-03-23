@@ -2,7 +2,7 @@ import React from 'react';
 
 const HomePage = () => {
   return (
-    <h1 className="font-montserrat font-normal text-3xl text-center mt-12">
+    <h1 className="font-montserrat font-normal text-3xl text-center mt-12 text-[#e1e1e1]">
       This is a Home Page!
     </h1>
   );

@@ -39,17 +39,17 @@ const DetailsPage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center px-[10%]">
-      <h1 className="uppercase text-4xl my-8 font-montserrat tracking-wider">
+      <h1 className="uppercase text-4xl my-8 font-montserrat tracking-widest text-[#e1e1e1]">
         {params.place}
       </h1>
 
       <div className="flex flex-col">
-        <div className="flex flex-row gap-2 items-center justify-start w-full mb-8 text-xl">
+        <div className="flex flex-row gap-2 items-center justify-start w-full mb-8 text-xl text-[#e1e1e1]">
           <FaChevronLeft
             className="cursor-pointer"
             onClick={() => navigate(-1)}
           />
-          <p className="font-montserrat">Nazad</p>
+          <p className="font-montserrat text-2xl text-[#e1e1e1]">Nazad</p>
         </div>
         <div className="flex flex-row gap-8">{filteredEvents}</div>
       </div>
