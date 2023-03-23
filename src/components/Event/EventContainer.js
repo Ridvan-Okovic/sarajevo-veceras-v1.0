@@ -170,7 +170,7 @@ const EventContainer = (props) => {
       <h3 className="text-center text-3xl text-[#e1e1e1] font-montserrat uppercase tracking-wider mt-[2rem]">
         Upcoming Events
       </h3>
-      <div className="flex flex-row flex-wrap px-[10%] items-center justify-center gap-8 w-full my-[2rem]">
+      <div className="flex flex-row flex-wrap px-[5%] items-center justify-center gap-8 w-full my-[2rem]">
         {content}
       </div>
     </>

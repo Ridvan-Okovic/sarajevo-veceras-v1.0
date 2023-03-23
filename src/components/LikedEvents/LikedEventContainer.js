@@ -39,14 +39,16 @@ const LikedEventContainer = () => {
         <h3 className="text-center tracking-wider uppercase text-[#e1e1e1] text-3xl mb-2">
           Liked Events
         </h3>
-        <div className="flex flex-row gap-2 items-center justify-start w-full mb-8 text-xl">
+        <div className="flex flex-row gap-2 items-center justify-start w-full mb-8 mt-4 text-xl">
           <FaChevronLeft
             className="cursor-pointer text-[#e1e1e1]"
             onClick={() => navigate(-1)}
           />
           <p className="font-montserrat text-[#e1e1e1] text-2xl">Nazad</p>
         </div>
-        <div className="flex flex-row gap-8">{content}</div>
+        <div className="flex flex-row items-center justify-center gap-8 flex-wrap">
+          {content}
+        </div>
       </div>
     </div>
   );
