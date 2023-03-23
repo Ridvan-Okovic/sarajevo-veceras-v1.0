@@ -47,7 +47,7 @@ const NavBar = (props) => {
             </NavLink>
           </button>
           {ctx.amount !== 0 && (
-            <span className="absolute -top-[0.5rem] -right-[0.7rem] bg-[#F6B162] text-[#363636] z-20 font-bold text-[11px] leading-[14px] w-[1.3rem] h-[1.3rem] grid items-center justify-center rounded-full">
+            <span className="absolute -top-[0.4rem] -right-[0.5rem] bg-[#F6B162] text-[#363636] z-20 font-bold text-[11px] leading-[14px] w-[1.3rem] h-[1.3rem] grid items-center justify-center rounded-full">
               {ctx.amount}
             </span>
           )}
