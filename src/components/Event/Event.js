@@ -54,7 +54,7 @@ const Event = (props) => {
       <div className="px-[10%] flex justify-center">
         <button
           onClick={addEventToLiked}
-          className="flex text-black justify-center shadow-md items-center w-full h-[2.5rem] bg-[#ffb560] my-4 rounded-full text-lg"
+          className="flex text-black justify-center shadow-md items-center w-full h-[2.5rem] bg-[#ffb560] hover:opacity-80 transition-all duration-150 my-4 rounded-full text-lg"
         >
           <FaHeart className="" />
         </button>

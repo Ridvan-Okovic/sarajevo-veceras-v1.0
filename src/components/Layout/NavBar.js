@@ -11,9 +11,9 @@ const NavBar = (props) => {
   };
 
   return (
-    <nav className="sticky top-0 z-10 w-full h-[6rem] px-[10%] flex flex-row items-center justify-between bg-[#1e1e1e] text-white uppercase shadow-lg font-montserrat">
+    <nav className="sticky top-0 z-10 w-full h-[6rem] px-[10%] flex flex-row items-center justify-between bg-[#1e1e1e] text-[#e1e1e1] uppercase shadow-lg font-montserrat">
       <h1 className="font-montserrat text-3xl tracking-widest">Logo</h1>
-      <div className="flex gap-10 text-xl items-baseline ">
+      <div className="flex gap-10 text-2xl items-baseline font-montserrat ">
         <button className="uppercase py-1">
           <NavLink
             className={({ isActive }) =>
