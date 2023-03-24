@@ -82,10 +82,10 @@ const NavBar = (props) => {
         )}
         <div
           className={`${
-            toggle ? 'flex' : 'hidden'
-          } p-10 shadow-lg top-10 absolute right-0 my-2 min-2-[140px] bg-gradient-to-tr from-[#121212] to-[#1e1e1e] rounded-xl`}
+            toggle ? 'flex translate-x-0' : 'flex translate-x-full'
+          } w-[80%] ease-in-out duration-300 h-screen shadow-lg top-14 absolute -right-8 justify-center my-2 min-2-[140px] bg-gradient-to-tr from-[#121212] to-[#1e1e1e] rounded-l-xl`}
         >
-          <ul className="flex flex-col items-center justify-center gap-4 font-montserrat ">
+          <ul className="flex flex-col items-center justify-center gap-4 font-montserrat text-2xl ">
             <li className="uppercase">
               <NavLink
                 className={({ isActive }) =>
@@ -108,7 +108,7 @@ const NavBar = (props) => {
             </li>
 
             <div className="relative">
-              <li className="uppercaserelative">
+              <li className="uppercase relative">
                 <NavLink
                   className={({ isActive }) =>
                     isActive ? `border-b-[0.1rem] border-white` : undefined

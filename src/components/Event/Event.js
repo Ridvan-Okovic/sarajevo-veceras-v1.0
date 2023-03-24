@@ -23,7 +23,7 @@ const Event = (props) => {
   };
 
   return (
-    <div className="w-[18rem] font-montserrat shadow-[0px_10px_7px_rgba(0,0,0,0.35)] rounded-xl hover:scale-[1.01] transition-all duration-300 bg-[#1e1e1e] overflow-hidden">
+    <div className="w-[18rem] font-montserrat shadow-[0px_10px_7px_rgba(0,0,0,0.35)] rounded-xl hover:scale-105 ease-in-out duration-300 bg-[#1e1e1e] overflow-hidden">
       <div className="w-full h-44 rounded-xl mb-2 shadow-2xl">
         <img src={props.poster} alt="Mjesto" className="w-full h-44" />
       </div>
