@@ -35,26 +35,26 @@ const Event = (props) => {
 
       <div className="flex flex-col mx-[10%] text-lg font-normal">
         <h3 className="flex flex-row items-center mb-2 border-b-[1px] text-[#e1e1e1] text-opacity-70 border-gray-300">
-          <MdCelebration className="text-[#ffb560] mr-2 text-lg" />
+          <MdCelebration className="text-amber-500 mr-2 text-lg" />
           <p className="truncate">{props.opis}</p>
         </h3>
         <h3 className="flex flex-row items-center mb-2 border-b-[1px] text-[#e1e1e1]  text-opacity-70 border-gray-300">
-          <FaMapPin className="text-[#ffb560] mr-2" />
+          <FaMapPin className="text-amber-500 mr-2" />
           <p className="truncate">{props.address}</p>
         </h3>
         <h3 className="flex flex-row items-center mb-2 border-b-[1px] text-[#e1e1e1]  text-opacity-70 border-gray-300">
-          <FaClock className="text-[#ffb560] mr-2" />
+          <FaClock className="text-amber-500 mr-2" />
           {props.time}
         </h3>
         <h3 className="flex flex-row items-center border-b-[1px] text-[#e1e1e1]  text-opacity-70 border-gray-300">
-          <FaCalendar className="text-[#ffb560] mr-2" />
+          <FaCalendar className="text-amber-500 mr-2" />
           <EventDate datum={props.date} />
         </h3>
       </div>
       <div className="px-[10%] flex justify-center">
         <button
           onClick={addEventToLiked}
-          className="flex text-black justify-center shadow-md items-center w-full h-[2.5rem] bg-[#ffb560] hover:opacity-80 transition-all duration-150 my-4 rounded-full text-lg"
+          className="flex text-black justify-center shadow-md items-center w-full h-[2.5rem] bg-amber-500 hover:opacity-80 transition-all duration-150 my-4 rounded-full text-lg"
         >
           <FaHeart className="" />
         </button>

@@ -34,7 +34,7 @@ const LikedEventContainer = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center px-[10%] mt-[4rem]">
+    <div className="flex flex-col items-center justify-center px-[10%]  bg-zinc-900 shadow-lg py-[5%] my-[4rem]">
       <div className="flex flex-col">
         <h3 className="text-center tracking-wider uppercase text-[#e1e1e1] text-3xl mb-2">
           Liked Events

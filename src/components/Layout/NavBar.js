@@ -14,7 +14,7 @@ const NavBar = (props) => {
   };
 
   return (
-    <nav className="sticky top-0 z-10 w-full h-[6rem] px-8 flex flex-row items-center justify-between bg-[#1e1e1e] text-[#e1e1e1] uppercase shadow-lg font-montserrat">
+    <nav className="sticky top-0 z-10 w-full h-[6rem] px-8 flex flex-row items-center justify-between bg-zinc-900 text-[#e1e1e1] uppercase shadow-lg font-montserrat">
       <h1 className="font-montserrat text-3xl tracking-widest">Logo</h1>
 
       <ul className="sm:flex hidden gap-8 text-xl items-baseline font-montserrat ">
@@ -51,7 +51,7 @@ const NavBar = (props) => {
             </NavLink>
           </li>
           {ctx.amount !== 0 && (
-            <span className="absolute -top-[0.4rem] -right-[0.5rem] bg-[#F6B162] text-[#363636] z-20 font-bold text-[11px] leading-[14px] w-[1.3rem] h-[1.3rem] grid items-center justify-center rounded-full">
+            <span className="absolute -top-[0.4rem] -right-[0.5rem] bg-amber-500 text-[#363636] z-20 font-bold text-[11px] leading-[14px] w-[1.2rem] h-[1.2rem] grid items-center justify-center rounded-full">
               {ctx.amount}
             </span>
           )}
@@ -59,7 +59,7 @@ const NavBar = (props) => {
 
         <li
           onClick={openFilterHandler}
-          className="border-[0.1rem] bg-[#F6B162] border-[#F6B162] text-[#363636] font-semibold uppercase py-1 px-6 rounded-full shadow-xl cursor-pointer hover:opacity-80 transition-all duration-300"
+          className="border-[0.1rem] bg-amber-500 border-amber-500 text-[#363636] font-semibold uppercase py-1 px-6 rounded-full shadow-xl cursor-pointer hover:opacity-80 transition-all duration-300"
         >
           <span className="flex flex-row items-center justify-baseline gap-1">
             Filter

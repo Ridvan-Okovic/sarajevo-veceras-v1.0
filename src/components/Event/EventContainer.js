@@ -167,11 +167,13 @@ const EventContainer = (props) => {
   return (
     <>
       {!isChecked && <SearchBar setSearchTerm={setSearchTerm} />}
-      <h3 className="text-center text-3xl text-[#e1e1e1] font-montserrat uppercase tracking-wider mt-[2rem]">
-        Upcoming Events
-      </h3>
-      <div className="flex flex-row flex-wrap px-[5%] items-center justify-center gap-8 w-full my-[2rem]">
-        {content}
+      <div className="bg-zinc-900 py-[5%] my-[4rem] shadow-lg">
+        <h3 className="text-center text-3xl text-[#e1e1e1] font-montserrat uppercase tracking-wider mb-[4rem]">
+          Upcoming Events
+        </h3>
+        <div className="flex flex-row flex-wrap px-[5%] items-center justify-center gap-8 w-full my-[2rem]">
+          {content}
+        </div>
       </div>
     </>
   );
