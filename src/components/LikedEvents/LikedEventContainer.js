@@ -8,12 +8,6 @@ const LikedEventContainer = () => {
   const navigate = useNavigate();
   const ctx = useContext(EventContext);
 
-  let content = (
-    <p className="font-montserrat font-normal text-3xl text-[#e1e1e1]">
-      Trenutno nemate lajkanih eventova!
-    </p>
-  );
-
   const likedEvents = ctx.events.map((eventInfo) => {
     return (
       <LikedEvent
@@ -29,10 +23,6 @@ const LikedEventContainer = () => {
     );
   });
 
-  if (likedEvents.length > 0) {
-    content = likedEvents;
-  }
-
   return (
     <div className="flex flex-col items-center justify-center px-[10%]  bg-zinc-900 shadow-lg py-[5%] my-[4rem]">
       <div className="flex flex-col relative">
@@ -44,9 +34,16 @@ const LikedEventContainer = () => {
             className="cursor-pointer text-[#e1e1e1]"
             onClick={() => navigate(-1)}
           />
-          <p className="font-montserrat text-[#e1e1e1] text-lg">Back</p>
+          <p className="font-montserrat text-[#e1e1e1] text-lg">Back </p>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 ">{content}</div>
+        {likedEvents.length === 0 && (
+          <p className="font-montserrat font-normal text-3xl text-center text-[#e1e1e1]">
+            Trenutno nemate lajkanih eventova!
+          </p>
+        )}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 ">
+          {likedEvents}
+        </div>
       </div>
     </div>
   );
