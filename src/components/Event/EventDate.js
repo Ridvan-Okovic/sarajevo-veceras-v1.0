@@ -14,7 +14,7 @@ const EventDate = (props) => {
   ];
 
   return (
-    <div className="flex w-full">
+    <div className="flex w-full truncate">
       <div className="pr-1">{days[dayindex]},</div>
       <div className="pr-1">{day}</div>
       <div className="pr-1">{month}</div>

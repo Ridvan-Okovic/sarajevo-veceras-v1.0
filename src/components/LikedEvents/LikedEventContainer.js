@@ -35,20 +35,18 @@ const LikedEventContainer = () => {
 
   return (
     <div className="flex flex-col items-center justify-center px-[10%]  bg-zinc-900 shadow-lg py-[5%] my-[4rem]">
-      <div className="flex flex-col">
-        <h3 className="text-center tracking-wider uppercase text-[#e1e1e1] text-3xl mb-2">
+      <div className="flex flex-col relative">
+        <h3 className="text-center tracking-wider uppercase text-[#e1e1e1] text-3xl mb-8">
           Liked Events
         </h3>
-        <div className="flex flex-row gap-2 items-center justify-start w-full mb-8 mt-4 text-xl">
+        <div className="flex flex-row gap-2 items-center absolute top-[6px] justify-start text-lg">
           <FaChevronLeft
             className="cursor-pointer text-[#e1e1e1]"
             onClick={() => navigate(-1)}
           />
-          <p className="font-montserrat text-[#e1e1e1] text-2xl">Nazad</p>
+          <p className="font-montserrat text-[#e1e1e1] text-lg">Nazad</p>
         </div>
-        <div className="flex flex-row items-center justify-center gap-8 flex-wrap">
-          {content}
-        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 ">{content}</div>
       </div>
     </div>
   );
