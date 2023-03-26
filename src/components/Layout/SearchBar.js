@@ -16,9 +16,9 @@ const SearchBar = (props) => {
         <input
           placeholder="Search..."
           onChange={searchChangeHandler}
-          className="w-[80%] lg:w-[40rem] focus:border-amber-500 transition-colors bg-zinc-800 shadow-lg text-[#FAF7FF] outline-none border-[0.1rem] border-[#363636] border-r-0 rounded-l-lg px-4 py-2 h-full"
+          className="w-[80%] lg:w-[40rem] focus:border-[#ffb560] transition-colors bg-zinc-800 shadow-lg text-[#FAF7FF] outline-none border-[0.1rem] border-[#363636] border-r-0 rounded-l-lg px-4 py-2 h-full"
         />
-        <button className="h-full px-4 bg-amber-500 hover:opacity-80 transition-all duration-150 rounded-r-lg shadow-lg">
+        <button className="h-full px-4 bg-[#ffb560] hover:opacity-80 transition-all duration-150 rounded-r-lg shadow-lg">
           <FaSearch className="text-xl text-[#363636] cursor-pointer" />
         </button>
       </form>

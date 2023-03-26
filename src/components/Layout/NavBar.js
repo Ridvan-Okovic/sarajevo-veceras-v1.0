@@ -51,7 +51,7 @@ const NavBar = (props) => {
             </NavLink>
           </li>
           {ctx.amount !== 0 && (
-            <span className="absolute -top-[0.4rem] -right-[0.5rem] bg-amber-500 text-[#363636] z-20 font-bold text-[11px] leading-[14px] w-[1.2rem] h-[1.2rem] grid items-center justify-center rounded-full">
+            <span className="absolute -top-[0.4rem] -right-[0.5rem] bg-[#ffb560] text-[#363636] z-20 font-bold text-[11px] leading-[14px] w-[1.2rem] h-[1.2rem] grid items-center justify-center rounded-full">
               {ctx.amount}
             </span>
           )}
@@ -59,7 +59,7 @@ const NavBar = (props) => {
 
         <li
           onClick={openFilterHandler}
-          className="border-[0.1rem] bg-amber-500 border-amber-500 text-[#363636] font-semibold uppercase py-1 px-6 rounded-full shadow-xl cursor-pointer hover:opacity-80 transition-all duration-300"
+          className="border-[0.1rem] bg-[#ffb560] border-[#ffb560] text-[#363636] font-semibold uppercase py-1 px-6 rounded-full shadow-xl cursor-pointer hover:opacity-80 transition-all duration-300"
         >
           <span className="flex flex-row items-center justify-baseline gap-1">
             Filter
