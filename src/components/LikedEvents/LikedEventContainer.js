@@ -44,7 +44,7 @@ const LikedEventContainer = () => {
             className="cursor-pointer text-[#e1e1e1]"
             onClick={() => navigate(-1)}
           />
-          <p className="font-montserrat text-[#e1e1e1] text-lg">Nazad</p>
+          <p className="font-montserrat text-[#e1e1e1] text-lg">Back</p>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 ">{content}</div>
       </div>
