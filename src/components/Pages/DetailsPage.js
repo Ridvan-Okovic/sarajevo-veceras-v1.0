@@ -51,7 +51,7 @@ const DetailsPage = () => {
           />
           <p className="font-montserrat text-2xl text-[#e1e1e1]">Nazad</p>
         </div>
-        <div className="flex flex-row gap-8">{filteredEvents}</div>
+        <div className="grid grid-cols-2 gap-8">{filteredEvents}</div>
       </div>
     </div>
   );
