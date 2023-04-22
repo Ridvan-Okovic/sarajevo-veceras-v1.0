@@ -26,21 +26,6 @@ const EventContainer = (props) => {
   //     const response = await fetch(URL);
   //     const data = await response.json();
 
-  //     const loadedEvents = [];
-
-  //     for (const key in data) {
-  //       loadedEvents.push({
-  //         id: key,
-  //         ime: data[key].name,
-  //         opis: data[key].description,
-  //         vrijeme: data[key].time,
-  //         adresa: data[key].address,
-  //         poster: data[key].poster,
-  //         tip: data[key].type,
-  //         datum: new Date(data[key].date),
-  //       });
-  //     }
-
   //     let sortedEvents = loadedEvents.sort(
   //       (a, b) => Date.parse(a.datum) - Date.parse(b.datum)
   //     );
@@ -51,7 +36,22 @@ const EventContainer = (props) => {
   //   fetchEvent();
   // }, []);
 
-  const events = props.events;
+  const loadedEvents = [];
+
+  for (const key in props.events) {
+    loadedEvents.push({
+      id: key,
+      ime: props.events[key].name,
+      opis: props.events[key].description,
+      vrijeme: props.events[key].time,
+      adresa: props.events[key].address,
+      poster: props.events[key].poster,
+      tip: props.events[key].type,
+      datum: new Date(props.events[key].date),
+    });
+  }
+
+  const events = loadedEvents;
 
   console.log(events);
 
@@ -150,9 +150,9 @@ const EventContainer = (props) => {
     content = filteredEvents;
   }
 
-  // if (!isLoading && !isSearching) {
-  //   content = eventsByDate;
-  // }
+  if (eventsByDate.length > 0) {
+    content = eventsByDate;
+  }
 
   if (isChecked && checkboxFilteredEvents.length > 0) {
     content = checkboxFilteredEvents;

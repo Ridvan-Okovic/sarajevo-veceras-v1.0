@@ -5,8 +5,8 @@ import Filter from '../Layout/Filter';
 import EventContainer from '../Event/EventContainer';
 
 const EventsPage = () => {
-  const data = useLoaderData();
-  const events = data.events;
+  const events = useLoaderData();
+
   const isFilterShown = useOutletContext();
   // * Checkbox logic for club
   const [isClubChecked, setIsClubChecked] = useState(false);
