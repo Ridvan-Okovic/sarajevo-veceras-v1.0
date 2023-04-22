@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 
 import {
   filterByDateAscending,
@@ -17,18 +17,15 @@ const EventContainer = (props) => {
     props.isClubChecked || props.isPubChecked || props.isOpenChecked;
 
   const events = props.events;
-  ctx.addEvents(events);
 
-  let isSearching = false;
-
-  if (searchTerm.trim() !== '') {
-    isSearching = true;
-  }
+  useEffect(() => {
+    ctx.addEvents(events);
+  }, [ctx, events]);
 
   // * Ovdje gledam da je datum veci od danasnjeg datuma
-  const dateFilter = filterByDateAscending(events);
+  const dateFilteredEvents = filterByDateAscending(events);
 
-  const eventsByDate = dateFilter.map((eventInfo) => {
+  const eventsByDate = dateFilteredEvents.map((eventInfo) => {
     return (
       <Event
         key={eventInfo.id}
@@ -44,7 +41,7 @@ const EventContainer = (props) => {
   });
 
   const checkboxFilter = filterBycheckBoxInput(
-    dateFilter,
+    dateFilteredEvents,
     props.checkedClubValue,
     props.checkedPubValue,
     props.checkedOpenValue
@@ -66,7 +63,7 @@ const EventContainer = (props) => {
   });
 
   // * Ovo je searchHandling funkcija
-  const filtered = dateFilter.filter((eventInfo) => {
+  const filtered = dateFilteredEvents.filter((eventInfo) => {
     return eventInfo.ime
       .toLocaleLowerCase()
       .includes(searchTerm.toLocaleLowerCase());
@@ -94,32 +91,24 @@ const EventContainer = (props) => {
     </p>
   );
 
-  // if (isLoading) {
-  //   content = (
-  //     <p className="font-montserrat font-normal text-3xl text-[#e1e1e1]">
-  //       Prikupljamo informacije o eventovima...
-  //     </p>
-  //   );
-  // }
-
-  if (isSearching && filteredEvents.length === 0) {
-    content = (
-      <p className="font-montserrat font-normal text-3xl text-[#e1e1e1]">
-        Pokušajte drugo mjesto.
-      </p>
-    );
-  }
-
-  if (isSearching && filteredEvents.length > 0) {
-    content = filteredEvents;
-  }
-
   if (eventsByDate.length > 0) {
     content = eventsByDate;
   }
 
+  if (filteredEvents.length > 0) {
+    content = filteredEvents;
+  }
+
   if (isChecked && checkboxFilteredEvents.length > 0) {
     content = checkboxFilteredEvents;
+  }
+
+  if (filteredEvents.length === 0) {
+    content = (
+      <p className="font-montserrat font-normal text-center text-3xl text-[#e1e1e1]">
+        Pokušajte drugo mjesto.
+      </p>
+    );
   }
 
   if (isChecked && checkboxFilteredEvents.length === 0) {
@@ -137,7 +126,16 @@ const EventContainer = (props) => {
         <h3 className="text-center text-3xl text-[#e1e1e1] font-montserrat uppercase tracking-wider mb-[4rem]">
           Upcoming Events
         </h3>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 ">{content}</div>
+        <div
+          className={
+            filteredEvents.length === 0 ||
+            (isChecked && checkboxFilteredEvents.length === 0)
+              ? 'grid grid-cols-1'
+              : 'grid grid-cols-1 lg:grid-cols-2 gap-8'
+          }
+        >
+          {content}
+        </div>
       </div>
     </>
   );

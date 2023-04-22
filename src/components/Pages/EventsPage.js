@@ -1,9 +1,10 @@
-import { useState, useEffect, json } from 'react';
+import { useState, useEffect } from 'react';
 import { useOutletContext, useLoaderData } from 'react-router-dom';
 
 import Filter from '../Layout/Filter';
 import EventContainer from '../Event/EventContainer';
 import { transformEvents } from '../../utils/events';
+import { getEvents } from '../../api/api';
 
 const EventsPage = () => {
   const data = useLoaderData();
@@ -83,18 +84,6 @@ const EventsPage = () => {
 
 export default EventsPage;
 
-async function loadEvents() {
-  const res = await fetch(
-    'https://sarajevo-veceras-default-rtdb.europe-west1.firebasedatabase.app/events.json'
-  );
-
-  if (!res.ok) {
-    throw json({ message: 'Could not fetch events!' }, { status: 500 });
-  }
-
-  return res;
-}
-
 export function loader() {
-  return loadEvents();
+  return getEvents();
 }

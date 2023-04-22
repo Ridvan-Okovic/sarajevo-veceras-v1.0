@@ -14,7 +14,7 @@ const NavBar = (props) => {
   };
 
   return (
-    <nav className="sticky top-0 z-10 w-full h-[6rem] px-8 flex flex-row items-center justify-between bg-zinc-900 text-[#e1e1e1] uppercase shadow-lg font-montserrat">
+    <nav className="sticky top-0 z-10 w-full h-[6rem] px-[10%] flex flex-row items-center justify-between bg-zinc-900 text-[#e1e1e1] uppercase shadow-lg font-montserrat">
       <h1 className="font-montserrat text-3xl tracking-widest">Logo</h1>
 
       <ul className="sm:flex hidden gap-8 text-xl items-baseline font-montserrat ">
