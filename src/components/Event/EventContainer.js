@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 
 import {
   filterByDateAscending,
@@ -10,50 +10,14 @@ import EventContext from '../../context/event-context';
 
 const EventContainer = (props) => {
   const ctx = useContext(EventContext);
-  // const [events, setEvents] = useState([]);
-  // const [isLoading, setIsLoading] = useState(false);
+
   const [searchTerm, setSearchTerm] = useState('');
 
   const isChecked =
     props.isClubChecked || props.isPubChecked || props.isOpenChecked;
 
-  // const URL =
-  //   'https://sarajevo-veceras-default-rtdb.europe-west1.firebasedatabase.app/events.json';
-
-  // useEffect(() => {
-  //   const fetchEvent = async () => {
-  //     setIsLoading(true);
-  //     const response = await fetch(URL);
-  //     const data = await response.json();
-
-  //     let sortedEvents = loadedEvents.sort(
-  //       (a, b) => Date.parse(a.datum) - Date.parse(b.datum)
-  //     );
-
-  //     ctx.addEvents(sortedEvents);
-  //     setIsLoading(false);
-  //   };
-  //   fetchEvent();
-  // }, []);
-
-  const loadedEvents = [];
-
-  for (const key in props.events) {
-    loadedEvents.push({
-      id: key,
-      ime: props.events[key].name,
-      opis: props.events[key].description,
-      vrijeme: props.events[key].time,
-      adresa: props.events[key].address,
-      poster: props.events[key].poster,
-      tip: props.events[key].type,
-      datum: new Date(props.events[key].date),
-    });
-  }
-
-  const events = loadedEvents;
-
-  console.log(events);
+  const events = props.events;
+  ctx.addEvents(events);
 
   let isSearching = false;
 
