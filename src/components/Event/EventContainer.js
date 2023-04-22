@@ -11,47 +11,49 @@ import EventContext from '../../context/event-context';
 const EventContainer = (props) => {
   const ctx = useContext(EventContext);
   // const [events, setEvents] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
   const isChecked =
     props.isClubChecked || props.isPubChecked || props.isOpenChecked;
 
-  const URL =
-    'https://sarajevo-veceras-default-rtdb.europe-west1.firebasedatabase.app/events.json';
+  // const URL =
+  //   'https://sarajevo-veceras-default-rtdb.europe-west1.firebasedatabase.app/events.json';
 
-  useEffect(() => {
-    const fetchEvent = async () => {
-      setIsLoading(true);
-      const response = await fetch(URL);
-      const data = await response.json();
+  // useEffect(() => {
+  //   const fetchEvent = async () => {
+  //     setIsLoading(true);
+  //     const response = await fetch(URL);
+  //     const data = await response.json();
 
-      const loadedEvents = [];
+  //     const loadedEvents = [];
 
-      for (const key in data) {
-        loadedEvents.push({
-          id: key,
-          ime: data[key].name,
-          opis: data[key].description,
-          vrijeme: data[key].time,
-          adresa: data[key].address,
-          poster: data[key].poster,
-          tip: data[key].type,
-          datum: new Date(data[key].date),
-        });
-      }
+  //     for (const key in data) {
+  //       loadedEvents.push({
+  //         id: key,
+  //         ime: data[key].name,
+  //         opis: data[key].description,
+  //         vrijeme: data[key].time,
+  //         adresa: data[key].address,
+  //         poster: data[key].poster,
+  //         tip: data[key].type,
+  //         datum: new Date(data[key].date),
+  //       });
+  //     }
 
-      let sortedEvents = loadedEvents.sort(
-        (a, b) => Date.parse(a.datum) - Date.parse(b.datum)
-      );
+  //     let sortedEvents = loadedEvents.sort(
+  //       (a, b) => Date.parse(a.datum) - Date.parse(b.datum)
+  //     );
 
-      ctx.addEvents(sortedEvents);
-      setIsLoading(false);
-    };
-    fetchEvent();
-  }, []);
+  //     ctx.addEvents(sortedEvents);
+  //     setIsLoading(false);
+  //   };
+  //   fetchEvent();
+  // }, []);
 
-  const events = ctx.events;
+  const events = props.events;
+
+  console.log(events);
 
   let isSearching = false;
 
@@ -128,13 +130,13 @@ const EventContainer = (props) => {
     </p>
   );
 
-  if (isLoading) {
-    content = (
-      <p className="font-montserrat font-normal text-3xl text-[#e1e1e1]">
-        Prikupljamo informacije o eventovima...
-      </p>
-    );
-  }
+  // if (isLoading) {
+  //   content = (
+  //     <p className="font-montserrat font-normal text-3xl text-[#e1e1e1]">
+  //       Prikupljamo informacije o eventovima...
+  //     </p>
+  //   );
+  // }
 
   if (isSearching && filteredEvents.length === 0) {
     content = (
@@ -148,9 +150,9 @@ const EventContainer = (props) => {
     content = filteredEvents;
   }
 
-  if (!isLoading && !isSearching) {
-    content = eventsByDate;
-  }
+  // if (!isLoading && !isSearching) {
+  //   content = eventsByDate;
+  // }
 
   if (isChecked && checkboxFilteredEvents.length > 0) {
     content = checkboxFilteredEvents;

@@ -23,16 +23,6 @@ const NavBar = (props) => {
             className={({ isActive }) =>
               isActive ? `border-b-[0.1rem] border-white` : undefined
             }
-            to="/"
-          >
-            Home
-          </NavLink>
-        </li>
-        <li className="uppercase py-1">
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? `border-b-[0.1rem] border-white` : undefined
-            }
             to="/events"
           >
             Events
@@ -86,16 +76,6 @@ const NavBar = (props) => {
           } w-[80%] ease-in-out duration-300 h-screen shadow-lg top-14 absolute -right-8 justify-center my-2 min-2-[140px] bg-gradient-to-tr from-[#121212] to-[#1e1e1e] rounded-l-xl`}
         >
           <ul className="flex flex-col items-center justify-center gap-4 font-montserrat text-2xl ">
-            <li className="uppercase">
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? `border-b-[0.1rem] border-white` : undefined
-                }
-                to="/"
-              >
-                Home
-              </NavLink>
-            </li>
             <li className="uppercase">
               <NavLink
                 className={({ isActive }) =>

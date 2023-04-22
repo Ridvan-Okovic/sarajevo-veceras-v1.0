@@ -1,7 +1,12 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from 'react-router-dom';
 
-import HomePage from './components/Pages/HomePage';
-import EventsPage from './components/Pages/EventsPage';
+import EventsPage, {
+  loader as eventsLoader,
+} from './components/Pages/EventsPage';
 import LikedEvents from './components/Pages/LikedEvents';
 import RootLayout from './components/Pages/RootLayout';
 import DetailsPage from './components/Pages/DetailsPage';
@@ -11,10 +16,10 @@ const router = createBrowserRouter([
     path: '/',
     element: <RootLayout />,
     children: [
-      { path: '', element: <HomePage /> },
       {
         path: '/events',
         element: <EventsPage />,
+        loader: eventsLoader,
       },
       {
         path: '/liked',
@@ -23,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: '/events/:place',
         element: <DetailsPage />,
+      },
+      {
+        path: '/',
+        element: <Navigate to="/events" redirect />,
       },
     ],
   },
