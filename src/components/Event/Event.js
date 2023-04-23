@@ -2,7 +2,6 @@ import EventDate from './EventDate';
 import { useContext } from 'react';
 import LikedProvider from '../../context/liked-context';
 import { FaMapPin, FaClock, FaCalendar, FaHeart } from 'react-icons/fa';
-import { BiChevronDownCircle } from 'react-icons/bi';
 import { MdCelebration } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
@@ -24,7 +23,7 @@ const Event = (props) => {
   };
 
   return (
-    <div className="w-full lg:max-w-[40rem] h-54 bg-zinc-800 font-montserrat rounded-md shadow-md flex flex-row lg:flex-row">
+    <div className="w-full lg:w-[40rem] h-56 bg-zinc-900 font-montserrat rounded-md shadow-md flex flex-row lg:flex-row">
       <img
         src={props.poster}
         alt="Mjesto"
@@ -53,13 +52,9 @@ const Event = (props) => {
           <FaCalendar className="text-[#ffb560] mr-2" />
           <EventDate datum={props.date} />
         </h3>
-        <div className="flex items-center justify-end mx-8 h-6 gap-2">
+        <div className="flex items-center justify-end mx-8 h-10 gap-2">
           <FaHeart
-            className=" text-[#ffb560] text-xl cursor-pointer"
-            onClick={addEventToLiked}
-          />
-          <BiChevronDownCircle
-            className=" text-[#ffb560] text-2xl cursor-pointer"
+            className=" text-[#ffb560] hover:opacity-75 text-2xl cursor-pointer"
             onClick={addEventToLiked}
           />
         </div>

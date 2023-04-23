@@ -3,6 +3,7 @@ import { useState, useContext, useEffect } from 'react';
 import {
   filterByDateAscending,
   filterBycheckBoxInput,
+  filterBySearchTerm,
 } from '../../utils/filter';
 import Event from './Event';
 import SearchBar from '../Layout/SearchBar';
@@ -40,14 +41,11 @@ const EventContainer = (props) => {
     );
   });
 
-  const checkboxFilter = filterBycheckBoxInput(
-    dateFilteredEvents,
-    props.checkedClubValue,
-    props.checkedPubValue,
-    props.checkedOpenValue
-  );
+  // * Ovo je searchHandling funkcija
+  const filtered = filterBySearchTerm(dateFilteredEvents, searchTerm);
 
-  const checkboxFilteredEvents = checkboxFilter.map((eventInfo) => {
+  // * Ovdje filtriram eventove po search term
+  const filteredEvents = filtered.map((eventInfo) => {
     return (
       <Event
         key={eventInfo.id}
@@ -62,15 +60,14 @@ const EventContainer = (props) => {
     );
   });
 
-  // * Ovo je searchHandling funkcija
-  const filtered = dateFilteredEvents.filter((eventInfo) => {
-    return eventInfo.ime
-      .toLocaleLowerCase()
-      .includes(searchTerm.toLocaleLowerCase());
-  });
+  const checkboxFilter = filterBycheckBoxInput(
+    dateFilteredEvents,
+    props.selectedFilter
+  );
 
-  // * Ovdje filtriram eventove po search term
-  const filteredEvents = filtered.map((eventInfo) => {
+  console.log(checkboxFilter);
+
+  const checkboxFilteredEvents = checkboxFilter.map((eventInfo) => {
     return (
       <Event
         key={eventInfo.id}
@@ -99,7 +96,7 @@ const EventContainer = (props) => {
     content = filteredEvents;
   }
 
-  if (isChecked && checkboxFilteredEvents.length > 0) {
+  if (checkboxFilteredEvents.length > 0) {
     content = checkboxFilteredEvents;
   }
 
@@ -111,7 +108,7 @@ const EventContainer = (props) => {
     );
   }
 
-  if (isChecked && checkboxFilteredEvents.length === 0) {
+  if (props.isChecked && checkboxFilteredEvents.length === 0) {
     content = (
       <p className="font-montserrat font-normal text-3xl text-[#e1e1e1]">
         Za željeni filter nema eventova!
@@ -122,14 +119,14 @@ const EventContainer = (props) => {
   return (
     <>
       {!isChecked && <SearchBar setSearchTerm={setSearchTerm} />}
-      <div className=" px-[10%] my-[4rem] flex flex-col items-center justify-center">
+      <div className="my-[4rem] flex flex-col items-center">
         <h3 className="text-center text-3xl text-[#e1e1e1] font-montserrat uppercase tracking-wider mb-[4rem]">
           Upcoming Events
         </h3>
         <div
           className={
             filteredEvents.length === 0 ||
-            (isChecked && checkboxFilteredEvents.length === 0)
+            (props.isChecked && checkboxFilteredEvents.length === 0)
               ? 'grid grid-cols-1'
               : 'grid grid-cols-1 lg:grid-cols-2 gap-8'
           }

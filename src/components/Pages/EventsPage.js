@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useOutletContext, useLoaderData } from 'react-router-dom';
 
 import Filter from '../Layout/Filter';
@@ -12,71 +12,28 @@ const EventsPage = () => {
   const events = transformEvents(data);
 
   const isFilterShown = useOutletContext();
-  // * Checkbox logic for club
-  const [isClubChecked, setIsClubChecked] = useState(false);
-  const [checkedClubValue, setCheckedClubValue] = useState('');
 
-  // * Checkbox logic for pub
-  const [isPubChecked, setIsPubChecked] = useState(false);
-  const [checkedPubValue, setCheckedPubValue] = useState('');
+  const [selectedFilter, setSelectedFilter] = useState([]);
 
-  // * Checkbox logic for club
-  const [isOpenChecked, setIsOpenChecked] = useState(false);
-  const [checkedOpenValue, setCheckedOpenValue] = useState('');
+  let isChecked = false;
 
-  // * Reset checkbox logic
-  const resetClubCheckboxHandler = (isChecked) => {
-    if (isChecked === false) {
-      setCheckedClubValue('');
-    }
-  };
-
-  const resetPubCheckboxHandler = (isChecked) => {
-    if (isChecked === false) {
-      setCheckedPubValue('');
-    }
-  };
-
-  const resetOpenCheckboxHandler = (isChecked) => {
-    if (isChecked === false) {
-      setCheckedOpenValue('');
-    }
-  };
-
-  // * Resetting the checkbox name value after it has been de-selected
-  useEffect(() => {
-    resetClubCheckboxHandler(isClubChecked);
-    resetOpenCheckboxHandler(isOpenChecked);
-    resetPubCheckboxHandler(isPubChecked);
-  }, [isClubChecked, isPubChecked, isOpenChecked]);
+  if (selectedFilter.length > 0) {
+    isChecked = true;
+  }
 
   return (
     <>
       {isFilterShown && (
         <Filter
-          // ----------------------------------- //
-          setIsPubChecked={setIsPubChecked}
-          setCheckedPubValue={setCheckedPubValue}
-          // ----------------------------------- //
-          setIsClubChecked={setIsClubChecked}
-          setCheckedClubValue={setCheckedClubValue}
-          // ----------------------------------- //
-          setIsOpenChecked={setIsOpenChecked}
-          setCheckedOpenValue={setCheckedOpenValue}
+          setSelectedFilter={setSelectedFilter}
+          selectedFilter={selectedFilter}
         />
       )}
 
       <EventContainer
         events={events}
-        // ------------------------------------ //
-        isClubChecked={isClubChecked}
-        checkedClubValue={checkedClubValue}
-        // ------------------------------------ //
-        isPubChecked={isPubChecked}
-        checkedPubValue={checkedPubValue}
-        // ------------------------------------ //
-        isOpenChecked={isOpenChecked}
-        checkedOpenValue={checkedOpenValue}
+        selectedFilter={selectedFilter}
+        isChecked={isChecked}
       />
     </>
   );
