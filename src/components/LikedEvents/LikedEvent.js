@@ -12,8 +12,9 @@ const LikedEvent = (props) => {
   const removeEventFromLiked = () => {
     ctx.removeEvent(props.id);
   };
+
   return (
-    <div className="w-full lg:max-w-[40rem] h-48 bg-zinc-800 font-montserrat rounded-md shadow-md flex flex-row lg:flex-row">
+    <div className="w-full lg:max-w-[40rem] h-56 bg-zinc-900 font-montserrat rounded-md shadow-md flex flex-row lg:flex-row">
       <img
         src={props.poster}
         alt="Mjesto"
