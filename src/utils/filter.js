@@ -12,15 +12,19 @@ export function filterByDateAscending(events) {
   return eventDateFilter;
 }
 
-export function filterBySearchTerm(events) {}
+export function filterBySearchTerm(events, searchTerm) {
+  const filtered = events.filter((eventInfo) => {
+    return eventInfo.ime
+      .toLocaleLowerCase()
+      .includes(searchTerm.toLocaleLowerCase());
+  });
 
-export function filterBycheckBoxInput(events, clubValue, pubValue, openValue) {
+  return filtered;
+}
+
+export function filterBycheckBoxInput(events, filter) {
   const checkboxFilter = events.filter((eventInfo) => {
-    return (
-      eventInfo.tip.toLocaleLowerCase() === clubValue.toLocaleLowerCase() ||
-      eventInfo.tip.toLocaleLowerCase() === pubValue.toLocaleLowerCase() ||
-      eventInfo.tip.toLocaleLowerCase() === openValue.toLocaleLowerCase()
-    );
+    return filter.includes(eventInfo.tip);
   });
   return checkboxFilter;
 }
