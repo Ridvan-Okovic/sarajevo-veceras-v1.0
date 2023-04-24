@@ -26,22 +26,22 @@ const LikedEventContainer = () => {
   return (
     <div className="flex flex-col items-center my-[4rem]">
       <div className="flex flex-col relative">
-        <h3 className="text-center tracking-wider uppercase text-[#e1e1e1] text-3xl mb-8">
+        <h3 className="text-center tracking-wider uppercase text-[#e1e1e1] text-3xl mb-[4rem]">
           Liked Events
         </h3>
-        <div className="flex flex-row gap-2 items-center absolute top-[6px] justify-start text-lg">
-          <FaChevronLeft
-            className="cursor-pointer text-[#e1e1e1]"
-            onClick={() => navigate(-1)}
-          />
-          <p className="font-montserrat text-[#e1e1e1] text-lg">Back </p>
+        <div
+          onClick={() => navigate(-1)}
+          className="flex flex-row gap-2 items-center absolute top-[6px] justify-start text-lg cursor-pointer"
+        >
+          <FaChevronLeft className="text-[#e1e1e1]" />
+          <p className="font-montserrat text-[#e1e1e1] text-l">Back </p>
         </div>
         {likedEvents.length === 0 && (
           <p className="font-montserrat font-normal text-3xl text-center text-[#e1e1e1]">
             Trenutno nemate lajkanih eventova!
           </p>
         )}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 ">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 ">
           {likedEvents}
         </div>
       </div>

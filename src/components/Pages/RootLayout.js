@@ -7,10 +7,10 @@ const RootLayout = () => {
   const [isFilterShown, setIsFilterShown] = useState(false);
 
   return (
-    <>
+    <main className=" h-screen w-screen bg-[#121212]">
       <NavBar setIsFilterShown={setIsFilterShown} />
       <Outlet context={isFilterShown} />
-    </>
+    </main>
   );
 };
 

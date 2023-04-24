@@ -4,6 +4,7 @@ import EventContext from '../../context/liked-context';
 import { BsFilterRight } from 'react-icons/bs';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi';
 import { RiCloseCircleLine } from 'react-icons/ri';
+import { BiSearchAlt } from 'react-icons/bi';
 
 const NavBar = (props) => {
   const ctx = useContext(EventContext);
@@ -17,7 +18,7 @@ const NavBar = (props) => {
     <nav className="sticky top-0 z-10 w-full h-[6rem] px-[10%] flex flex-row items-center justify-between bg-zinc-900 text-[#e1e1e1] uppercase shadow-lg font-montserrat">
       <h1 className="font-montserrat text-3xl tracking-widest">Logo</h1>
 
-      <ul className="sm:flex hidden gap-8 text-xl items-baseline font-montserrat ">
+      <ul className="sm:flex hidden gap-8 text-xl items-center font-montserrat ">
         <li className="uppercase py-1">
           <NavLink
             className={({ isActive }) =>
@@ -55,6 +56,16 @@ const NavBar = (props) => {
             Filter
             <BsFilterRight />
           </span>
+        </li>
+        <li className="uppercase pb-1 relative">
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? `border-b-[0.1rem] border-white` : undefined
+            }
+            to="/events/search"
+          >
+            <BiSearchAlt />
+          </NavLink>
         </li>
       </ul>
       <div className="sm:hidden flex flex-1 justify-end items-center relative">
