@@ -1,18 +1,14 @@
 import { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import EventContext from '../../context/liked-context';
-import { BsFilterRight } from 'react-icons/bs';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi';
 import { RiCloseCircleLine } from 'react-icons/ri';
 import { BiSearchAlt } from 'react-icons/bi';
 
-const NavBar = (props) => {
+import EventContext from '../../context/liked-context';
+
+const NavBar = () => {
   const ctx = useContext(EventContext);
   const [toggle, setToggle] = useState(false);
-
-  const openFilterHandler = () => {
-    props.setIsFilterShown((prev) => !prev);
-  };
 
   return (
     <nav className="sticky top-0 z-10 w-full h-[6rem] px-[10%] flex flex-row items-center justify-between bg-zinc-900 text-[#e1e1e1] uppercase shadow-lg font-montserrat">
@@ -47,16 +43,6 @@ const NavBar = (props) => {
             </span>
           )}
         </div>
-
-        <li
-          onClick={openFilterHandler}
-          className="border-[0.1rem] bg-[#ffb560] border-[#ffb560] text-[#363636] font-semibold uppercase py-1 px-6 rounded-full shadow-xl cursor-pointer hover:opacity-80 transition-all duration-300"
-        >
-          <span className="flex flex-row items-center justify-baseline gap-1">
-            Filter
-            <BsFilterRight />
-          </span>
-        </li>
         <li className="uppercase pb-1 relative">
           <NavLink
             className={({ isActive }) =>
@@ -115,16 +101,6 @@ const NavBar = (props) => {
                 </span>
               )}
             </div>
-
-            <li
-              onClick={openFilterHandler}
-              className="border-[0.1rem] bg-[#F6B162] border-[#F6B162] text-[#363636] font-semibold uppercase py-1 px-6 rounded-full shadow-xl cursor-pointer hover:opacity-80 transition-all duration-300"
-            >
-              <span className="flex flex-row items-center justify-baseline gap-1">
-                Filter
-                <BsFilterRight />
-              </span>
-            </li>
           </ul>
         </div>
       </div>

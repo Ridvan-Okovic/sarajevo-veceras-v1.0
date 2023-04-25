@@ -1,13 +1,17 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import {
   filterByDateAscending,
   filterBycheckBoxInput,
 } from '../../utils/filter';
+
 import Event from './Event';
+import Filter from '../Layout/Filter';
 import EventContext from '../../context/event-context';
 
 const EventContainer = (props) => {
+  const [selectedFilter, setSelectedFilter] = useState([]);
+
   const ctx = useContext(EventContext);
   const events = props.events;
 
@@ -35,7 +39,7 @@ const EventContainer = (props) => {
 
   const checkboxFilter = filterBycheckBoxInput(
     dateFilteredEvents,
-    props.selectedFilter
+    selectedFilter
   );
 
   const checkboxFilteredEvents = checkboxFilter.map((eventInfo) => {
@@ -53,6 +57,12 @@ const EventContainer = (props) => {
     );
   });
 
+  let isChecked = false;
+
+  if (selectedFilter.length > 0) {
+    isChecked = true;
+  }
+
   let content = (
     <p className="font-montserrat font-normal text-3xl text-[#e1e1e1]">
       Nema pronađenih eventova. Molimo pokušajte kasnije!
@@ -67,7 +77,7 @@ const EventContainer = (props) => {
     content = checkboxFilteredEvents;
   }
 
-  if (props.isChecked && checkboxFilteredEvents.length === 0) {
+  if (isChecked && checkboxFilteredEvents.length === 0) {
     content = (
       <p className="font-montserrat font-normal text-3xl text-[#e1e1e1]">
         Za željeni filter nema eventova!
@@ -77,15 +87,22 @@ const EventContainer = (props) => {
 
   return (
     <>
-      <div className="my-[4rem] flex flex-col items-center">
-        <h3 className="text-center text-3xl text-[#e1e1e1] font-montserrat uppercase tracking-wider mb-[4rem]">
+      <div className="my-8 flex flex-col items-center">
+        <Filter
+          setSelectedFilter={setSelectedFilter}
+          selectedFilter={selectedFilter}
+        />
+      </div>
+
+      <div className="flex flex-col items-center">
+        <h3 className="items-start text-5xl text-[#e1e1e1] font-montserrat font-normal tracking-wide mb-8">
           Upcoming Events
         </h3>
         <div
           className={
-            props.isChecked && checkboxFilteredEvents.length === 0
+            isChecked && checkboxFilteredEvents.length === 0
               ? 'grid grid-cols-1'
-              : 'grid grid-cols-1 px-12 xl:grid-cols-2 xl:px-12 2xl:grid-cols-3 2xl:px-12 place-items-center gap-8'
+              : 'grid grid-cols-1 xl:grid-cols-2 place-items-center gap-8'
           }
         >
           {content}

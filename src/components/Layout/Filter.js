@@ -16,7 +16,7 @@ const Filter = (props) => {
     return (
       <label
         key={i}
-        className="font-montserrat font-semibold text-lg flex gap-4 text-[#363636]"
+        className="font-montserrat font-normal text-lg flex gap-4 text-[#e1e1e1]"
       >
         {type}
         <input
@@ -31,7 +31,7 @@ const Filter = (props) => {
   });
 
   return (
-    <div className="flex items-center justify-center h-[5rem] shadow-lg bg-[#f6b162]">
+    <div className="flex items-center justify-center h-[5rem] shadow-lg bg-zinc-900 px-12 py-8 rounded-lg mb-12">
       <div className="flex flex-row gap-10">{filter}</div>
     </div>
   );
