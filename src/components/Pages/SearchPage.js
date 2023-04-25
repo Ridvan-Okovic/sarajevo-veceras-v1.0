@@ -12,10 +12,8 @@ const SearchPage = () => {
 
   const [searchTerm, setSearchTerm] = useState('');
 
-  // * Ovo je searchHandling funkcija
   const filtered = filterBySearchTerm(events, searchTerm);
 
-  // * Ovdje filtriram eventove po search term
   const filteredEvents = filtered.map((eventInfo) => {
     return (
       <Event
@@ -30,8 +28,6 @@ const SearchPage = () => {
       />
     );
   });
-
-  console.log(filteredEvents, searchTerm);
 
   return (
     <>
