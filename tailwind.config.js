@@ -8,6 +8,9 @@ module.exports = {
         montserrat: ['Montserrat'],
         arimo: ['Arimo'],
       },
+      screens: {
+        '2xl': '2560px',
+      },
     },
   },
   plugins: [],

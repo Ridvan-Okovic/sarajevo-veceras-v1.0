@@ -1,14 +1,11 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
-import { HiOutlineMenuAlt3 } from 'react-icons/hi';
-import { RiCloseCircleLine } from 'react-icons/ri';
 import { BiSearchAlt } from 'react-icons/bi';
 
 import EventContext from '../../context/liked-context';
 
 const NavBar = () => {
   const ctx = useContext(EventContext);
-  const [toggle, setToggle] = useState(false);
 
   return (
     <nav className="sticky top-0 z-10 w-full h-[6rem] px-[10%] flex flex-row items-center justify-between bg-zinc-900 text-[#e1e1e1] uppercase shadow-lg font-montserrat">
@@ -43,7 +40,7 @@ const NavBar = () => {
             </span>
           )}
         </div>
-        <li className="uppercase pb-1 relative">
+        <li className=" pb-1 relative">
           <NavLink
             className={({ isActive }) =>
               isActive ? `border-b-[0.1rem] border-white` : undefined
@@ -54,56 +51,6 @@ const NavBar = () => {
           </NavLink>
         </li>
       </ul>
-      <div className="sm:hidden flex flex-1 justify-end items-center relative">
-        {!toggle && (
-          <HiOutlineMenuAlt3
-            onClick={() => setToggle((prev) => !prev)}
-            className="text-3xl text-[#e1e1e1] cursor-pointer"
-          />
-        )}
-        {toggle && (
-          <RiCloseCircleLine
-            onClick={() => setToggle((prev) => !prev)}
-            className="text-3xl text-[#e1e1e1] cursor-pointer"
-          />
-        )}
-        <div
-          className={`${
-            toggle ? 'flex translate-x-0' : 'flex translate-x-full'
-          } w-[80%] ease-in-out duration-300 h-screen shadow-lg top-14 absolute -right-8 justify-center my-2 min-2-[140px] bg-gradient-to-tr from-[#121212] to-[#1e1e1e] rounded-l-xl`}
-        >
-          <ul className="flex flex-col items-center justify-center gap-4 font-montserrat text-2xl ">
-            <li className="uppercase">
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? `border-b-[0.1rem] border-white` : undefined
-                }
-                to="/events"
-              >
-                Events
-              </NavLink>
-            </li>
-
-            <div className="relative">
-              <li className="uppercase relative">
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? `border-b-[0.1rem] border-white` : undefined
-                  }
-                  to="/liked"
-                >
-                  Liked
-                </NavLink>
-              </li>
-              {ctx.amount !== 0 && (
-                <span className="absolute -top-[0.4rem] -right-[0.5rem] bg-[#F6B162] text-[#363636] z-20 font-bold text-[11px] leading-[14px] w-[1.3rem] h-[1.3rem] grid items-center justify-center rounded-full">
-                  {ctx.amount}
-                </span>
-              )}
-            </div>
-          </ul>
-        </div>
-      </div>
     </nav>
   );
 };

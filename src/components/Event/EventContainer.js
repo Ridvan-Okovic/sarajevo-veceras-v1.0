@@ -102,7 +102,7 @@ const EventContainer = (props) => {
           className={
             isChecked && checkboxFilteredEvents.length === 0
               ? 'grid grid-cols-1'
-              : 'grid grid-cols-1 xl:grid-cols-2 place-items-center gap-8'
+              : 'grid grid-cols-1 xl:grid-cols-2 xl:px-12 2xl:grid-cols-3 place-items-center gap-8'
           }
         >
           {content}

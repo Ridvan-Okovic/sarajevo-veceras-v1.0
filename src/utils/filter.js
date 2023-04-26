@@ -23,8 +23,9 @@ export function filterBySearchTerm(events, searchTerm) {
 }
 
 export function filterBycheckBoxInput(events, filter) {
+  const lowercase = filter.map((item) => item.toLocaleLowerCase());
   const checkboxFilter = events.filter((eventInfo) => {
-    return filter.includes(eventInfo.tip);
+    return lowercase.includes(eventInfo.tip);
   });
   return checkboxFilter;
 }

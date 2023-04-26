@@ -10,7 +10,7 @@ const Filter = (props) => {
     }
   };
 
-  const PLACE_TYPES = ['club', 'pub', 'kafana', 'open air', 'gastro'];
+  const PLACE_TYPES = ['Club', 'Pub', 'Kafana', 'Open Air', 'Gastro'];
 
   const filter = PLACE_TYPES.map((type, i) => {
     return (
