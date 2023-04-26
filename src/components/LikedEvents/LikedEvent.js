@@ -9,7 +9,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 const LikedEvent = (props) => {
   const notify = () =>
-    toast.error('Event removed from liked.', { duration: 1000 });
+    toast.error('Event removed from liked.', { duration: 700 });
 
   const ctx = useContext(EventContext);
 
@@ -31,11 +31,13 @@ const LikedEvent = (props) => {
             {props.name}
           </Link>
         </h1>
-        <TiDelete
-          className="absolute right-2 -top-2 text-[#ffb560] hover:opacity-75 text-3xl cursor-pointer"
+        <button
+          className="absolute right-6 -top-2 "
           onClick={removeEventFromLiked}
-        />
-        <Toaster />
+        >
+          <TiDelete className="text-[#ffb560] hover:opacity-75 text-3xl cursor-pointer" />
+          <Toaster />
+        </button>
         <h3 className="flex flex-row items-center border-b-[1px] border-opacity-70 text-[#e1e1e1] text-opacity-70 border-gray-300 mx-8">
           <MdCelebration className="text-[#ffb560] mr-2 text-lg" />
           <p className="truncate">{props.opis}</p>

@@ -8,7 +8,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 const Event = (props) => {
   const notify = () =>
-    toast.success('Event added to liked.', { duration: 1000 });
+    toast.success('Event added to liked.', { duration: 700 });
 
   const ctx = useContext(LikedContext);
 
@@ -64,8 +64,8 @@ const Event = (props) => {
             className=" text-[#ffb560] hover:opacity-75 text-2xl cursor-pointer"
             onClick={addEventToLiked}
           />
+          <Toaster />
         </button>
-        <Toaster />
       </div>
     </div>
   );

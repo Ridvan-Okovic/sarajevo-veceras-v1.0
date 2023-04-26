@@ -31,8 +31,6 @@ const LikedEventContainer = () => {
 
   const likedCheckboxFilter = filterBycheckBoxInput(events, selectedFilter);
 
-  console.log(likedCheckboxFilter, selectedFilter);
-
   const checkboxFilteredLikedEvents = likedCheckboxFilter.map((eventInfo) => {
     return (
       <LikedEvent
@@ -48,11 +46,7 @@ const LikedEventContainer = () => {
     );
   });
 
-  let content = (
-    <p className="font-montserrat font-normal text-3xl text-[#e1e1e1]">
-      Trenutno nemate lajkanih eventova!
-    </p>
-  );
+  let content;
 
   if (likedEvents.length > 0) {
     content = likedEvents;
