@@ -20,7 +20,7 @@ const Filter = (props) => {
       >
         {type}
         <input
-          className="appearance-none w-5 h-5 relative rounded-sm border cursor-pointer focus:outline-none checked:bg-[#ffb560] checked:border-[#ffb560] after:content-[''] after:absolute after:w-full after:h-full after:bg-no-repeat after:bg-center after:bg-[length:15px] after:checked:bg-[url('https://www.svgrepo.com/show/105291/check-mark.svg')]"
+          className="appearance-none w-5 h-5 relative rounded-sm border cursor-pointer focus:outline-none transition-all duration-300 checked:bg-[#ffb560] checked:border-[#ffb560] after:content-[''] after:absolute after:w-full after:h-full after:bg-no-repeat after:bg-center after:bg-[length:15px] after:checked:bg-[url('https://www.svgrepo.com/show/105291/check-mark.svg')]"
           type="checkbox"
           id={i}
           value={type}
