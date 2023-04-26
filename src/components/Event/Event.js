@@ -1,12 +1,16 @@
 import EventDate from './EventDate';
 import { useContext } from 'react';
-import LikedProvider from '../../context/liked-context';
+import LikedContext from '../../context/liked-context';
 import { FaMapPin, FaClock, FaCalendar, FaHeart } from 'react-icons/fa';
 import { MdCelebration } from 'react-icons/md';
 import { Link } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Event = (props) => {
-  const ctx = useContext(LikedProvider);
+  const notify = () =>
+    toast.success('Event added to liked.', { duration: 1000 });
+
+  const ctx = useContext(LikedContext);
 
   const addEventToLiked = () => {
     ctx.addEvent({
@@ -19,7 +23,10 @@ const Event = (props) => {
       time: props.time,
       date: props.date,
       amount: 1,
+      tip: props.tip,
     });
+
+    notify();
   };
 
   return (
@@ -52,12 +59,13 @@ const Event = (props) => {
           <FaCalendar className="text-[#ffb560] mr-2" />
           <EventDate datum={props.date} />
         </h3>
-        <div className="flex items-center justify-end mx-8 h-10 gap-2">
+        <button className="flex items-center justify-end w-full h-10 px-8">
           <FaHeart
             className=" text-[#ffb560] hover:opacity-75 text-2xl cursor-pointer"
             onClick={addEventToLiked}
           />
-        </div>
+        </button>
+        <Toaster />
       </div>
     </div>
   );

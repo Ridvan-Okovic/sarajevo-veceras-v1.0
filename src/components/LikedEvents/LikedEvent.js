@@ -5,16 +5,21 @@ import { MdCelebration } from 'react-icons/md';
 import { TiDelete } from 'react-icons/ti';
 import EventContext from '../../context/liked-context';
 import EventDate from '../Event/EventDate';
+import toast, { Toaster } from 'react-hot-toast';
 
 const LikedEvent = (props) => {
+  const notify = () =>
+    toast.error('Event removed from liked.', { duration: 1000 });
+
   const ctx = useContext(EventContext);
 
   const removeEventFromLiked = () => {
     ctx.removeEvent(props.id);
+    notify();
   };
 
   return (
-    <div className="w-full lg:max-w-[40rem] h-56 bg-zinc-900 font-montserrat rounded-md shadow-md flex flex-row lg:flex-row">
+    <div className="w-full lg:max-w-[40rem] 2xl:w-[40rem] h-56 bg-zinc-900 font-montserrat rounded-md shadow-md flex flex-row lg:flex-row">
       <img
         src={props.poster}
         alt="Mjesto"
@@ -30,6 +35,7 @@ const LikedEvent = (props) => {
           className="absolute right-2 -top-2 text-[#ffb560] hover:opacity-75 text-3xl cursor-pointer"
           onClick={removeEventFromLiked}
         />
+        <Toaster />
         <h3 className="flex flex-row items-center border-b-[1px] border-opacity-70 text-[#e1e1e1] text-opacity-70 border-gray-300 mx-8">
           <MdCelebration className="text-[#ffb560] mr-2 text-lg" />
           <p className="truncate">{props.opis}</p>

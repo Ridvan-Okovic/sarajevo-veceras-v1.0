@@ -16,11 +16,11 @@ const Filter = (props) => {
     return (
       <label
         key={i}
-        className="font-montserrat font-normal text-lg flex gap-4 text-[#e1e1e1]"
+        className="font-montserrat font-normal text-lg flex items-center gap-4 text-[#e1e1e1]"
       >
         {type}
         <input
-          className="w-4"
+          className="appearance-none w-5 h-5 relative rounded-sm border cursor-pointer focus:outline-none checked:bg-[#ffb560] checked:border-[#ffb560] after:content-[''] after:absolute after:w-full after:h-full after:bg-no-repeat after:bg-center after:bg-[length:15px] after:checked:bg-[url('https://www.svgrepo.com/show/105291/check-mark.svg')]"
           type="checkbox"
           id={i}
           value={type}
@@ -31,7 +31,7 @@ const Filter = (props) => {
   });
 
   return (
-    <div className="flex items-center justify-center h-[5rem] shadow-lg bg-zinc-900 px-12 py-8 rounded-lg mb-12">
+    <div className="flex items-center justify-center shadow-lg bg-zinc-900 px-12 py-4 rounded-lg">
       <div className="flex flex-row gap-10">{filter}</div>
     </div>
   );

@@ -1,6 +1,8 @@
-import { FaSearch } from 'react-icons/fa';
+import { FaSearch, FaChevronLeft } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const SearchBar = (props) => {
+  const navigate = useNavigate();
   const searchChangeHandler = (event) => {
     props.setSearchTerm(event.target.value);
   };
@@ -13,6 +15,12 @@ const SearchBar = (props) => {
         }}
         className="w-full h-full flex flex-row items-center justify-center"
       >
+        <div
+          onClick={() => navigate(-1)}
+          className="flex flex-row gap-1 bg-zinc-900 px-4 mr-8 py-2 rounded-lg items-center justify-center text-lg cursor-pointer"
+        >
+          <FaChevronLeft className="text-[#e1e1e1]" />
+        </div>
         <input
           placeholder="Search..."
           onChange={searchChangeHandler}

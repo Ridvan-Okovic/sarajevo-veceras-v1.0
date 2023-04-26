@@ -19,7 +19,6 @@ const EventContainer = (props) => {
     ctx.addEvents(events);
   }, [ctx, events]);
 
-  // * Ovdje gledam da je datum veci od danasnjeg datuma
   const dateFilteredEvents = filterByDateAscending(events);
 
   const eventsByDate = dateFilteredEvents.map((eventInfo) => {
@@ -33,6 +32,7 @@ const EventContainer = (props) => {
         time={eventInfo.vrijeme}
         address={eventInfo.adresa}
         date={new Date(eventInfo.datum)}
+        tip={eventInfo.tip}
       />
     );
   });
@@ -53,6 +53,7 @@ const EventContainer = (props) => {
         time={eventInfo.vrijeme}
         address={eventInfo.adresa}
         date={new Date(eventInfo.datum)}
+        type={eventInfo.tip}
       />
     );
   });

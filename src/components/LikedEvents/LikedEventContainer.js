@@ -1,14 +1,20 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { FaChevronLeft } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import EventContext from '../../context/liked-context';
+
+import LikedContext from '../../context/liked-context';
 import LikedEvent from './LikedEvent';
+import Filter from '../Layout/Filter';
+import { filterBycheckBoxInput } from '../../utils/filter';
 
 const LikedEventContainer = () => {
   const navigate = useNavigate();
-  const ctx = useContext(EventContext);
+  const ctx = useContext(LikedContext);
+  const [selectedFilter, setSelectedFilter] = useState([]);
 
-  const likedEvents = ctx.events.map((eventInfo) => {
+  const events = ctx.events;
+
+  const likedEvents = events.map((eventInfo) => {
     return (
       <LikedEvent
         key={eventInfo.id}
@@ -23,29 +29,83 @@ const LikedEventContainer = () => {
     );
   });
 
+  const likedCheckboxFilter = filterBycheckBoxInput(events, selectedFilter);
+
+  console.log(likedCheckboxFilter, selectedFilter);
+
+  const checkboxFilteredLikedEvents = likedCheckboxFilter.map((eventInfo) => {
+    return (
+      <LikedEvent
+        key={eventInfo.id}
+        id={eventInfo.id}
+        poster={eventInfo.poster}
+        name={eventInfo.name}
+        opis={eventInfo.description}
+        time={eventInfo.time}
+        address={eventInfo.address}
+        date={new Date(eventInfo.date)}
+      />
+    );
+  });
+
+  let content = (
+    <p className="font-montserrat font-normal text-3xl text-[#e1e1e1]">
+      Trenutno nemate lajkanih eventova!
+    </p>
+  );
+
+  if (likedEvents.length > 0) {
+    content = likedEvents;
+  }
+
+  let isChecked = false;
+
+  if (selectedFilter.length > 0) {
+    isChecked = true;
+  }
+
+  if (isChecked && likedCheckboxFilter.length === 0) {
+    content = (
+      <p className="font-montserrat font-normal text-3xl text-[#e1e1e1]">
+        Za željeni filter nema eventova!
+      </p>
+    );
+  }
+
+  if (isChecked && likedCheckboxFilter.length > 0) {
+    content = checkboxFilteredLikedEvents;
+  }
+
   return (
-    <div className="flex flex-col items-center my-[4rem]">
-      <div className="flex flex-col relative">
-        <h3 className="text-center tracking-wider uppercase text-[#e1e1e1] text-3xl mb-[4rem]">
+    <>
+      <div className="flex flex-row items-center justify-center gap-8 mt-8 mb-16">
+        <div
+          onClick={() => navigate(-1)}
+          className="flex flex-row gap-1 bg-zinc-900 px-4 py-2 rounded-lg items-center justify-center text-lg cursor-pointer"
+        >
+          <FaChevronLeft className="text-[#e1e1e1]" />
+        </div>
+        <Filter
+          setSelectedFilter={setSelectedFilter}
+          selectedFilter={selectedFilter}
+        />
+      </div>
+
+      <div className="flex flex-col items-center">
+        <h3 className="items-start text-5xl text-[#e1e1e1] font-montserrat font-normal tracking-wide mb-8">
           Liked Events
         </h3>
         <div
-          onClick={() => navigate(-1)}
-          className="flex flex-row gap-2 items-center absolute top-[6px] justify-start text-lg cursor-pointer"
+          className={
+            isChecked && checkboxFilteredLikedEvents.length === 0
+              ? 'grid grid-cols-1'
+              : 'grid grid-cols-1 xl:grid-cols-2 xl:px-12 2xl:grid-cols-3 place-items-center gap-8'
+          }
         >
-          <FaChevronLeft className="text-[#e1e1e1]" />
-          <p className="font-montserrat text-[#e1e1e1] text-l">Back </p>
-        </div>
-        {likedEvents.length === 0 && (
-          <p className="font-montserrat font-normal text-3xl text-center text-[#e1e1e1]">
-            Trenutno nemate lajkanih eventova!
-          </p>
-        )}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 ">
-          {likedEvents}
+          {content}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
