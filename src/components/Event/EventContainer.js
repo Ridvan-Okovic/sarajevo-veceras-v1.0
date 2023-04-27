@@ -21,7 +21,7 @@ const EventContainer = (props) => {
 
   const dateFilteredEvents = filterByDateAscending(events);
 
-  const eventsByDate = dateFilteredEvents.map((eventInfo) => {
+  const eventsByDate = dateFilteredEvents.map((eventInfo, index) => {
     return (
       <Event
         key={eventInfo.id}
@@ -33,6 +33,7 @@ const EventContainer = (props) => {
         address={eventInfo.adresa}
         date={new Date(eventInfo.datum)}
         tip={eventInfo.tip}
+        index={index}
       />
     );
   });
@@ -88,7 +89,7 @@ const EventContainer = (props) => {
 
   return (
     <>
-      <div className="my-8 flex flex-col items-center">
+      <div className="flex flex-row items-center justify-center gap-8 mt-8 mb-16">
         <Filter
           setSelectedFilter={setSelectedFilter}
           selectedFilter={selectedFilter}

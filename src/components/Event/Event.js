@@ -1,18 +1,23 @@
 import EventDate from './EventDate';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import LikedContext from '../../context/liked-context';
 import { FaMapPin, FaClock, FaCalendar, FaHeart } from 'react-icons/fa';
 import { MdCelebration } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
+import { motion } from 'framer-motion';
+import { VscHeart } from 'react-icons/vsc';
 
 const Event = (props) => {
+  const [active, setActive] = useState(false);
+
   const notify = () =>
-    toast.success('Event added to liked.', { duration: 700 });
+    toast.success('Event added to liked.', { duration: 800 });
 
   const ctx = useContext(LikedContext);
 
   const addEventToLiked = () => {
+    setActive(true);
     ctx.addEvent({
       key: props.id,
       id: props.id,
@@ -30,44 +35,60 @@ const Event = (props) => {
   };
 
   return (
-    <div className="w-full lg:max-w-[40rem] 2xl:w-[40rem] h-56 bg-zinc-900 font-montserrat rounded-md shadow-md flex flex-row lg:flex-row">
-      <img
-        src={props.poster}
-        alt="Mjesto"
-        className="w-[45%] h-full rounded-md shadow-md aspect-auto object-cover"
-      />
-      <div className="w-[55%] h-full space-y-2 relative my-2">
-        <h1 className="text-center text-2xl tracking-tight text-[#e1e1e1]">
-          <Link to={`/events/${props.name.toLocaleLowerCase()}`}>
-            {props.name}
-          </Link>
-        </h1>
+    <motion.div
+      transition={{ delay: 0.075 * props.index }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 20 }}
+    >
+      <Toaster />
+      <div className="w-full lg:max-w-[40rem] 2xl:w-[40rem] h-56 bg-zinc-900 font-montserrat rounded-md shadow-md flex flex-row lg:flex-row">
+        <img
+          src={props.poster}
+          alt="Mjesto"
+          className="w-[45%] h-full rounded-md shadow-md aspect-auto object-cover"
+        />
+        <div className="w-[55%] h-full space-y-2 relative my-2">
+          <h1 className="text-center text-2xl tracking-tight text-[#e1e1e1]">
+            <Link to={`/events/${props.name.toLocaleLowerCase()}`}>
+              {props.name}
+            </Link>
+          </h1>
 
-        <h3 className="flex flex-row items-center border-b-[1px] border-opacity-70 text-[#e1e1e1] text-opacity-70 border-gray-300 mx-8">
-          <MdCelebration className="text-[#ffb560] mr-2 text-lg" />
-          <p className="truncate">{props.opis}</p>
-        </h3>
-        <h3 className="flex flex-row items-center mb-2 border-b-[1px] border-opacity-70 text-[#e1e1e1]  text-opacity-70 border-gray-300 mx-8">
-          <FaMapPin className="text-[#ffb560] mr-2" />
-          <p className="truncate">{props.address}</p>
-        </h3>
-        <h3 className="flex flex-row items-center mb-2 border-b-[1px] border-opacity-70 text-[#e1e1e1]  text-opacity-70 border-gray-300 mx-8">
-          <FaClock className="text-[#ffb560] mr-2" />
-          {props.time}
-        </h3>
-        <h3 className="flex flex-row items-center border-b-[1px] border-opacity-70 text-[#e1e1e1]  text-opacity-70 border-gray-300 mx-8">
-          <FaCalendar className="text-[#ffb560] mr-2" />
-          <EventDate datum={props.date} />
-        </h3>
-        <button className="flex items-center justify-end w-full h-10 px-8">
-          <FaHeart
-            className=" text-[#ffb560] hover:opacity-75 text-2xl cursor-pointer"
-            onClick={addEventToLiked}
-          />
-          <Toaster />
-        </button>
+          <h3 className="flex flex-row items-center border-b-[1px] border-opacity-70 text-[#e1e1e1] text-opacity-70 border-gray-300 mx-8">
+            <MdCelebration className="text-[#ffb560] mr-2 text-lg" />
+            <p className="truncate text-lg font-semibold">{props.opis}</p>
+          </h3>
+          <h3 className="flex flex-row items-center mb-2 border-b-[1px] border-opacity-70 text-[#e1e1e1]  text-opacity-70 border-gray-300 mx-8">
+            <FaMapPin className="text-[#ffb560] mr-2" />
+            <p className="truncate">{props.address}</p>
+          </h3>
+          <h3 className="flex flex-row items-center mb-2 border-b-[1px] border-opacity-70 text-[#e1e1e1]  text-opacity-70 border-gray-300 mx-8">
+            <FaClock className="text-[#ffb560] mr-2" />
+            {props.time}
+          </h3>
+          <h3 className="flex flex-row items-center border-b-[1px] border-opacity-70 text-[#e1e1e1]  text-opacity-70 border-gray-300 mx-8">
+            <FaCalendar className="text-[#ffb560] mr-2" />
+            <EventDate datum={props.date} />
+          </h3>
+          <div className="flex items-center justify-end w-full h-10 px-8">
+            <motion.button
+              whileTap={{ scale: 0.85 }}
+              whileHover={{ scale: 1.1 }}
+            >
+              {active ? (
+                <FaHeart className="text-[#ffb560] cursor-pointer text-3xl" />
+              ) : (
+                <VscHeart
+                  className="text-[#ffb560] cursor-pointer text-3xl"
+                  onClick={addEventToLiked}
+                />
+              )}
+            </motion.button>
+          </div>
+        </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
