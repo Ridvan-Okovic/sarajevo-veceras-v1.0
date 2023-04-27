@@ -3,7 +3,6 @@ import {
   Navigate,
   RouterProvider,
 } from 'react-router-dom';
-
 import EventsPage, {
   loader as eventsLoader,
 } from './components/Pages/EventsPage';

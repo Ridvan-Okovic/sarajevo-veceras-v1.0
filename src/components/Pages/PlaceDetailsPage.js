@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import EventContext from '../../context/event-context';
 import Event from '../Event/Event';
+import { filterByDateAscending } from '../../utils/filter';
+
 import { FaChevronLeft } from 'react-icons/fa';
 
 const DetailsPage = () => {
@@ -9,21 +11,15 @@ const DetailsPage = () => {
   const ctx = useContext(EventContext);
   const params = useParams();
 
-  let today = new Date();
-  let todayString = new Date().toString().slice(0, 10);
-
   const events = ctx.events;
-  console.log(events);
 
-  const filter = events.filter((event) => {
-    return (
-      (event.ime.toLocaleLowerCase() === params.place && event.datum > today) ||
-      (event.ime.toLocaleLowerCase() === params.place &&
-        event.datum.toString().slice(0, 10) === todayString)
-    );
+  const filterByDate = filterByDateAscending(events);
+
+  const filterByName = filterByDate.filter((eventInfo) => {
+    return eventInfo.ime.toLocaleLowerCase() === params.place;
   });
 
-  const filteredEvents = filter.map((event) => {
+  const filteredEvents = filterByName.map((event) => {
     return (
       <Event
         key={event.id}
@@ -39,20 +35,22 @@ const DetailsPage = () => {
   });
 
   return (
-    <div className="flex flex-col items-center justify-center px-[10%]">
-      <h1 className="uppercase text-4xl my-8 font-montserrat tracking-widest text-[#e1e1e1]">
-        {params.place}
-      </h1>
-
-      <div className="flex flex-col">
-        <div className="flex flex-row gap-2 items-center justify-start w-full mb-8 text-xl text-[#e1e1e1]">
-          <FaChevronLeft
-            className="cursor-pointer"
-            onClick={() => navigate(-1)}
-          />
-          <p className="font-montserrat text-2xl text-[#e1e1e1]">Nazad</p>
+    <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-row items-center gap-8">
+        <div
+          onClick={() => navigate(-1)}
+          className="flex flex-row gap-1 bg-zinc-900 px-4 py-2 rounded-lg items-center justify-center text-lg cursor-pointer"
+        >
+          <FaChevronLeft className="text-[#e1e1e1]" />
         </div>
-        <div className="grid grid-cols-2 gap-8">{filteredEvents}</div>
+        <h1 className="text-5xl my-8 font-montserrat tracking-wide capitalize text-[#e1e1e1]">
+          {params.place}
+        </h1>
+      </div>
+      <div className="flex flex-col">
+        <div className="grid grid-cols-1 xl:grid-cols-2 xl:px-12 2xl:grid-cols-3 place-items-center gap-8">
+          {filteredEvents}
+        </div>
       </div>
     </div>
   );
