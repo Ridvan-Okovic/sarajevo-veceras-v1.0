@@ -25,6 +25,7 @@ const LikedEventContainer = () => {
         time={eventInfo.time}
         address={eventInfo.address}
         date={new Date(eventInfo.date)}
+        index={eventInfo.index}
       />
     );
   });
@@ -42,6 +43,7 @@ const LikedEventContainer = () => {
         time={eventInfo.time}
         address={eventInfo.address}
         date={new Date(eventInfo.date)}
+        index={eventInfo.index}
       />
     );
   });

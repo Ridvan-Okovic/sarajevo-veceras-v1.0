@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaMapPin, FaCalendar, FaClock } from 'react-icons/fa';
 import { MdCelebration } from 'react-icons/md';
 import { TiDelete } from 'react-icons/ti';
-import EventContext from '../../context/liked-context';
+import LikedContext from '../../context/liked-context';
 import EventDate from '../Event/EventDate';
 import toast, { Toaster } from 'react-hot-toast';
 import { motion } from 'framer-motion';
@@ -12,7 +12,7 @@ const LikedEvent = (props) => {
   const notify = () =>
     toast.error('Event removed from liked.', { duration: 800 });
 
-  const ctx = useContext(EventContext);
+  const ctx = useContext(LikedContext);
 
   const removeEventFromLiked = () => {
     ctx.removeEvent(props.id);
@@ -21,7 +21,7 @@ const LikedEvent = (props) => {
 
   return (
     <motion.div
-      transition={{ delay: 0.1 * props.index }}
+      transition={{ delay: 0.075 * props.index }}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 20 }}

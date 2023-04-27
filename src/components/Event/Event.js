@@ -29,6 +29,7 @@ const Event = (props) => {
       date: props.date,
       amount: 1,
       tip: props.tip,
+      index: props.index,
     });
 
     notify();
