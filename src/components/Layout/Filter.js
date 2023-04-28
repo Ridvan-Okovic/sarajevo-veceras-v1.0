@@ -16,7 +16,7 @@ const Filter = (props) => {
     return (
       <label
         key={i}
-        className="font-montserrat font-normal text-lg flex items-center gap-4 text-[#e1e1e1]"
+        className="font-normal text-lg flex items-center gap-4 text-[#e1e1e1]"
       >
         {type}
         <input

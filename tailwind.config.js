@@ -7,9 +7,10 @@ module.exports = {
         open: ['Open Sans'],
         montserrat: ['Montserrat'],
         arimo: ['Arimo'],
+        manrope: ['Manrope'],
       },
       screens: {
-        '2xl': '2560px',
+        '2xl': '1920px',
       },
     },
   },

@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import { motion } from 'framer-motion';
 import { VscHeart } from 'react-icons/vsc';
+import { CiCircleMore } from 'react-icons/ci';
 
 const Event = (props) => {
   const [active, setActive] = useState(false);
@@ -43,7 +44,7 @@ const Event = (props) => {
       exit={{ opacity: 0, y: 20 }}
     >
       <Toaster />
-      <div className="w-full md:max-w-[40rem] lg:w-[40rem] 2xl:w-[40rem] h-56 bg-zinc-900 font-montserrat rounded-md shadow-md flex flex-row lg:flex-row">
+      <div className="w-full max-w-[35em] h-56 bg-zinc-900 rounded-md shadow-md flex flex-row lg:flex-row">
         <img
           src={props.poster}
           alt="Mjesto"
@@ -72,7 +73,7 @@ const Event = (props) => {
             <FaCalendar className="text-[#ffb560] mr-2" />
             <EventDate datum={props.date} />
           </h3>
-          <div className="flex items-center justify-end w-full h-10 px-8">
+          <div className="flex items-center justify-end w-full h-10 px-8 gap-2">
             <motion.button
               whileTap={{ scale: 0.85 }}
               whileHover={{ scale: 1.1 }}
@@ -85,6 +86,12 @@ const Event = (props) => {
                   onClick={addEventToLiked}
                 />
               )}
+            </motion.button>
+            <motion.button
+              whileTap={{ scale: 0.85 }}
+              whileHover={{ scale: 1.1 }}
+            >
+              <CiCircleMore className="text-[#ffb560] cursor-pointer text-3xl" />
             </motion.button>
           </div>
         </div>
