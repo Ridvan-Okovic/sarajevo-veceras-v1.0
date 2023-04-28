@@ -9,7 +9,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <EventProvider>
     <LikedProvider>
-      <App />
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
     </LikedProvider>
   </EventProvider>
 );
