@@ -17,6 +17,8 @@ const Event = (props) => {
 
   const ctx = useContext(LikedContext);
 
+  console.log(active);
+
   const addEventToLiked = () => {
     setActive(true);
     ctx.addEvent({

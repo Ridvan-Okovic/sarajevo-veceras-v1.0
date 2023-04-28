@@ -42,7 +42,7 @@ const LikedEvent = (props) => {
           <motion.button
             whileTap={{ scale: 0.8 }}
             whileHover={{ scale: 1.1 }}
-            className="absolute right-6 -top-2"
+            className="absolute right-1 -top-3"
             onClick={removeEventFromLiked}
           >
             <TiDelete className="text-[#ffb560] hover:opacity-75 text-4xl cursor-pointer" />
