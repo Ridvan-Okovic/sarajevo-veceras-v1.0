@@ -27,7 +27,7 @@ const LikedEvent = (props) => {
       exit={{ opacity: 0, y: 20 }}
     >
       <Toaster />
-      <div className="w-full lg:max-w-[40rem] 2xl:w-[40rem] h-56 bg-zinc-900 font-montserrat rounded-md shadow-md flex flex-row lg:flex-row">
+      <div className="w-full md:max-w-p[40rem] 2xl:w-[40rem] h-56 bg-zinc-900 font-montserrat rounded-md shadow-md flex flex-row lg:flex-row">
         <img
           src={props.poster}
           alt="Mjesto"
