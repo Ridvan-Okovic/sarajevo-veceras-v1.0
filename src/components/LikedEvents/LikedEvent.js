@@ -7,6 +7,7 @@ import LikedContext from '../../context/liked-context';
 import EventDate from '../Event/EventDate';
 import toast, { Toaster } from 'react-hot-toast';
 import { motion } from 'framer-motion';
+import { CiCircleMore } from 'react-icons/ci';
 
 const LikedEvent = (props) => {
   const notify = () =>
@@ -63,6 +64,16 @@ const LikedEvent = (props) => {
             <FaCalendar className="text-[#ffb560] mr-2" />
             <EventDate datum={props.date} />
           </h3>
+          <div className="flex items-center justify-end w-full h-10 px-8 gap-2">
+            <Link to={`/events/${props.id}`}>
+              <motion.button
+                whileTap={{ scale: 0.85 }}
+                whileHover={{ scale: 1.1 }}
+              >
+                <CiCircleMore className="text-[#ffb560] cursor-pointer text-3xl" />
+              </motion.button>
+            </Link>
+          </div>
         </div>
       </div>
     </motion.div>

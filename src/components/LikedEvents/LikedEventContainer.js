@@ -6,6 +6,7 @@ import LikedContext from '../../context/liked-context';
 import LikedEvent from './LikedEvent';
 import Filter from '../Layout/Filter';
 import { filterBycheckBoxInput } from '../../utils/filter';
+import { motion } from 'framer-motion';
 
 const LikedEventContainer = () => {
   const navigate = useNavigate();
@@ -75,12 +76,14 @@ const LikedEventContainer = () => {
   return (
     <>
       <div className="flex flex-row items-center justify-center gap-8 mt-8 mb-16">
-        <div
+        <motion.button
+          whileTap={{ scale: 0.85 }}
+          whileHover={{ scale: 1.1 }}
           onClick={() => navigate(-1)}
           className="flex flex-row gap-1 bg-zinc-900 px-4 py-2 rounded-lg items-center justify-center text-lg cursor-pointer"
         >
           <FaChevronLeft className="text-[#e1e1e1]" />
-        </div>
+        </motion.button>
         <Filter
           setSelectedFilter={setSelectedFilter}
           selectedFilter={selectedFilter}

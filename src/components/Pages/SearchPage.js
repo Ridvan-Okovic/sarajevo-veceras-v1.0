@@ -8,7 +8,6 @@ import EventContext from '../../context/event-context';
 const SearchPage = () => {
   const ctx = useContext(EventContext);
   const events = ctx.events;
-  console.log(ctx.events);
 
   const [searchTerm, setSearchTerm] = useState('');
 

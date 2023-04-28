@@ -11,3 +11,15 @@ export async function getEvents() {
 
   return res;
 }
+
+export async function getEventDetails(eventId) {
+  const res = await fetch(
+    `https://sarajevo-veceras-default-rtdb.europe-west1.firebasedatabase.app/events/${eventId}.json`
+  );
+
+  if (!res.ok) {
+    throw json({ message: 'Could not fetch event!' }, { status: 500 });
+  }
+
+  return res;
+}

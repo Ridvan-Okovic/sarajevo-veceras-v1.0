@@ -17,8 +17,6 @@ const Event = (props) => {
 
   const ctx = useContext(LikedContext);
 
-  console.log(active);
-
   const addEventToLiked = () => {
     setActive(true);
     ctx.addEvent({
@@ -54,9 +52,7 @@ const Event = (props) => {
         />
         <div className="w-[55%] h-full space-y-2 relative my-2">
           <h1 className="text-center text-2xl tracking-tight text-[#e1e1e1]">
-            <Link to={`/events/${props.name.toLocaleLowerCase()}`}>
-              {props.name}
-            </Link>
+            <Link to={`/${props.name.toLocaleLowerCase()}`}>{props.name}</Link>
           </h1>
 
           <h3 className="flex flex-row items-center border-b-[1px] border-opacity-70 text-[#e1e1e1] text-opacity-70 border-gray-300 mx-8">
@@ -79,22 +75,22 @@ const Event = (props) => {
             <motion.button
               whileTap={{ scale: 0.85 }}
               whileHover={{ scale: 1.1 }}
+              onClick={addEventToLiked}
             >
               {active ? (
                 <FaHeart className="text-[#ffb560] cursor-pointer text-3xl" />
               ) : (
-                <VscHeart
-                  className="text-[#ffb560] cursor-pointer text-3xl"
-                  onClick={addEventToLiked}
-                />
+                <VscHeart className="text-[#ffb560] cursor-pointer text-3xl" />
               )}
             </motion.button>
-            <motion.button
-              whileTap={{ scale: 0.85 }}
-              whileHover={{ scale: 1.1 }}
-            >
-              <CiCircleMore className="text-[#ffb560] cursor-pointer text-3xl" />
-            </motion.button>
+            <Link to={props.id}>
+              <motion.button
+                whileTap={{ scale: 0.85 }}
+                whileHover={{ scale: 1.1 }}
+              >
+                <CiCircleMore className="text-[#ffb560] cursor-pointer text-3xl" />
+              </motion.button>
+            </Link>
           </div>
         </div>
       </div>

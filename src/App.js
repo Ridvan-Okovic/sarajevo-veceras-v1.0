@@ -10,6 +10,9 @@ import LikedEvents from './components/Pages/LikedEvents';
 import RootLayout from './components/Pages/RootLayout';
 import PlaceDetailsPage from './components/Pages/PlaceDetailsPage';
 import SearchPage from './components/Pages/SearchPage';
+import EventDetailsPage, {
+  loader as eventDetailsLoader,
+} from './components/Pages/EventDetailsPage';
 
 const router = createBrowserRouter([
   {
@@ -17,26 +20,30 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       {
-        path: '/events',
+        path: 'events',
         element: <EventsPage />,
         loader: eventsLoader,
       },
       {
-        path: '/liked',
+        path: 'liked',
         element: <LikedEvents />,
       },
       {
-        path: '/events/search',
+        path: 'search',
         element: <SearchPage />,
       },
       {
-        path: '/events/:place',
+        path: ':place',
         element: <PlaceDetailsPage />,
       },
-
+      {
+        path: 'events/:eventId',
+        element: <EventDetailsPage />,
+        loader: eventDetailsLoader,
+      },
       {
         path: '/',
-        element: <Navigate to="/events" redirect />,
+        element: <Navigate to="events" redirect />,
       },
     ],
   },
