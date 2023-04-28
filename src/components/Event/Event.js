@@ -83,7 +83,7 @@ const Event = (props) => {
                 <VscHeart className="text-[#ffb560] cursor-pointer text-3xl" />
               )}
             </motion.button>
-            <Link to={props.id}>
+            <Link to={`/events/${props.id}`}>
               <motion.button
                 whileTap={{ scale: 0.85 }}
                 whileHover={{ scale: 1.1 }}

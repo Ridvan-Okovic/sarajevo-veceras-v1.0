@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import EventContext from '../../context/event-context';
 import Event from '../Event/Event';
 import { filterByDateAscending } from '../../utils/filter';
+import { motion } from 'framer-motion';
 
 import { FaChevronLeft } from 'react-icons/fa';
 
@@ -37,12 +38,14 @@ const DetailsPage = () => {
   return (
     <div className="flex flex-col items-center justify-center">
       <div className="flex flex-row items-center gap-8">
-        <div
+        <motion.button
+          whileTap={{ scale: 0.85 }}
+          whileHover={{ scale: 1.1 }}
           onClick={() => navigate(-1)}
           className="flex flex-row gap-1 bg-zinc-900 px-4 py-2 rounded-lg items-center justify-center text-lg cursor-pointer"
         >
           <FaChevronLeft className="text-[#e1e1e1]" />
-        </div>
+        </motion.button>
         <h1 className="text-5xl my-8 font-montserrat tracking-wide capitalize text-[#e1e1e1]">
           {params.place}
         </h1>
