@@ -71,7 +71,7 @@ const Event = (props) => {
             <FaCalendar className="text-[#ffb560] mr-2" />
             <EventDate datum={props.date} />
           </h3>
-          <div className="flex items-center justify-end w-full h-10 px-8 gap-2">
+          <div className="flex items-baseline justify-end w-full h-10 px-8 gap-2">
             <motion.button
               whileTap={{ scale: 0.85 }}
               whileHover={{ scale: 1.1 }}
