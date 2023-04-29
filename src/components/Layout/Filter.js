@@ -5,6 +5,16 @@ import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/md';
 const Filter = (props) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+  const DAYS = [
+    'Nedelja',
+    'Ponedeljak',
+    'Utorak',
+    'Srijeda',
+    'Četvrtak',
+    'Petak',
+    'Subota',
+  ];
+
   const handleChange = (index) => (e) => {
     const active = document.getElementById(index).checked;
     if (active) {
@@ -17,16 +27,6 @@ const Filter = (props) => {
   };
 
   const PLACE_TYPES = ['Club', 'Pub', 'Kafana', 'Open Air', 'Gastro'];
-
-  const DAYS = [
-    'Nedelja',
-    'Ponedeljak',
-    'Utorak',
-    'Srijeda',
-    'Četvrtak',
-    'Petak',
-    'Subota',
-  ];
 
   const filter = PLACE_TYPES.map((type, i) => {
     return (
@@ -49,6 +49,7 @@ const Filter = (props) => {
   return (
     <div className="flex items-center justify-center shadow-lg bg-zinc-900 px-12 py-4 rounded-lg gap-10">
       <div className="flex flex-row gap-10">{filter}</div>
+
       <div className="relative">
         <button
           onClick={() => setIsDropdownOpen((prev) => !prev)}
@@ -62,8 +63,8 @@ const Filter = (props) => {
           )}
         </button>
         {isDropdownOpen && (
-          <div className="absolute top-10 rounded-md w-32 bg-zinc-800 shadow-lg left-0 border-dashed px-2 py-2">
-            <ul>
+          <div>
+            <ul className="absolute top-10 rounded-md w-32 bg-zinc-800 shadow-lg left-0 border-dashed px-2 py-2">
               {DAYS.map((day, index) => {
                 return (
                   <li
