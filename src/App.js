@@ -25,21 +25,21 @@ const router = createBrowserRouter([
         loader: eventsLoader,
       },
       {
-        path: 'liked',
-        element: <LikedEvents />,
-      },
-      {
-        path: 'search',
-        element: <SearchPage />,
+        path: 'events/:eventId',
+        element: <EventDetailsPage />,
+        loader: eventDetailsLoader,
       },
       {
         path: ':place',
         element: <PlaceDetailsPage />,
       },
       {
-        path: 'events/:eventId',
-        element: <EventDetailsPage />,
-        loader: eventDetailsLoader,
+        path: 'liked',
+        element: <LikedEvents />,
+      },
+      {
+        path: 'search',
+        element: <SearchPage />,
       },
       {
         path: '/',
