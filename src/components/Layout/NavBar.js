@@ -49,7 +49,7 @@ const NavBar = () => {
             className={({ isActive }) =>
               isActive ? `opacity-100` : 'opacity-70'
             }
-            to="/search"
+            to="/events/search"
           >
             <BiSearchAlt />
           </NavLink>

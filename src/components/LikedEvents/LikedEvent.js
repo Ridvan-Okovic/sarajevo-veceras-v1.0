@@ -36,7 +36,7 @@ const LikedEvent = (props) => {
         />
         <div className="w-[55%] h-full space-y-2 relative my-2">
           <h1 className="text-center text-2xl tracking-tight text-[#e1e1e1]">
-            <Link to={`/events/${props.name.toLocaleLowerCase()}`}>
+            <Link to={`/events/place/${props.name.toLocaleLowerCase()}`}>
               {props.name}
             </Link>
           </h1>

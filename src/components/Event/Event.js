@@ -52,7 +52,9 @@ const Event = (props) => {
         />
         <div className="w-[55%] h-full space-y-2 relative my-2">
           <h1 className="text-center text-2xl tracking-tight text-[#e1e1e1]">
-            <Link to={`/${props.name.toLocaleLowerCase()}`}>{props.name}</Link>
+            <Link to={`/events/place/${props.name.toLocaleLowerCase()}`}>
+              {props.name}
+            </Link>
           </h1>
 
           <h3 className="flex flex-row items-center border-b-[1px] border-opacity-70 text-[#e1e1e1] text-opacity-70 border-gray-300 mx-8">
