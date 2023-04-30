@@ -76,9 +76,9 @@ const Filter = (props) => {
         >
           <p className="text-[#e1e1e1]">Days</p>
           {!isDropdownOpen ? (
-            <MdArrowDropDown className="text-[#e1e1e1] text-2xl" />
+            <MdArrowDropDown className="text-[#e1e1e1] text-3xl" />
           ) : (
-            <MdArrowDropUp className="text-[#e1e1e1] text-2xl" />
+            <MdArrowDropUp className="text-[#e1e1e1] text-3xl" />
           )}
         </button>
         {isDropdownOpen && (
