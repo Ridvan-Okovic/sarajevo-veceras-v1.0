@@ -13,6 +13,7 @@ import SearchPage from './components/Pages/SearchPage';
 import EventDetailsPage, {
   loader as eventDetailsLoader,
 } from './components/Pages/EventDetailsPage';
+import LikedEventsCalendarPage from './components/Pages/LikedEventsCalendarPage';
 
 const router = createBrowserRouter([
   {
@@ -42,7 +43,16 @@ const router = createBrowserRouter([
 
       {
         path: 'liked',
-        element: <LikedEvents />,
+        children: [
+          {
+            index: true,
+            element: <LikedEvents />,
+          },
+          {
+            path: 'calendar',
+            element: <LikedEventsCalendarPage />,
+          },
+        ],
       },
       {
         path: '/',

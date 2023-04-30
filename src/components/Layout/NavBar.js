@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
-import { BiSearchAlt } from 'react-icons/bi';
+import { BiSearchAlt, BiCalendar } from 'react-icons/bi';
 
 import EventContext from '../../context/liked-context';
 
@@ -44,6 +44,16 @@ const NavBar = () => {
             </span>
           )}
         </div>
+        <li className=" pb-1 relative">
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? `opacity-100` : 'opacity-70'
+            }
+            to="/liked/calendar"
+          >
+            <BiCalendar />
+          </NavLink>
+        </li>
         <li className=" pb-1 relative">
           <NavLink
             className={({ isActive }) =>

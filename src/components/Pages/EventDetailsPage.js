@@ -24,7 +24,7 @@ const EventDetailsPage = () => {
           >
             <FaChevronLeft className="text-[#e1e1e1]" />
           </motion.button>
-          <h1 className="text-5xl my-8  tracking-wide capitalize text-[#e1e1e1]">
+          <h1 className="text-5xl my-8 tracking-wide capitalize text-[#e1e1e1]">
             {event.description}
           </h1>
         </div>
