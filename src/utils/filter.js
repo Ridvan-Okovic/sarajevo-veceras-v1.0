@@ -37,7 +37,7 @@ export function filterBycheckBoxInput(events, filter) {
   console.log(lowercase);
   const checkboxFilter = events.filter((eventInfo) => {
     const day = days[eventInfo.datum.getDay()];
-    return lowercase.includes(eventInfo.tip) && lowercase.includes(day);
+    return lowercase.includes(eventInfo.tip) || lowercase.includes(day);
   });
   return checkboxFilter;
 }
