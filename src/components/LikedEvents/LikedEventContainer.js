@@ -25,7 +25,7 @@ const LikedEventContainer = () => {
         opis={eventInfo.description}
         time={eventInfo.time}
         address={eventInfo.address}
-        date={new Date(eventInfo.date)}
+        datum={new Date(eventInfo.datum)}
         index={eventInfo.index}
       />
     );
@@ -43,7 +43,7 @@ const LikedEventContainer = () => {
         opis={eventInfo.description}
         time={eventInfo.time}
         address={eventInfo.address}
-        date={new Date(eventInfo.date)}
+        datum={new Date(eventInfo.datum)}
         index={eventInfo.index}
       />
     );

@@ -27,7 +27,7 @@ const Event = (props) => {
       description: props.opis,
       address: props.address,
       time: props.time,
-      date: props.date,
+      datum: props.date,
       amount: 1,
       tip: props.tip,
       index: props.index,
