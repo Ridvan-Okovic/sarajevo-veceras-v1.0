@@ -1,3 +1,13 @@
+const days = [
+  'nedelja',
+  'ponedeljak',
+  'utorak',
+  'srijeda',
+  'cetvrtak',
+  'patak',
+  'subota',
+];
+
 export function filterByDateAscending(events) {
   let today = new Date();
   let todayString = new Date().toString().slice(0, 10);
@@ -24,8 +34,10 @@ export function filterBySearchTerm(events, searchTerm) {
 
 export function filterBycheckBoxInput(events, filter) {
   const lowercase = filter.map((item) => item.toLocaleLowerCase());
+  console.log(lowercase);
   const checkboxFilter = events.filter((eventInfo) => {
-    return lowercase.includes(eventInfo.tip);
+    const day = days[eventInfo.datum.getDay()];
+    return lowercase.includes(eventInfo.tip) && lowercase.includes(day);
   });
   return checkboxFilter;
 }
