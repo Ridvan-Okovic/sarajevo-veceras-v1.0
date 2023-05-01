@@ -5,6 +5,8 @@ import {
   filterBycheckBoxInput,
 } from '../../utils/filter';
 
+import { transformEvents } from '../../utils/events';
+
 import Event from './Event';
 import Filter from '../Layout/Filter';
 import EventContext from '../../context/event-context';
@@ -13,11 +15,11 @@ const EventContainer = (props) => {
   const [selectedFilter, setSelectedFilter] = useState([]);
 
   const ctx = useContext(EventContext);
-  const events = props.events;
+  const events = transformEvents(props.events);
 
   useEffect(() => {
     ctx.addEvents(events);
-  }, [ctx, events]);
+  }, []);
 
   const dateFilteredEvents = filterByDateAscending(events);
 

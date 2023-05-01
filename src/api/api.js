@@ -7,9 +7,10 @@ export async function getEvents() {
 
   if (!res.ok) {
     throw json({ message: 'Could not fetch events!' }, { status: 500 });
+  } else {
+    const resData = await res.json();
+    return resData;
   }
-
-  return res;
 }
 
 export async function getEventDetails(eventId) {

@@ -1,17 +1,25 @@
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, defer, Await } from 'react-router-dom';
+import { Suspense } from 'react';
 
 import EventContainer from '../Event/EventContainer';
-import { transformEvents } from '../../utils/events';
 import { getEvents } from '../../api/api';
 
 const EventsPage = () => {
-  const data = useLoaderData();
-
-  const events = transformEvents(data);
+  const { events } = useLoaderData();
 
   return (
     <>
-      <EventContainer events={events} />
+      <Suspense
+        fallback={
+          <h1 className="mt-8 text-4xl text-[#e1e1e1] text-center font-manrope">
+            Loading events...
+          </h1>
+        }
+      >
+        <Await resolve={events}>
+          {(loadedEvents) => <EventContainer events={loadedEvents} />}
+        </Await>
+      </Suspense>
     </>
   );
 };
@@ -19,5 +27,7 @@ const EventsPage = () => {
 export default EventsPage;
 
 export function loader() {
-  return getEvents();
+  return defer({
+    events: getEvents(),
+  });
 }
