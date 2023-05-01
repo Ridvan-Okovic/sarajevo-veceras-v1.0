@@ -83,7 +83,7 @@ const Filter = (props) => {
       <div className="relative">
         <button
           onClick={() => setIsDropdownOpen((prev) => !prev)}
-          className="flex flex-row items-center justify-between w-32 h-8 shadow-2xl px-3 rounded-md bg-zinc-800 opacity-80 hover:opacity-100 active:opacity-100"
+          className="flex flex-row items-center justify-between w-32 h-8 shadow-2xl pl-3 pr-1 rounded-md bg-zinc-800 opacity-80 hover:opacity-100 active:opacity-100"
         >
           <p className="text-[#e1e1e1]">Days</p>
           {!isDropdownOpen ? (
