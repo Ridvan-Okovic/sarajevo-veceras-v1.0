@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import {
   filterByDateAscending,
   filterBycheckBoxInput,
+  filterByDaySelected,
 } from '../../utils/filter';
 
 import { transformEvents } from '../../utils/events';
@@ -12,7 +13,8 @@ import Filter from '../Layout/Filter';
 import EventContext from '../../context/event-context';
 
 const EventContainer = (props) => {
-  const [selectedFilter, setSelectedFilter] = useState([]);
+  const [selectedTypeFilter, setSelectedTypeFilter] = useState([]);
+  const [selectedDayFilter, setSelectedDayFilter] = useState([]);
 
   const ctx = useContext(EventContext);
   const events = transformEvents(props.events);
@@ -40,12 +42,12 @@ const EventContainer = (props) => {
     );
   });
 
-  const checkboxFilter = filterBycheckBoxInput(
+  const checkboxTypeFilter = filterBycheckBoxInput(
     dateFilteredEvents,
-    selectedFilter
+    selectedTypeFilter
   );
 
-  const checkboxFilteredEvents = checkboxFilter.map((eventInfo) => {
+  const checkboxFilteredEvents = checkboxTypeFilter.map((eventInfo) => {
     return (
       <Event
         key={eventInfo.id}
@@ -61,10 +63,57 @@ const EventContainer = (props) => {
     );
   });
 
-  let isChecked = false;
+  const checkboxDayFilter = filterByDaySelected(
+    dateFilteredEvents,
+    selectedDayFilter
+  );
 
-  if (selectedFilter.length > 0) {
-    isChecked = true;
+  const checkboxDayFilteredEvents = checkboxDayFilter.map((eventInfo) => {
+    return (
+      <Event
+        key={eventInfo.id}
+        id={eventInfo.id}
+        poster={eventInfo.poster}
+        name={eventInfo.ime}
+        opis={eventInfo.opis}
+        time={eventInfo.vrijeme}
+        address={eventInfo.adresa}
+        date={new Date(eventInfo.datum)}
+        type={eventInfo.tip}
+      />
+    );
+  });
+
+  const typeAndDayFilter = filterByDaySelected(
+    checkboxTypeFilter,
+    selectedDayFilter
+  );
+
+  const typeAndDayFilteredEvents = typeAndDayFilter.map((eventInfo) => {
+    return (
+      <Event
+        key={eventInfo.id}
+        id={eventInfo.id}
+        poster={eventInfo.poster}
+        name={eventInfo.ime}
+        opis={eventInfo.opis}
+        time={eventInfo.vrijeme}
+        address={eventInfo.adresa}
+        date={new Date(eventInfo.datum)}
+        type={eventInfo.tip}
+      />
+    );
+  });
+
+  let isTypeChecked = false;
+  let isDayChecked = false;
+
+  if (selectedTypeFilter.length > 0) {
+    isTypeChecked = true;
+  }
+
+  if (selectedDayFilter.length > 0) {
+    isDayChecked = true;
   }
 
   let content = (
@@ -81,21 +130,31 @@ const EventContainer = (props) => {
     content = checkboxFilteredEvents;
   }
 
-  if (isChecked && checkboxFilteredEvents.length === 0) {
-    content = (
-      <p className="font-montserrat font-normal text-3xl text-[#e1e1e1]">
-        Za željeni filter nema eventova!
-      </p>
-    );
+  if (checkboxDayFilter.length > 0) {
+    content = checkboxDayFilteredEvents;
+  }
+
+  if (checkboxTypeFilter.length > 0 && checkboxDayFilter.length > 0) {
+    content = typeAndDayFilteredEvents;
+  }
+
+  if (isTypeChecked && checkboxFilteredEvents.length === 0) {
+    content = '';
+  }
+
+  if (isDayChecked && checkboxDayFilteredEvents.length === 0) {
+    content = '';
   }
 
   return (
     <>
       <div className="flex flex-row items-center justify-center gap-8 mt-8 mb-16">
         <Filter
-          setSelectedFilter={setSelectedFilter}
-          selectedFilter={selectedFilter}
+          setSelectedFilter={setSelectedTypeFilter}
+          selectedFilter={selectedTypeFilter}
           // ---------------------------------- //
+          setSelectedDayFilter={setSelectedDayFilter}
+          selectedDayFilter={selectedDayFilter}
         />
       </div>
 
@@ -105,13 +164,21 @@ const EventContainer = (props) => {
         </h3>
         <div
           className={
-            isChecked && checkboxFilteredEvents.length === 0
-              ? 'grid grid-cols-1'
-              : 'grid grid-cols-1 xl:grid-cols-2 xl:px-12 2xl:grid-cols-3 place-items-center gap-8'
+            'grid grid-cols-1 xl:grid-cols-2 xl:px-12 2xl:grid-cols-3 place-items-center gap-8 text-center'
           }
         >
           {content}
         </div>
+        {isTypeChecked && checkboxFilteredEvents.length === 0 && (
+          <p className="font-montserrat font-normal text-3xl text-[#e1e1e1] text-center">
+            Za željeni filter nema eventova!
+          </p>
+        )}
+        {isDayChecked && checkboxDayFilteredEvents.length === 0 && (
+          <p className="font-montserrat font-normal text-3xl text-[#e1e1e1] text-center">
+            Za željeni filter nema eventova!
+          </p>
+        )}
       </div>
     </>
   );

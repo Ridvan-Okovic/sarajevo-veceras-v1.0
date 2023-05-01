@@ -15,13 +15,24 @@ const Filter = (props) => {
     'Subota',
   ];
 
-  const handleChange = (index) => (e) => {
+  const handleChangeType = (index) => (e) => {
     const active = document.getElementById(index).checked;
     if (active) {
       props.setSelectedFilter((prev) => [...prev, e.target.value]);
     } else {
       props.setSelectedFilter(
         props.selectedFilter.filter((val) => val !== e.target.value)
+      );
+    }
+  };
+
+  const handleChangeDay = (index) => (e) => {
+    const active = document.getElementById(index).checked;
+    if (active) {
+      props.setSelectedDayFilter((prev) => [...prev, e.target.value]);
+    } else {
+      props.setSelectedDayFilter(
+        props.selectedDayFilter.filter((val) => val !== e.target.value)
       );
     }
   };
@@ -40,7 +51,7 @@ const Filter = (props) => {
           type="checkbox"
           id={i}
           value={type}
-          onChange={handleChange(i)}
+          onChange={handleChangeType(i)}
         />
       </label>
     );
@@ -59,7 +70,7 @@ const Filter = (props) => {
           value={day}
           type="checkbox"
           className="appearance-none w-4 h-4 relative rounded-sm border cursor-pointer focus:outline-none transition-all duration-300 checked:bg-[#ffb560] checked:border-[#ffb560] after:content-[''] after:absolute after:w-full after:h-full after:bg-no-repeat after:bg-center after:bg-[length:15px] after:checked:bg-[url('https://www.svgrepo.com/show/105291/check-mark.svg')]"
-          onChange={handleChange(day)}
+          onChange={handleChangeDay(day)}
         />
       </label>
     );

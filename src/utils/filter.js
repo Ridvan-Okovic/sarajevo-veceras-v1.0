@@ -3,8 +3,8 @@ const days = [
   'ponedeljak',
   'utorak',
   'srijeda',
-  'cetvrtak',
-  'patak',
+  'četvrtak',
+  'petak',
   'subota',
 ];
 
@@ -35,8 +35,16 @@ export function filterBySearchTerm(events, searchTerm) {
 export function filterBycheckBoxInput(events, filter) {
   const lowercase = filter.map((item) => item.toLocaleLowerCase());
   const checkboxFilter = events.filter((eventInfo) => {
+    return lowercase.includes(eventInfo.tip);
+  });
+  return checkboxFilter;
+}
+
+export function filterByDaySelected(events, filter) {
+  const lowercase = filter.map((item) => item.toLocaleLowerCase());
+  const checkboxFilter = events.filter((eventInfo) => {
     const day = days[eventInfo.datum.getDay()];
-    return lowercase.includes(eventInfo.tip) || lowercase.includes(day);
+    return lowercase.includes(day);
   });
   return checkboxFilter;
 }
