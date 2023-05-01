@@ -11,7 +11,6 @@ import EventContext from '../../context/event-context';
 
 const EventContainer = (props) => {
   const [selectedFilter, setSelectedFilter] = useState([]);
-  const [selectedDay, setSelectedDay] = useState([]);
 
   const ctx = useContext(EventContext);
   const events = props.events;

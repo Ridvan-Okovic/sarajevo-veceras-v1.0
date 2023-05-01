@@ -34,7 +34,6 @@ export function filterBySearchTerm(events, searchTerm) {
 
 export function filterBycheckBoxInput(events, filter) {
   const lowercase = filter.map((item) => item.toLocaleLowerCase());
-  console.log(lowercase);
   const checkboxFilter = events.filter((eventInfo) => {
     const day = days[eventInfo.datum.getDay()];
     return lowercase.includes(eventInfo.tip) || lowercase.includes(day);

@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import { motion } from 'framer-motion';
 import { VscHeart } from 'react-icons/vsc';
-import { CiCircleMore } from 'react-icons/ci';
+import { MdOutlineReadMore } from 'react-icons/md';
 
 const Event = (props) => {
   const [active, setActive] = useState(false);
@@ -90,7 +90,7 @@ const Event = (props) => {
                 whileTap={{ scale: 0.85 }}
                 whileHover={{ scale: 1.1 }}
               >
-                <CiCircleMore className="text-[#ffb560] cursor-pointer text-3xl" />
+                <MdOutlineReadMore className="text-[#ffb560] cursor-pointer text-3xl" />
               </motion.button>
             </Link>
           </div>
