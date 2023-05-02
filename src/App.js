@@ -3,6 +3,8 @@ import {
   Navigate,
   RouterProvider,
 } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
+
 import EventsPage, {
   loader as eventsLoader,
 } from './components/Pages/EventsPage';
@@ -10,10 +12,11 @@ import LikedEvents from './components/Pages/LikedEvents';
 import RootLayout from './components/Pages/RootLayout';
 import PlaceDetailsPage from './components/Pages/PlaceDetailsPage';
 import SearchPage from './components/Pages/SearchPage';
-import EventDetailsPage, {
-  loader as eventDetailsLoader,
-} from './components/Pages/EventDetailsPage';
 import LikedEventsCalendarPage from './components/Pages/LikedEventsCalendarPage';
+
+const EventDetailsPage = lazy(() =>
+  import('./components/Pages/EventDetailsPage')
+);
 
 const router = createBrowserRouter([
   {
@@ -27,8 +30,21 @@ const router = createBrowserRouter([
           { index: true, element: <EventsPage />, loader: eventsLoader },
           {
             path: ':eventId',
-            element: <EventDetailsPage />,
-            loader: eventDetailsLoader,
+            element: (
+              <Suspense
+                fallback={
+                  <h1 className="mt-8 text-4xl text-[#e1e1e1] text-center font-manrope">
+                    Loading events...
+                  </h1>
+                }
+              >
+                <EventDetailsPage />
+              </Suspense>
+            ),
+            loader: ({ params }) =>
+              import('./components/Pages/EventDetailsPage').then((module) =>
+                module.loader({ params })
+              ),
           },
           {
             path: 'place/:place',

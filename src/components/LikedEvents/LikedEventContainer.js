@@ -103,6 +103,11 @@ const LikedEventContainer = () => {
         >
           {content}
         </div>
+        {!isChecked && checkboxFilteredLikedEvents.length === 0 && (
+          <p className="font-montserrat font-normal text-3xl text-[#e1e1e1] text-center">
+            Trenutno nemate lajkanih eventova!
+          </p>
+        )}
       </div>
     </>
   );
