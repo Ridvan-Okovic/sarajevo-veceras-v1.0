@@ -60,7 +60,7 @@ const Filter = (props) => {
   const daysFilter = DAYS.map((day, index) => {
     return (
       <label
-        className="flex flex-row items-center justify-between text-[#e1e1e1]"
+        className="flex flex-row items-center justify-between text-[#e1e1e1] text-opacity-60 hover:text-opacity-100 peer text-lg"
         key={index}
       >
         {day}
@@ -69,7 +69,7 @@ const Filter = (props) => {
           id={day}
           value={day}
           type="checkbox"
-          className="appearance-none w-4 h-4 relative rounded-sm border cursor-pointer focus:outline-none transition-all duration-300 checked:bg-[#ffb560] checked:border-[#ffb560] after:content-[''] after:absolute after:w-full after:h-full after:bg-no-repeat after:bg-center after:bg-[length:15px] after:checked:bg-[url('https://www.svgrepo.com/show/105291/check-mark.svg')]"
+          className=" peer-hover:opacity-100 opacity-80 appearance-none w-5 h-5 relative rounded-sm border cursor-pointer focus:outline-none transition-all duration-300 checked:bg-[#ffb560] checked:border-[#ffb560] after:content-[''] after:absolute after:w-full after:h-full after:bg-no-repeat after:bg-center after:bg-[length:15px] after:checked:bg-[url('https://www.svgrepo.com/show/105291/check-mark.svg')]"
           onChange={handleChangeDay(day)}
         />
       </label>
@@ -93,7 +93,7 @@ const Filter = (props) => {
           )}
         </button>
         {isDropdownOpen && (
-          <div className="absolute z-20 top-10 rounded-md w-32 bg-zinc-800 shadow-lg left-0 border-dashed px-2 py-2">
+          <div className="absolute z-20 top-10 -left-2 rounded-md w-36 bg-zinc-800 shadow-lg border-dashed px-2 py-2 space-y-1">
             {daysFilter}
           </div>
         )}
