@@ -116,11 +116,7 @@ const EventContainer = (props) => {
     isDayChecked = true;
   }
 
-  let content = (
-    <p className="font-montserrat font-normal text-3xl text-[#e1e1e1]">
-      Nema pronađenih eventova. Molimo pokušajte kasnije!
-    </p>
-  );
+  let content;
 
   if (eventsByDate.length > 0) {
     content = eventsByDate;

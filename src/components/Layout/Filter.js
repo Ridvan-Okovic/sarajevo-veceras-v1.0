@@ -93,7 +93,7 @@ const Filter = (props) => {
           )}
         </button>
         {isDropdownOpen && (
-          <div className="absolute top-10 rounded-md w-32 bg-zinc-800 shadow-lg left-0 border-dashed px-2 py-2">
+          <div className="absolute z-20 top-10 rounded-md w-32 bg-zinc-800 shadow-lg left-0 border-dashed px-2 py-2">
             {daysFilter}
           </div>
         )}
