@@ -7,7 +7,7 @@ import LikedContext from '../../context/liked-context';
 import EventDate from '../Event/EventDate';
 import toast, { Toaster } from 'react-hot-toast';
 import { motion } from 'framer-motion';
-import { CiCircleMore } from 'react-icons/ci';
+import { MdOutlineReadMore } from 'react-icons/md';
 
 const LikedEvent = (props) => {
   const notify = () =>
@@ -70,7 +70,7 @@ const LikedEvent = (props) => {
                 whileTap={{ scale: 0.85 }}
                 whileHover={{ scale: 1.1 }}
               >
-                <CiCircleMore className="text-[#ffb560] cursor-pointer text-3xl" />
+                <MdOutlineReadMore className="text-[#ffb560] cursor-pointer text-3xl" />
               </motion.button>
             </Link>
           </div>
