@@ -1,5 +1,7 @@
 import { useContext } from 'react';
 import LikedContext from '../../context/liked-context';
+import Calendar from 'react-calendar';
+
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { FaChevronLeft } from 'react-icons/fa';
@@ -17,7 +19,7 @@ const LikedEventsCalendarPage = () => {
         <motion.button
           whileTap={{ scale: 0.85 }}
           whileHover={{ scale: 1.1 }}
-          onClick={() => navigate(-1)}
+          onClick={() => navigate('/events')}
           className="flex flex-row gap-1 bg-zinc-900 px-4 py-2 rounded-lg items-center justify-center text-lg cursor-pointer"
         >
           <FaChevronLeft className="text-[#e1e1e1]" />
@@ -26,6 +28,7 @@ const LikedEventsCalendarPage = () => {
           Calendar
         </h1>
       </div>
+      <Calendar className="" />
     </div>
   );
 };
