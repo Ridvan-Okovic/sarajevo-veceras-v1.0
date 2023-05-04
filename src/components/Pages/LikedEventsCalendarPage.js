@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import LikedContext from '../../context/liked-context';
 import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
@@ -26,7 +27,7 @@ const LikedEventsCalendarPage = () => {
           Calendar
         </h1>
       </div>
-      <Calendar className="" />
+      <Calendar />
     </div>
   );
 };
