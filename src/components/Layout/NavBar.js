@@ -8,7 +8,7 @@ const NavBar = () => {
   const ctx = useContext(EventContext);
 
   return (
-    <nav className="sticky top-0 z-10 w-full h-[6rem] px-[10%] flex flex-row items-center justify-between bg-zinc-900 text-[#e1e1e1] shadow-lg uppercase">
+    <nav className="sticky top-0 z-30 w-full h-[6rem] px-[10%] flex flex-row items-center justify-between bg-zinc-900 text-[#e1e1e1] shadow-lg uppercase backdrop-filter backdrop-blur-lg bg-opacity-80">
       <h1 className="text-3xl tracking-widest">Logo</h1>
 
       <ul className="sm:flex hidden gap-8 text-2xl items-center tracking-wide">
