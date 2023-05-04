@@ -62,8 +62,8 @@ const Filter = (props) => {
       <label
         className={
           props.selectedDayFilter.includes(day)
-            ? 'peer flex flex-row items-center justify-between text-[#e1e1e1] text-opacity-100 peer text-lg'
-            : 'peer flex flex-row items-center justify-between text-[#e1e1e1] text-opacity-60 hover:text-opacity-100 peer text-lg'
+            ? 'peer cursor-pointer flex flex-row items-center justify-between text-[#e1e1e1] text-opacity-100 peer text-lg'
+            : 'peer cursor-pointer flex flex-row items-center justify-between text-[#e1e1e1] text-opacity-60 hover:text-opacity-100 peer text-lg'
         }
         key={index}
       >
