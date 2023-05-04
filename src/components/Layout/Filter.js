@@ -60,7 +60,11 @@ const Filter = (props) => {
   const daysFilter = DAYS.map((day, index) => {
     return (
       <label
-        className="flex flex-row items-center justify-between text-[#e1e1e1] text-opacity-60 hover:text-opacity-100 peer text-lg"
+        className={
+          props.selectedDayFilter.includes(day)
+            ? 'peer flex flex-row items-center justify-between text-[#e1e1e1] text-opacity-100 peer text-lg'
+            : 'peer flex flex-row items-center justify-between text-[#e1e1e1] text-opacity-60 hover:text-opacity-100 peer text-lg'
+        }
         key={index}
       >
         {day}
@@ -69,7 +73,7 @@ const Filter = (props) => {
           id={day}
           value={day}
           type="checkbox"
-          className=" peer-hover:opacity-100 opacity-80 appearance-none w-5 h-5 relative rounded-sm border cursor-pointer focus:outline-none transition-all duration-300 checked:bg-[#ffb560] checked:border-[#ffb560] after:content-[''] after:absolute after:w-full after:h-full after:bg-no-repeat after:bg-center after:bg-[length:15px] after:checked:bg-[url('https://www.svgrepo.com/show/105291/check-mark.svg')]"
+          className="peer-hover:opacity-100 opacity-80 appearance-none w-5 h-5 relative rounded-sm border cursor-pointer focus:outline-none transition-all duration-300 checked:bg-[#ffb560] checked:border-[#ffb560] after:content-[''] after:absolute after:w-full after:h-full after:bg-no-repeat after:bg-center after:bg-[length:15px] after:checked:bg-[url('https://www.svgrepo.com/show/105291/check-mark.svg')]"
           onChange={handleChangeDay(day)}
           checked={props.selectedDayFilter.includes(day)}
         />
@@ -84,7 +88,11 @@ const Filter = (props) => {
       <div className="relative">
         <button
           onClick={() => setIsDropdownOpen((prev) => !prev)}
-          className="flex flex-row items-center justify-between w-32 h-8 shadow-2xl pl-3 pr-1 rounded-md bg-zinc-800 opacity-80 hover:opacity-100 active:opacity-100"
+          className={
+            isDropdownOpen
+              ? 'flex flex-row items-center justify-between w-32 h-8 shadow-2xl pl-3 pr-1 rounded-md bg-zinc-800 opacity-100'
+              : 'flex flex-row items-center justify-between w-32 h-8 shadow-2xl pl-3 pr-1 rounded-md bg-zinc-800 opacity-80 hover:opacity-100 active:opacity-100'
+          }
         >
           <p className="text-[#e1e1e1]">Days</p>
           {!isDropdownOpen ? (
