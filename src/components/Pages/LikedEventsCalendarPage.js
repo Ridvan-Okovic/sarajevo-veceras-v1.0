@@ -11,8 +11,6 @@ const LikedEventsCalendarPage = () => {
   const ctx = useContext(LikedContext);
   const likedEvents = ctx.events;
 
-  console.log(likedEvents);
-
   return (
     <div className="flex flex-col items-center">
       <div className="flex items-center gap-8">

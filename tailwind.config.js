@@ -10,7 +10,7 @@ module.exports = {
         manrope: ['Manrope'],
       },
       screens: {
-        '2xl': '1920px',
+        '2xl': '1980px',
       },
     },
   },
