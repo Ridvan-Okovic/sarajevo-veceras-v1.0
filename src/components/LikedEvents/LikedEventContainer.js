@@ -90,8 +90,6 @@ const LikedEventContainer = () => {
     );
   });
 
-  console.log(typeAndDayFilter);
-
   let content;
 
   if (likedEvents.length > 0) {
