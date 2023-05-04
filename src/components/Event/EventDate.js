@@ -15,9 +15,7 @@ const EventDate = (props) => {
 
   return (
     <div className="flex">
-      <div className="pr-1 text-[#C25452] opacity-80 font-semibold">
-        {days[dayindex]},
-      </div>
+      <div className="pr-1 text-[#C25452] font-semibold">{days[dayindex]},</div>
       <div className="pr-1">{day}</div>
       <div className="pr-1">{month}</div>
     </div>

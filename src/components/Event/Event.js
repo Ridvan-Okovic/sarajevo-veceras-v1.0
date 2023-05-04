@@ -53,7 +53,7 @@ const Event = (props) => {
         <div className="w-[55%] h-full space-y-2 relative my-2">
           <h1 className="text-center text-2xl tracking-tight">
             <Link
-              className="bg-gradient-to-r from-[#C25452] to-[#ffb560]  text-transparent bg-clip-text font-bold"
+              className=" text-[#ffb560] opacity-90 font-bold"
               to={`/events/place/${props.name.toLocaleLowerCase()}`}
             >
               {props.name}
