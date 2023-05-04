@@ -35,8 +35,11 @@ const LikedEvent = (props) => {
           className="w-[45%] h-full rounded-md shadow-md aspect-auto object-cover"
         />
         <div className="w-[55%] h-full space-y-2 relative my-2">
-          <h1 className="text-center text-2xl tracking-tight text-[#e1e1e1]">
-            <Link to={`/events/place/${props.name.toLocaleLowerCase()}`}>
+          <h1 className="text-center text-2xl tracking-tight">
+            <Link
+              className="bg-gradient-to-r from-[#C25452] to-[#ffb560]  text-transparent bg-clip-text font-bold"
+              to={`/events/place/${props.name.toLocaleLowerCase()}`}
+            >
               {props.name}
             </Link>
           </h1>

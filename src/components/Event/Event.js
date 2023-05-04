@@ -51,15 +51,20 @@ const Event = (props) => {
           className="w-[45%] h-full rounded-md shadow-md aspect-auto object-cover"
         />
         <div className="w-[55%] h-full space-y-2 relative my-2">
-          <h1 className="text-center text-2xl tracking-tight text-[#e1e1e1]">
-            <Link to={`/events/place/${props.name.toLocaleLowerCase()}`}>
+          <h1 className="text-center text-2xl tracking-tight">
+            <Link
+              className="bg-gradient-to-r from-[#C25452] to-[#ffb560]  text-transparent bg-clip-text font-bold"
+              to={`/events/place/${props.name.toLocaleLowerCase()}`}
+            >
               {props.name}
             </Link>
           </h1>
 
           <h3 className="flex flex-row items-center border-b-[1px] border-opacity-70 text-[#e1e1e1] text-opacity-70 border-gray-300 mx-8">
             <MdCelebration className="text-[#ffb560] mr-2 text-lg" />
-            <p className="truncate text-lg font-semibold">{props.opis}</p>
+            <p className="truncate text-lg font-bold bg-gradient-to-r txt-[#e1e1e1]">
+              {props.opis}
+            </p>
           </h3>
           <h3 className="flex flex-row items-center mb-2 border-b-[1px] border-opacity-70 text-[#e1e1e1]  text-opacity-70 border-gray-300 mx-8">
             <FaMapPin className="text-[#ffb560] mr-2" />
@@ -80,9 +85,9 @@ const Event = (props) => {
               onClick={addEventToLiked}
             >
               {active ? (
-                <FaHeart className="text-[#ffb560] cursor-pointer text-3xl" />
+                <FaHeart className="text-[#C25452] cursor-pointer text-3xl" />
               ) : (
-                <VscHeart className="text-[#ffb560] cursor-pointer text-3xl" />
+                <VscHeart className="text-[#C25452] cursor-pointer text-3xl" />
               )}
             </motion.button>
             <Link to={`/events/${props.id}`}>
