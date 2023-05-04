@@ -27,7 +27,7 @@ const LikedEventContainer = () => {
         opis={eventInfo.description}
         time={eventInfo.time}
         address={eventInfo.address}
-        datum={new Date(eventInfo.datum)}
+        date={new Date(eventInfo.datum)}
         index={eventInfo.index}
       />
     );
@@ -63,7 +63,7 @@ const LikedEventContainer = () => {
         opis={eventInfo.description}
         time={eventInfo.time}
         address={eventInfo.address}
-        datum={new Date(eventInfo.datum)}
+        date={new Date(eventInfo.datum)}
         index={eventInfo.index}
       />
     );
@@ -80,15 +80,17 @@ const LikedEventContainer = () => {
         key={eventInfo.id}
         id={eventInfo.id}
         poster={eventInfo.poster}
-        name={eventInfo.ime}
-        opis={eventInfo.opis}
-        time={eventInfo.vrijeme}
-        address={eventInfo.adresa}
-        datum={new Date(eventInfo.datum)}
-        type={eventInfo.tip}
+        name={eventInfo.name}
+        opis={eventInfo.description}
+        time={eventInfo.time}
+        address={eventInfo.address}
+        date={new Date(eventInfo.datum)}
+        index={eventInfo.index}
       />
     );
   });
+
+  console.log(typeAndDayFilter);
 
   let content;
 
@@ -107,14 +109,6 @@ const LikedEventContainer = () => {
     isDayChecked = true;
   }
 
-  if (isTypeChecked && likedCheckboxFilter.length === 0) {
-    content = '';
-  }
-
-  if (isDayChecked && likedDayFilter.length === 0) {
-    content = '';
-  }
-
   if (isDayChecked && likedDayFilter.length > 0) {
     content = likedDayFilteredEvents;
   }
@@ -125,6 +119,14 @@ const LikedEventContainer = () => {
 
   if (likedCheckboxFilter.length > 0 && likedDayFilter.length > 0) {
     content = typeAndDayFilteredEvents;
+  }
+
+  if (isTypeChecked && likedCheckboxFilter.length === 0) {
+    content = '';
+  }
+
+  if (isDayChecked && likedDayFilter.length === 0) {
+    content = '';
   }
 
   return (

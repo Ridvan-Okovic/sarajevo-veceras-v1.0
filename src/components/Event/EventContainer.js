@@ -158,11 +158,7 @@ const EventContainer = (props) => {
         <h3 className="items-start text-5xl text-[#e1e1e1] font-montserrat font-normal tracking-wide mb-8">
           Upcoming Events
         </h3>
-        <div
-          className={
-            'grid grid-cols-1 xl:grid-cols-2 xl:px-12 2xl:grid-cols-3 place-items-center gap-8 text-center'
-          }
-        >
+        <div className="grid grid-cols-1 xl:grid-cols-2 xl:px-12 2xl:grid-cols-3 place-items-center gap-8 text-center">
           {content}
         </div>
         {isTypeChecked && checkboxFilteredEvents.length === 0 && (
