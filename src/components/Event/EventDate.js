@@ -14,11 +14,12 @@ const EventDate = (props) => {
   ];
 
   return (
-    <div className="flex">
-      <div className="pr-1 text-[#C25452] font-semibold">{days[dayindex]},</div>
-      <div className="pr-1">{day}</div>
-      <div className="pr-1">{month}</div>
-    </div>
+    <h3 className="flex truncate">
+      <p className="pr-1 text-[#C25452] font-semibold">{days[dayindex]},</p>
+      <p className="truncate">
+        {day} {month}
+      </p>
+    </h3>
   );
 };
 

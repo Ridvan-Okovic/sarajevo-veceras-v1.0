@@ -44,14 +44,14 @@ const Event = (props) => {
       exit={{ opacity: 0, y: 20 }}
     >
       <Toaster />
-      <div className="w-full max-w-[35em] h-56 bg-zinc-900 rounded-md shadow-md flex flex-row lg:flex-row">
+      <div className="max-w-[15rem] sm:max-w-[15rem] md:max-w-[35em] md:h-56 bg-zinc-900 rounded-md shadow-md flex items-center justify-center flex-col md:flex-row relative">
         <img
           src={props.poster}
           alt="Mjesto"
-          className="w-[45%] h-full rounded-md shadow-md aspect-auto object-cover"
+          className="w-full md:w-[45%] h-[70%] sm:h-full rounded-md shadow-md aspect-auto object-cover"
         />
-        <div className="w-[55%] h-full space-y-2 relative my-2">
-          <h1 className="text-center text-2xl tracking-tight">
+        <div className="w-full md:w-[55%] h-full space-y-3 lg:space-y-2 relative my-2 text-sm md:text-md lg:text-lg">
+          <h1 className="text-center text-lg md:text-2xl tracking-tight">
             <Link
               className=" text-[#ffb560] opacity-90 font-bold"
               to={`/events/place/${props.name.toLocaleLowerCase()}`}
@@ -60,34 +60,34 @@ const Event = (props) => {
             </Link>
           </h1>
 
-          <h3 className="flex flex-row items-center border-b-[1px] border-opacity-70 text-[#e1e1e1] text-opacity-70 border-gray-300 mx-8">
-            <MdCelebration className="text-[#ffb560] mr-2 text-lg" />
-            <p className="truncate text-lg font-bold bg-gradient-to-r txt-[#e1e1e1]">
+          <h3 className="flex flex-row items-center border-b-[1px] border-opacity-70 text-[#e1e1e1] text-opacity-70 border-gray-300 lg:mx-8 mx-4">
+            <MdCelebration className="text-[#ffb560] mr-2" />
+            <p className="truncate font-bold text-opacity-80 text-[#e1e1e1]">
               {props.opis}
             </p>
           </h3>
-          <h3 className="flex flex-row items-center mb-2 border-b-[1px] border-opacity-70 text-[#e1e1e1]  text-opacity-70 border-gray-300 mx-8">
+          <h3 className="flex flex-row items-center mb-2 border-b-[1px] border-opacity-70 text-[#e1e1e1]  text-opacity-70 border-gray-300 lg:mx-8 mx-4">
             <FaMapPin className="text-[#ffb560] mr-2" />
             <p className="truncate">{props.address}</p>
           </h3>
-          <h3 className="flex flex-row items-center mb-2 border-b-[1px] border-opacity-70 text-[#e1e1e1]  text-opacity-70 border-gray-300 mx-8">
+          <h3 className="flex flex-row items-center mb-2 border-b-[1px] border-opacity-70 text-[#e1e1e1]  text-opacity-70 border-gray-300 lg:mx-8 mx-4">
             <FaClock className="text-[#ffb560] mr-2" />
             {props.time}
           </h3>
-          <h3 className="flex flex-row items-center border-b-[1px] border-opacity-70 text-[#e1e1e1]  text-opacity-70 border-gray-300 mx-8">
+          <h3 className="flex flex-row items-center border-b-[1px] border-opacity-70 text-[#e1e1e1] text-opacity-70 border-gray-300 lg:mx-8 mx-4">
             <FaCalendar className="text-[#ffb560] mr-2" />
             <EventDate datum={props.date} />
           </h3>
-          <div className="flex items-baseline justify-end w-full h-10 px-8 gap-2">
+          <div className="flex items-baseline justify-end w-full h-10 lg:px-8 px-4 gap-2 text-2xl">
             <motion.button
               whileTap={{ scale: 0.85 }}
               whileHover={{ scale: 1.1 }}
               onClick={addEventToLiked}
             >
               {active ? (
-                <FaHeart className="text-[#C25452] cursor-pointer text-3xl" />
+                <FaHeart className="text-[#C25452] cursor-pointer md:text-3xl" />
               ) : (
-                <VscHeart className="text-[#C25452] cursor-pointer text-3xl" />
+                <VscHeart className="text-[#C25452] cursor-pointer md:text-3xl" />
               )}
             </motion.button>
             <Link to={`/events/${props.id}`}>
@@ -95,7 +95,7 @@ const Event = (props) => {
                 whileTap={{ scale: 0.85 }}
                 whileHover={{ scale: 1.1 }}
               >
-                <MdOutlineReadMore className="text-[#ffb560] cursor-pointer text-3xl" />
+                <MdOutlineReadMore className="text-[#ffb560] cursor-pointer md:text-3xl" />
               </motion.button>
             </Link>
           </div>

@@ -82,7 +82,7 @@ const Filter = (props) => {
   });
 
   return (
-    <div className="flex items-center justify-center shadow-lg bg-zinc-900 px-12 py-4 rounded-lg gap-10">
+    <div className="flex flex-center justify-center shadow-lg bg-zinc-900 px-12 py-4 rounded-lg gap-10">
       <div className="flex flex-row gap-10">{filter}</div>
 
       <div className="relative">
