@@ -74,10 +74,10 @@ const Event = (props) => {
             <FaClock className="text-[#ffb560] mr-2" />
             {props.time}
           </h3>
-          <h3 className="flex flex-row items-center border-b-[1px] border-opacity-70 text-[#e1e1e1] text-opacity-70 border-gray-300 lg:mx-8 mx-4">
+          <div className="flex flex-row items-center border-b-[1px] border-opacity-70 text-[#e1e1e1] text-opacity-70 border-gray-300 lg:mx-8 mx-4">
             <FaCalendar className="text-[#ffb560] mr-2" />
             <EventDate datum={props.date} />
-          </h3>
+          </div>
           <div className="flex items-baseline justify-end w-full h-10 lg:px-8 px-4 gap-2 text-2xl">
             <motion.button
               whileTap={{ scale: 0.85 }}
