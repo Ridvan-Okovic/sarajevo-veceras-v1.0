@@ -155,10 +155,10 @@ const EventContainer = (props) => {
       </div>
 
       <div className="flex flex-col items-center">
-        <h3 className="mt-8 lg:mt-0 text-4xl md:text-5xl text-[#e1e1e1] font-montserrat font-normal tracking-wide mb-8">
+        <h3 className="mt-8 lg:mt-0 text-3xl sm:text-4xl md:text-5xl text-[#e1e1e1] font-montserrat font-normal tracking-wide mb-8">
           Upcoming Events
         </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 px-4 gap-8 md:px-8 xl:px-12 2xl:grid-cols-3 place-items-center md:gap-8 text-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 px-4 gap-4 sm:gap-8 md:px-8 xl:px-12 2xl:grid-cols-3 place-items-center md:gap-8 text-center">
           {content}
         </div>
         {isTypeChecked && checkboxFilteredEvents.length === 0 && (
