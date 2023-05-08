@@ -129,7 +129,7 @@ const LikedEventContainer = () => {
 
   return (
     <>
-      <div className="flex flex-row items-center justify-center gap-8 mt-8 mb-16">
+      <div className="hidden lg:flex flex-row items-center justify-center gap-8 mt-8 mb-16">
         <motion.button
           whileTap={{ scale: 0.85 }}
           whileHover={{ scale: 1.1 }}
@@ -148,20 +148,20 @@ const LikedEventContainer = () => {
       </div>
 
       <div className="flex flex-col items-center">
-        <h3 className="items-start text-5xl text-[#e1e1e1] font-montserrat font-normal tracking-wide mb-8">
+        <h3 className="mt-8 lg:mt-0 text-3xl sm:text-4xl md:text-5xl text-[#e1e1e1] font-montserrat font-normal tracking-wide mb-8">
           Liked Events
         </h3>
         <div
           className={
             isTypeChecked && checkboxFilteredLikedEvents.length === 0
               ? 'grid grid-cols-1'
-              : 'grid grid-cols-1 xl:grid-cols-2 xl:px-12 2xl:grid-cols-3 place-items-center gap-8'
+              : 'grid grid-cols-1 sm:grid-cols-2 mx-6 gap-4 sm:gap-8 md:px-8 xl:px-12 2xl:grid-cols-3 place-items-center md:gap-8 text-center'
           }
         >
           {content}
         </div>
         {!isTypeChecked && !isDayChecked && likedEvents.length === 0 && (
-          <p className="font-montserrat font-normal text-3xl text-[#e1e1e1] text-center">
+          <p className="font-montserrat font-normal sm:text-xl md:text-2xl lg:text-3xl text-[#e1e1e1] text-center">
             Trenutno nemate lajkanih eventova!
           </p>
         )}
