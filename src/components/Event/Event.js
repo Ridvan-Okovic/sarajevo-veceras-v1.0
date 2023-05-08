@@ -1,5 +1,5 @@
 import EventDate from './EventDate';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import LikedContext from '../../context/liked-context';
 import { FaMapPin, FaClock, FaCalendar, FaHeart } from 'react-icons/fa';
 import { MdCelebration } from 'react-icons/md';
@@ -10,15 +10,12 @@ import { VscHeart } from 'react-icons/vsc';
 import { MdOutlineReadMore } from 'react-icons/md';
 
 const Event = (props) => {
-  const [active, setActive] = useState(false);
-
   const notify = () =>
     toast.success('Event added to liked.', { duration: 800 });
 
   const ctx = useContext(LikedContext);
 
   const addEventToLiked = () => {
-    setActive(true);
     ctx.addEvent({
       key: props.id,
       id: props.id,
@@ -36,6 +33,8 @@ const Event = (props) => {
     notify();
   };
 
+  const likedEventsIds = ctx.events.map((eventInfo) => eventInfo.id);
+
   return (
     <motion.div
       transition={{ delay: 0.075 * props.index }}
@@ -44,13 +43,13 @@ const Event = (props) => {
       exit={{ opacity: 0, y: 20 }}
     >
       <Toaster />
-      <div className="max-w-[15rem] sm:max-w-[15rem] md:max-w-[35em] md:h-56 bg-zinc-900 rounded-md shadow-md flex items-center justify-center flex-col md:flex-row relative">
+      <div className="max-w-[15rem] sm:max-w-[15rem] md:max-w-[35em] md:h-60 bg-zinc-900 rounded-md shadow-md flex items-center justify-center flex-col md:flex-row relative">
         <img
           src={props.poster}
           alt="Mjesto"
           className="w-full md:w-[45%] h-[70%] sm:h-full rounded-md shadow-md aspect-auto object-cover"
         />
-        <div className="w-full md:w-[55%] h-full space-y-3 lg:space-y-2 relative my-2 text-sm md:text-md lg:text-lg">
+        <div className="w-full md:w-[55%] h-full space-y-3 lg:space-y-2 relative py-2 text-sm md:text-md lg:text-lg ">
           <h1 className="text-center text-lg md:text-2xl tracking-tight">
             <Link
               className=" text-[#ffb560] opacity-90 font-bold"
@@ -84,9 +83,10 @@ const Event = (props) => {
               whileHover={{ scale: 1.1 }}
               onClick={addEventToLiked}
             >
-              {active ? (
+              {likedEventsIds.includes(props.id) && (
                 <FaHeart className="text-[#C25452] cursor-pointer md:text-3xl" />
-              ) : (
+              )}
+              {!likedEventsIds.includes(props.id) && (
                 <VscHeart className="text-[#C25452] cursor-pointer md:text-3xl" />
               )}
             </motion.button>

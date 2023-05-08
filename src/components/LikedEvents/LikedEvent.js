@@ -63,10 +63,10 @@ const LikedEvent = (props) => {
             <FaClock className="text-[#ffb560] mr-2" />
             {props.time}
           </h3>
-          <h3 className="flex flex-row items-center border-b-[1px] border-opacity-70 text-[#e1e1e1]  text-opacity-70 border-gray-300 mx-8">
+          <div className="flex flex-row items-center border-b-[1px] border-opacity-70 text-[#e1e1e1]  text-opacity-70 border-gray-300 mx-8">
             <FaCalendar className="text-[#ffb560] mr-2" />
             <EventDate datum={props.date} />
-          </h3>
+          </div>
           <div className="flex items-center justify-end w-full h-10 px-8 gap-2">
             <Link to={`/events/${props.id}`}>
               <motion.button
