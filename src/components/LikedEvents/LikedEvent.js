@@ -54,7 +54,9 @@ const LikedEvent = (props) => {
           </motion.button>
           <h3 className="flex flex-row items-center border-b-[1px] border-opacity-70 text-[#e1e1e1] text-opacity-70 border-gray-300 mx-3 lg:mx-6 sm:mx-4">
             <MdCelebration className="text-[#ffb560] mr-2 text-lg" />
-            <p className="truncate font-semibold">{props.opis}</p>
+            <p className="truncate font-semibold text-[#e1e1e1] text-opacity-80">
+              {props.opis}
+            </p>
           </h3>
           <h3 className="flex flex-row items-center mb-2 border-b-[1px] border-opacity-70 text-[#e1e1e1]  text-opacity-70 border-gray-300 lg:mx-6 sm:mx-4 mx-3">
             <FaMapPin className="text-[#ffb560] mr-2" />
