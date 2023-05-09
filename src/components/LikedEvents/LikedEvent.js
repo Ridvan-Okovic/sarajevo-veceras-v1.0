@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { FaMapPin, FaCalendar, FaClock, FaTimes } from 'react-icons/fa';
+import { FaMapPin, FaCalendar, FaClock } from 'react-icons/fa';
 import { MdCelebration } from 'react-icons/md';
 import { TiDelete } from 'react-icons/ti';
 import LikedContext from '../../context/liked-context';
