@@ -10,3 +10,17 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 15px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgb(36, 36, 39);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(53, 53, 57);
+  border-radius: 14px;
+}
