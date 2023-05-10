@@ -144,7 +144,7 @@ const EventContainer = (props) => {
 
   return (
     <>
-      <div className="hidden lg:flex flex-row items-center justify-center gap-8 mt-8 mb-16">
+      <div className="hidden md:flex flex-row items-center justify-center gap-8 mt-8 mb-16">
         <Filter
           setSelectedFilter={setSelectedTypeFilter}
           selectedFilter={selectedTypeFilter}
@@ -155,7 +155,7 @@ const EventContainer = (props) => {
       </div>
 
       <div className="flex flex-col items-center">
-        <h3 className="mt-8 lg:mt-0 text-3xl sm:text-4xl md:text-5xl text-[#e1e1e1] font-montserrat font-normal tracking-wide mb-8">
+        <h3 className="mt-8 md:mt-0 text-3xl sm:text-4xl md:text-5xl text-[#e1e1e1] font-montserrat font-normal tracking-wide mb-8">
           Upcoming Events
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 mx-6 gap-4 sm:gap-8 md:px-8 xl:px-12 2xl:grid-cols-3 place-items-center md:gap-8 text-center">

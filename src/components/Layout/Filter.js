@@ -43,7 +43,7 @@ const Filter = (props) => {
     return (
       <label
         key={i}
-        className="font-normal text-lg flex items-center gap-4 text-[#e1e1e1]"
+        className="font-normal text-lg flex items-center gap-3 lg:gap-4 text-[#e1e1e1]"
       >
         {type}
         <input
@@ -82,8 +82,8 @@ const Filter = (props) => {
   });
 
   return (
-    <div className="flex flex-center justify-center shadow-lg bg-zinc-900 px-12 py-4 rounded-lg gap-10">
-      <div className="flex flex-row gap-10">{filter}</div>
+    <div className="flex flex-center justify-center shadow-lg bg-zinc-900 md:px-8 lg:px-12 py-4 rounded-lg md:gap-6 lg:gap-10">
+      <div className="flex flex-row md:gap-6 lg:gap-10">{filter}</div>
 
       <div className="relative">
         <button
