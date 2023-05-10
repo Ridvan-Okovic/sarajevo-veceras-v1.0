@@ -13,6 +13,7 @@ import RootLayout from './components/Pages/RootLayout';
 import PlaceDetailsPage from './components/Pages/PlaceDetailsPage';
 import SearchPage from './components/Pages/SearchPage';
 import LikedEventsCalendarPage from './components/Pages/LikedEventsCalendarPage';
+import AddEventPage from './components/Pages/AddEventPage';
 
 const EventDetailsPage = lazy(() =>
   import('./components/Pages/EventDetailsPage')
@@ -70,6 +71,7 @@ const router = createBrowserRouter([
           },
         ],
       },
+      { path: 'new', element: <AddEventPage /> },
       {
         path: '/',
         element: <Navigate to="events" redirect />,
