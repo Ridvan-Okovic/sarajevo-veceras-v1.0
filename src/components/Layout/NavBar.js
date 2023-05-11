@@ -139,7 +139,7 @@ const NavBar = () => {
               </NavLink>
             </li>
             {ctx.amount !== 0 && (
-              <span className="absolute -top-[0.2rem] -right-[0.5rem] bg-[#C25452] text-[#e1e1e1] text-opacity-90 z-20 font-bold text-[12px] leading-[14px] w-[1.2rem] h-[1.2rem] grid place-items-center rounded-full pb-[0.5px]">
+              <span className="absolute -top-[0.2rem] -right-[0.5rem] bg-[#C25452] text-[#e1e1e1] text-opacity-90 z-20 font-bold text-[10px] leading-[14px] w-[1rem] h-[1rem] grid place-items-center rounded-full pb-[0.5px]">
                 {ctx.amount}
               </span>
             )}
