@@ -1,9 +1,23 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/md';
 
 const Filter = (props) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const dropDownRef = useRef();
+
+  useEffect(() => {
+    const closeNav = (event) => {
+      if (!dropDownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+
+      return () => document.removeEventListener('mousedown', closeNav);
+    };
+
+    document.addEventListener('mousedown', closeNav);
+  }, []);
 
   const DAYS = [
     'Nedelja',
@@ -85,7 +99,7 @@ const Filter = (props) => {
     <div className="flex flex-center justify-center shadow-lg bg-zinc-900 md:px-8 lg:px-12 py-4 rounded-lg md:gap-6 lg:gap-10">
       <div className="flex flex-row md:gap-6 lg:gap-10">{filter}</div>
 
-      <div className="relative">
+      <div ref={dropDownRef} className="relative">
         <button
           onClick={() => setIsDropdownOpen((prev) => !prev)}
           className={
