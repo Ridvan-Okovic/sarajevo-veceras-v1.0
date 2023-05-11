@@ -57,7 +57,11 @@ const AddEventPage = () => {
           </div>
 
           <div className="w-full flex items-center justify-center">
-            <motion.button className="w-24 bg-zinc-800 mt-8 shadow-md rounded-lg py-1">
+            <motion.button
+              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.05 }}
+              className="w-24 bg-zinc-800 mt-8 shadow-md rounded-lg py-1"
+            >
               Submit
             </motion.button>
           </div>
