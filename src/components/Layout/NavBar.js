@@ -107,8 +107,10 @@ const NavBar = () => {
 
         <ul
           className={`${
-            toggle ? 'translate-x-0' : 'translate-x-full'
-          } ease-in-[cubic-bezier(0.25, 1, 0.5, 1)] ease-out-[cubic-bezier(0.64, 0, 0.78, 0)] absolute top-24  right-0 z-10 flex h-[calc(100vh-6rem)] w-[60%] flex-col items-center gap-8 bg-zinc-900 pt-10 font-sans text-xl font-semibold uppercase text-[#e1e1e1] duration-[0.6s] md:hidden border-t-0 border border-zinc-800 border-opacity-40`}
+            toggle
+              ? 'translate-x-0 backdrop-filter backdrop-blur-md bg-opacity-60'
+              : 'translate-x-full'
+          } ease-in-[cubic-bezier(0.25, 1, 0.5, 1)] ease-out-[cubic-bezier(0.64, 0, 0.78, 0)] absolute top-24  right-0 z-50 flex h-[calc(100vh-6rem)] w-[60%] flex-col items-center gap-8 bg-zinc-900 pt-10 font-sans text-xl font-semibold uppercase text-[#e1e1e1] duration-[0.6s] md:hidden border-t-0 border border-zinc-800 border-opacity-40`}
         >
           <li className="py-1" onClick={() => setToggle(false)}>
             <NavLink
