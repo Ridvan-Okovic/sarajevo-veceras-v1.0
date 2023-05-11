@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useLayoutEffect, useState } from 'react';
 
 import {
   filterByDateAscending,
@@ -19,7 +19,7 @@ const EventContainer = (props) => {
   const ctx = useContext(EventContext);
   const events = transformEvents(props.events);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     ctx.addEvents(events);
   }, []);
 
