@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import { BiSearchAlt, BiCalendar } from 'react-icons/bi';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi';
@@ -8,6 +8,20 @@ import EventContext from '../../context/liked-context';
 
 const NavBar = () => {
   const [toggle, setToggle] = useState(false);
+
+  const menuRef = useRef();
+
+  useEffect(() => {
+    const closeNav = (event) => {
+      if (!menuRef.current.contains(event.target)) {
+        setToggle(false);
+      }
+
+      return () => document.removeEventListener('mousedown', closeNav);
+    };
+
+    document.addEventListener('mousedown', closeNav);
+  }, []);
 
   const ctx = useContext(EventContext);
 
@@ -69,22 +83,22 @@ const NavBar = () => {
           </NavLink>
         </li>
       </ul>
-      <div className="md:hidden">
+      <div ref={menuRef} className="md:hidden">
         {!toggle && (
-          <div className="rounded-lg p-1 shadow-sm">
-            <HiOutlineMenuAlt3
-              onClick={() => setToggle((prev) => !prev)}
-              className="text-2xl"
-            />
-          </div>
+          <button
+            onClick={() => setToggle((prev) => !prev)}
+            className="rounded-lg p-1 shadow-sm"
+          >
+            <HiOutlineMenuAlt3 className="text-3xl" />
+          </button>
         )}
         {toggle && (
-          <div className="z-50 rounded-lg p-1 shadow-sm">
-            <IoMdClose
-              onClick={() => setToggle((prev) => !prev)}
-              className="z-50 text-2xl"
-            />
-          </div>
+          <button
+            onClick={() => setToggle((prev) => !prev)}
+            className="z-50 rounded-lg p-1 shadow-sm"
+          >
+            <IoMdClose className="z-50 text-3xl" />
+          </button>
         )}
 
         <ul
@@ -92,7 +106,7 @@ const NavBar = () => {
             toggle ? 'translate-x-0' : 'translate-x-full'
           } ease-in-[cubic-bezier(0.25, 1, 0.5, 1)] ease-out-[cubic-bezier(0.64, 0, 0.78, 0)] absolute top-24  right-0 z-10 flex h-[calc(100vh-6rem)] w-[60%] flex-col items-center gap-8 bg-zinc-900 pt-10 font-sans text-xl font-semibold uppercase text-[#e1e1e1] duration-[0.6s] md:hidden border-t-0 border border-zinc-800 border-opacity-40`}
         >
-          <li className="py-1">
+          <li className="py-1" onClick={() => setToggle(false)}>
             <NavLink
               className={({ isActive }) =>
                 isActive
@@ -106,7 +120,7 @@ const NavBar = () => {
           </li>
 
           <div className="relative">
-            <li className="pb-1 relative">
+            <li className="pb-1 relative" onClick={() => setToggle(false)}>
               <NavLink
                 className={({ isActive }) =>
                   isActive
@@ -124,7 +138,7 @@ const NavBar = () => {
               </span>
             )}
           </div>
-          <li className=" pb-1 relative">
+          <li className=" pb-1 relative" onClick={() => setToggle(false)}>
             <NavLink
               className={({ isActive }) =>
                 isActive ? `opacity-100` : 'opacity-70'
@@ -134,7 +148,7 @@ const NavBar = () => {
               <BiCalendar />
             </NavLink>
           </li>
-          <li className=" pb-1 relative">
+          <li className=" pb-1 relative" onClick={() => setToggle(false)}>
             <NavLink
               className={({ isActive }) =>
                 isActive ? `opacity-100` : 'opacity-70'
