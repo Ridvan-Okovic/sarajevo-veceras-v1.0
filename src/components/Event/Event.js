@@ -15,6 +15,8 @@ const Event = (props) => {
 
   const ctx = useContext(LikedContext);
 
+  const likedEventsIds = ctx.events.map((eventInfo) => eventInfo.id);
+
   const addEventToLiked = () => {
     ctx.addEvent({
       key: props.id,
@@ -30,10 +32,10 @@ const Event = (props) => {
       index: props.index,
     });
 
-    notify();
+    if (!likedEventsIds.includes(props.id)) {
+      notify();
+    }
   };
-
-  const likedEventsIds = ctx.events.map((eventInfo) => eventInfo.id);
 
   return (
     <motion.div

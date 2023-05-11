@@ -148,9 +148,19 @@ const LikedEventContainer = () => {
       </div>
 
       <div className="flex flex-col items-center">
-        <h3 className="mt-8 lg:mt-0 text-3xl sm:text-4xl md:text-5xl text-[#e1e1e1] font-montserrat font-normal tracking-wide mb-8">
-          Liked Events
-        </h3>
+        <div className="relative">
+          <motion.button
+            whileTap={{ scale: 0.85 }}
+            whileHover={{ scale: 1.1 }}
+            onClick={() => navigate('/events')}
+            className="md:hidden flex flex-row mr-4 sm:mr-6 md:mr-8 bg-zinc-900 px-4 py-2 rounded-lg items-center justify-center text-md md:text-lg cursor-pointer absolute top-[2.1rem] -left-16 md:top-10 md:-left-20"
+          >
+            <FaChevronLeft className="text-[#e1e1e1]" />
+          </motion.button>
+          <h3 className="mt-8 lg:mt-0 text-3xl sm:text-4xl md:text-5xl text-[#e1e1e1] font-montserrat font-normal tracking-wide mb-8">
+            Liked Events
+          </h3>
+        </div>
         <div
           className={
             isTypeChecked && checkboxFilteredLikedEvents.length === 0

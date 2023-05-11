@@ -51,7 +51,7 @@ const DetailsPage = () => {
         </h1>
       </div>
       <div className="flex flex-col">
-        <div className="grid grid-cols-1 xl:grid-cols-2 xl:px-12 2xl:grid-cols-3 place-items-center gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 mx-6 gap-4 sm:gap-8 md:px-8 xl:px-12 2xl:grid-cols-3 place-items-center md:gap-8 text-center">
           {filteredEvents}
         </div>
       </div>
