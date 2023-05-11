@@ -9,6 +9,10 @@ const Filter = (props) => {
 
   useEffect(() => {
     const closeNav = (event) => {
+      if (dropDownRef.current === null) {
+        return;
+      }
+
       if (!dropDownRef.current.contains(event.target)) {
         setIsDropdownOpen(false);
       }

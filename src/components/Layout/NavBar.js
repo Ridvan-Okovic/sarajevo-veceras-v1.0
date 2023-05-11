@@ -13,6 +13,10 @@ const NavBar = () => {
 
   useEffect(() => {
     const closeNav = (event) => {
+      if (menuRef.current === null) {
+        return;
+      }
+
       if (!menuRef.current.contains(event.target)) {
         setToggle(false);
       }
