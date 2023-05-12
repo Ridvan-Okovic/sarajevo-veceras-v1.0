@@ -144,7 +144,7 @@ const EventContainer = (props) => {
 
   return (
     <>
-      <div className="hidden md:flex flex-row items-center justify-center gap-8 mt-8 mb-16">
+      <div className="md:flex flex-row items-center justify-center gap-8 mt-8 mb-4 md:mb-16">
         <Filter
           setSelectedFilter={setSelectedTypeFilter}
           selectedFilter={selectedTypeFilter}
