@@ -33,7 +33,14 @@ const Filter = (props) => {
     'Subota',
   ];
 
-  const PLACE_TYPES = ['Club', 'Pub', 'Kafana', 'Open Air', 'Gastro'];
+  const PLACE_TYPES = [
+    'Club',
+    'Pub',
+    'Kafana',
+    'Open Air',
+    'Gastro',
+    'Narodno',
+  ];
 
   const handleChangeType = (index) => (e) => {
     const active = document.getElementById(index).checked;
