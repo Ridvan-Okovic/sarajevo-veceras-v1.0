@@ -33,7 +33,7 @@ const SearchBar = (props) => {
         <input
           placeholder="Das Ist Walter..."
           onChange={searchChangeHandler}
-          className="w-[80%] lg:w-[40rem] focus:border-[#ffb560] focus:bg-zinc-800 transition-colors bg-zinc-900 shadow-lg text-[#FAF7FF] outline-none border-[0.1rem] border-[#363636] border-r-0 rounded-l-lg px-4 py-2 h-full"
+          className="w-[80%] lg:w-[40rem] focus:border-[#ffb560] focus:bg-zinc-800 transition-colors bg-zinc-900 shadow-lg text-[#FAF7FF] outline-none border-[0.1rem] border-[#363636] border-r-0 rounded-l-lg rounded-r-none px-4 py-2 h-full"
         />
         <button className="h-full px-4 bg-[#ffb560] hover:opacity-80 transition-all duration-150 rounded-r-lg shadow-lg">
           <FaSearch className="text-lg md:text-xl text-[#363636] cursor-pointer" />
