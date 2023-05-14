@@ -61,11 +61,11 @@ const Filter = (props) => {
     return (
       <label
         key={i}
-        className="font-sm text-base md:text-lg flex items-center gap-1 lg:gap-4 text-[#e1e1e1]"
+        className="text-md md:text-lg flex items-center justify-between gap-3 md:gap-2 lg:gap-4 text-[#e1e1e1]"
       >
         {type}
         <input
-          className="appearance-none w-4 h-4 md:w-5 md:h-5 relative rounded-sm border cursor-pointer focus:outline-none transition-all duration-300 checked:bg-[#ffb560] checked:border-[#ffb560] after:content-[''] after:absolute after:w-full after:h-full after:bg-no-repeat after:bg-center after:bg-[length:15px] after:checked:bg-[url('https://www.svgrepo.com/show/105291/check-mark.svg')]"
+          className="appearance-none w-5 h-5 md:w-5 md:h-5 relative rounded-sm border cursor-pointer focus:outline-none transition-all duration-300 checked:bg-[#ffb560] checked:border-[#ffb560] after:content-[''] after:absolute after:w-full after:h-full after:bg-no-repeat after:bg-center after:bg-[length:15px] after:checked:bg-[url('https://www.svgrepo.com/show/105291/check-mark.svg')]"
           type="checkbox"
           id={i}
           value={type}
@@ -101,9 +101,11 @@ const Filter = (props) => {
 
   return (
     <div className="flex items-center justify-center flex-col md:flex-row shadow-lg bg-zinc-900 bg-opacity-80 md:px-8 lg:px-12 py-4 rounded-none md:rounded-lg gap-2 md:gap-6 lg:gap-10">
-      <div className="flex flex-row gap-3 md:gap-6 lg:gap-10">{filter}</div>
+      <div className="grid grid-cols-3 gap-x-8 gap-y-2 md:flex md:flex-row md:gap-6 lg:gap-10">
+        {filter}
+      </div>
 
-      <div ref={dropDownRef} className="relative">
+      <div ref={dropDownRef} className="relative mt-2">
         <button
           onClick={() => setIsDropdownOpen((prev) => !prev)}
           className={
