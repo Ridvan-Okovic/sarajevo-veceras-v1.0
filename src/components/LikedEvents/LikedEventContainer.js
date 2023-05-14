@@ -129,15 +129,7 @@ const LikedEventContainer = () => {
 
   return (
     <>
-      <div className="hidden lg:flex flex-row items-center justify-center gap-8 mt-8 mb-16">
-        <motion.button
-          whileTap={{ scale: 0.85 }}
-          whileHover={{ scale: 1.1 }}
-          onClick={() => navigate('/events')}
-          className="flex flex-row gap-1 bg-zinc-900 px-4 py-2 rounded-lg items-center justify-center text-lg cursor-pointer"
-        >
-          <FaChevronLeft className="text-[#e1e1e1]" />
-        </motion.button>
+      <div className="md:flex flex-row items-center justify-center gap-8 mt-8 mb-4 md:mb-16">
         <Filter
           setSelectedFilter={setSelectedTypeFilter}
           selectedFilter={selectedTypeFilter}
