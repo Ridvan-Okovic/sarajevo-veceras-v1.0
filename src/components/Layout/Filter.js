@@ -112,7 +112,7 @@ const Filter = (props) => {
         {filter}
       </div>
 
-      <div ref={dropDownRef} className="relative mt-2">
+      <div ref={dropDownRef} className="relative mt-2 md:mt-0">
         <button
           onClick={() => setIsDropdownOpen((prev) => !prev)}
           className={
