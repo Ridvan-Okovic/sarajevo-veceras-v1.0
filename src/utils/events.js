@@ -1,4 +1,5 @@
 import Event from '../components/Event/Event';
+import LikedEvent from '../components/LikedEvents/LikedEvent';
 
 export function transformEvents(events) {
   const transformedEvents = [];
@@ -24,7 +25,7 @@ export function transformEvents(events) {
 }
 
 export function renderEvents(events) {
-  return events.map((eventInfo) => {
+  return events.map((eventInfo, index) => {
     return (
       <Event
         key={eventInfo.id}
@@ -36,6 +37,27 @@ export function renderEvents(events) {
         address={eventInfo.adresa}
         date={new Date(eventInfo.datum)}
         type={eventInfo.tip}
+        index={index}
+      />
+    );
+  });
+}
+
+export function renderLikedEvents(events) {
+  return events.map((eventInfo, index) => {
+    console.log(eventInfo.tip);
+    return (
+      <LikedEvent
+        key={eventInfo.id}
+        id={eventInfo.id}
+        poster={eventInfo.poster}
+        name={eventInfo.name}
+        opis={eventInfo.description}
+        time={eventInfo.time}
+        address={eventInfo.address}
+        date={new Date(eventInfo.datum)}
+        type={eventInfo.tip}
+        index={index}
       />
     );
   });

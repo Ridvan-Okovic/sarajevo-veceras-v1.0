@@ -3,8 +3,8 @@ import { FaChevronLeft } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
 import LikedContext from '../../context/liked-context';
-import LikedEvent from './LikedEvent';
 import Filter from '../Layout/Filter';
+import { renderLikedEvents } from '../../utils/events';
 import { filterBycheckBoxInput, filterByDaySelected } from '../../utils/filter';
 import { motion } from 'framer-motion';
 
@@ -17,78 +17,22 @@ const LikedEventContainer = () => {
 
   const events = ctx.events;
 
-  const likedEvents = events.map((eventInfo) => {
-    return (
-      <LikedEvent
-        key={eventInfo.id}
-        id={eventInfo.id}
-        poster={eventInfo.poster}
-        name={eventInfo.name}
-        opis={eventInfo.description}
-        time={eventInfo.time}
-        address={eventInfo.address}
-        date={new Date(eventInfo.datum)}
-        index={eventInfo.index}
-      />
-    );
-  });
+  const likedEvents = renderLikedEvents(events);
 
   const likedCheckboxFilter = filterBycheckBoxInput(events, selectedTypeFilter);
-
-  const checkboxFilteredLikedEvents = likedCheckboxFilter.map((eventInfo) => {
-    return (
-      <LikedEvent
-        key={eventInfo.id}
-        id={eventInfo.id}
-        poster={eventInfo.poster}
-        name={eventInfo.name}
-        opis={eventInfo.description}
-        time={eventInfo.time}
-        address={eventInfo.address}
-        date={new Date(eventInfo.datum)}
-        index={eventInfo.index}
-      />
-    );
-  });
+  const checkboxFilteredLikedEvents = renderLikedEvents(likedCheckboxFilter);
 
   const likedDayFilter = filterByDaySelected(events, selectedDayFilter);
-
-  const likedDayFilteredEvents = likedDayFilter.map((eventInfo) => {
-    return (
-      <LikedEvent
-        key={eventInfo.id}
-        id={eventInfo.id}
-        poster={eventInfo.poster}
-        name={eventInfo.name}
-        opis={eventInfo.description}
-        time={eventInfo.time}
-        address={eventInfo.address}
-        date={new Date(eventInfo.datum)}
-        index={eventInfo.index}
-      />
-    );
-  });
+  const likedDayFilteredEvents = renderLikedEvents(likedDayFilter);
 
   const typeAndDayFilter = filterByDaySelected(
     likedCheckboxFilter,
     selectedDayFilter
   );
+  const typeAndDayFilteredEvents = renderLikedEvents(typeAndDayFilter);
 
-  const typeAndDayFilteredEvents = typeAndDayFilter.map((eventInfo) => {
-    return (
-      <LikedEvent
-        key={eventInfo.id}
-        id={eventInfo.id}
-        poster={eventInfo.poster}
-        name={eventInfo.name}
-        opis={eventInfo.description}
-        time={eventInfo.time}
-        address={eventInfo.address}
-        date={new Date(eventInfo.datum)}
-        index={eventInfo.index}
-      />
-    );
-  });
+  const isTypeChecked = selectedTypeFilter.length > 0;
+  const isDayChecked = selectedDayFilter.length > 0;
 
   let content;
 
@@ -96,23 +40,12 @@ const LikedEventContainer = () => {
     content = likedEvents;
   }
 
-  let isTypeChecked = false;
-  let isDayChecked = false;
-
-  if (selectedTypeFilter.length > 0) {
-    isTypeChecked = true;
-  }
-
-  if (selectedDayFilter.length > 0) {
-    isDayChecked = true;
+  if (isTypeChecked && likedCheckboxFilter.length > 0) {
+    content = checkboxFilteredLikedEvents;
   }
 
   if (isDayChecked && likedDayFilter.length > 0) {
     content = likedDayFilteredEvents;
-  }
-
-  if (isTypeChecked && likedCheckboxFilter.length > 0) {
-    content = checkboxFilteredLikedEvents;
   }
 
   if (likedCheckboxFilter.length > 0 && likedDayFilter.length > 0) {
@@ -125,6 +58,14 @@ const LikedEventContainer = () => {
 
   if (isDayChecked && likedDayFilter.length === 0) {
     content = '';
+  }
+
+  let emptyFilterMessage = '';
+
+  if (isTypeChecked && checkboxFilteredLikedEvents.length === 0) {
+    emptyFilterMessage = 'Za željeni filter nema eventova!';
+  } else if (isDayChecked && likedDayFilteredEvents.length === 0) {
+    emptyFilterMessage = 'Za željeni filter nema eventova!';
   }
 
   return (
@@ -153,13 +94,7 @@ const LikedEventContainer = () => {
             Liked Events
           </h3>
         </div>
-        <div
-          className={
-            isTypeChecked && checkboxFilteredLikedEvents.length === 0
-              ? 'grid grid-cols-1'
-              : 'grid grid-cols-1 sm:grid-cols-2 mx-6 gap-4 sm:gap-8 md:px-8 xl:px-12 2xl:grid-cols-3 place-items-center md:gap-8 text-center'
-          }
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-2 mx-6 gap-4 sm:gap-8 md:px-8 xl:px-12 2xl:grid-cols-3 place-items-center md:gap-8 text-center">
           {content}
         </div>
         {!isTypeChecked && !isDayChecked && likedEvents.length === 0 && (
@@ -167,14 +102,9 @@ const LikedEventContainer = () => {
             Trenutno nemate lajkanih eventova!
           </p>
         )}
-        {isTypeChecked && checkboxFilteredLikedEvents.length === 0 && (
+        {emptyFilterMessage && (
           <p className="font-montserrat font-normal text-3xl text-[#e1e1e1] text-center">
-            Za željeni filter nema eventova!
-          </p>
-        )}
-        {isDayChecked && likedDayFilteredEvents.length === 0 && (
-          <p className="font-montserrat font-normal text-3xl text-[#e1e1e1] text-center">
-            Za željeni filter nema eventova!
+            {emptyFilterMessage}
           </p>
         )}
       </div>

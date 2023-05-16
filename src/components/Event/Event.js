@@ -28,8 +28,7 @@ const Event = (props) => {
       time: props.time,
       datum: props.date,
       amount: 1,
-      tip: props.tip,
-      index: props.index,
+      tip: props.type,
     });
 
     if (!likedEventsIds.includes(props.id)) {
