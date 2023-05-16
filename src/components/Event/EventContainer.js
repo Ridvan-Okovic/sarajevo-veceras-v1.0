@@ -1,4 +1,4 @@
-import { useContext, useLayoutEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import {
   filterByDateAscending,
@@ -6,9 +6,8 @@ import {
   filterByDaySelected,
 } from '../../utils/filter';
 
-import { transformEvents } from '../../utils/events';
+import { transformEvents, renderEvents } from '../../utils/events';
 
-import Event from './Event';
 import Filter from '../Layout/Filter';
 import EventContext from '../../context/event-context';
 
@@ -19,102 +18,38 @@ const EventContainer = (props) => {
   const ctx = useContext(EventContext);
   const events = transformEvents(props.events);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     ctx.addEvents(events);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const dateFilteredEvents = filterByDateAscending(events);
 
-  const eventsByDate = dateFilteredEvents.map((eventInfo, index) => {
-    return (
-      <Event
-        key={eventInfo.id}
-        id={eventInfo.id}
-        poster={eventInfo.poster}
-        name={eventInfo.ime}
-        opis={eventInfo.opis}
-        time={eventInfo.vrijeme}
-        address={eventInfo.adresa}
-        date={new Date(eventInfo.datum)}
-        tip={eventInfo.tip}
-        index={index}
-      />
-    );
-  });
+  const eventsByDate = renderEvents(dateFilteredEvents);
 
   const checkboxTypeFilter = filterBycheckBoxInput(
     dateFilteredEvents,
     selectedTypeFilter
   );
 
-  const checkboxFilteredEvents = checkboxTypeFilter.map((eventInfo) => {
-    return (
-      <Event
-        key={eventInfo.id}
-        id={eventInfo.id}
-        poster={eventInfo.poster}
-        name={eventInfo.ime}
-        opis={eventInfo.opis}
-        time={eventInfo.vrijeme}
-        address={eventInfo.adresa}
-        date={new Date(eventInfo.datum)}
-        type={eventInfo.tip}
-      />
-    );
-  });
+  const checkboxFilteredEvents = renderEvents(checkboxTypeFilter);
 
   const checkboxDayFilter = filterByDaySelected(
     dateFilteredEvents,
     selectedDayFilter
   );
 
-  const checkboxDayFilteredEvents = checkboxDayFilter.map((eventInfo) => {
-    return (
-      <Event
-        key={eventInfo.id}
-        id={eventInfo.id}
-        poster={eventInfo.poster}
-        name={eventInfo.ime}
-        opis={eventInfo.opis}
-        time={eventInfo.vrijeme}
-        address={eventInfo.adresa}
-        date={new Date(eventInfo.datum)}
-        type={eventInfo.tip}
-      />
-    );
-  });
+  const checkboxDayFilteredEvents = renderEvents(checkboxDayFilter);
 
   const typeAndDayFilter = filterByDaySelected(
     checkboxTypeFilter,
     selectedDayFilter
   );
 
-  const typeAndDayFilteredEvents = typeAndDayFilter.map((eventInfo) => {
-    return (
-      <Event
-        key={eventInfo.id}
-        id={eventInfo.id}
-        poster={eventInfo.poster}
-        name={eventInfo.ime}
-        opis={eventInfo.opis}
-        time={eventInfo.vrijeme}
-        address={eventInfo.adresa}
-        date={new Date(eventInfo.datum)}
-        type={eventInfo.tip}
-      />
-    );
-  });
+  const typeAndDayFilteredEvents = renderEvents(typeAndDayFilter);
 
-  let isTypeChecked = false;
-  let isDayChecked = false;
-
-  if (selectedTypeFilter.length > 0) {
-    isTypeChecked = true;
-  }
-
-  if (selectedDayFilter.length > 0) {
-    isDayChecked = true;
-  }
+  const isTypeChecked = selectedTypeFilter.length > 0;
+  const isDayChecked = selectedDayFilter.length > 0;
 
   let content;
 
@@ -134,12 +69,19 @@ const EventContainer = (props) => {
     content = typeAndDayFilteredEvents;
   }
 
-  if (isTypeChecked && checkboxFilteredEvents.length === 0) {
+  if (
+    (isTypeChecked && checkboxFilteredEvents.length === 0) ||
+    (isDayChecked && checkboxDayFilteredEvents.length === 0)
+  ) {
     content = '';
   }
 
-  if (isDayChecked && checkboxDayFilteredEvents.length === 0) {
-    content = '';
+  let emptyFilterMessage = '';
+
+  if (isTypeChecked && checkboxFilteredEvents.length === 0) {
+    emptyFilterMessage = 'Za željeni filter nema eventova!';
+  } else if (isDayChecked && checkboxDayFilteredEvents.length === 0) {
+    emptyFilterMessage = 'Za željeni filter nema eventova!';
   }
 
   return (
@@ -161,14 +103,10 @@ const EventContainer = (props) => {
         <div className="grid grid-cols-1 sm:grid-cols-2 mx-6 gap-4 sm:gap-8 md:px-8 xl:px-12 2xl:grid-cols-3 place-items-center md:gap-8 text-center">
           {content}
         </div>
-        {isTypeChecked && checkboxFilteredEvents.length === 0 && (
+
+        {emptyFilterMessage && (
           <p className="font-montserrat font-normal text-3xl text-[#e1e1e1] text-center">
-            Za željeni filter nema eventova!
-          </p>
-        )}
-        {isDayChecked && checkboxDayFilteredEvents.length === 0 && (
-          <p className="font-montserrat font-normal text-3xl text-[#e1e1e1] text-center">
-            Za željeni filter nema eventova!
+            {emptyFilterMessage}
           </p>
         )}
       </div>

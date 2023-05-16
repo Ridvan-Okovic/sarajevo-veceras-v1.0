@@ -1,3 +1,5 @@
+import Event from '../components/Event/Event';
+
 export function transformEvents(events) {
   const transformedEvents = [];
 
@@ -19,4 +21,22 @@ export function transformEvents(events) {
   );
 
   return orderedEvents;
+}
+
+export function renderEvents(events) {
+  return events.map((eventInfo) => {
+    return (
+      <Event
+        key={eventInfo.id}
+        id={eventInfo.id}
+        poster={eventInfo.poster}
+        name={eventInfo.ime}
+        opis={eventInfo.opis}
+        time={eventInfo.vrijeme}
+        address={eventInfo.adresa}
+        date={new Date(eventInfo.datum)}
+        type={eventInfo.tip}
+      />
+    );
+  });
 }
