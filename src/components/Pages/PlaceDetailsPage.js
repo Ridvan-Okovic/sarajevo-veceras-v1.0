@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import EventContext from '../../context/event-context';
-import Event from '../Event/Event';
 import { filterByDateAscending } from '../../utils/filter';
+import { renderEvents } from '../../utils/events';
 import { motion } from 'framer-motion';
 
 import { FaChevronLeft } from 'react-icons/fa';
@@ -20,20 +20,7 @@ const DetailsPage = () => {
     return eventInfo.ime.toLocaleLowerCase() === params.place;
   });
 
-  const filteredEvents = filterByName.map((event) => {
-    return (
-      <Event
-        key={event.id}
-        id={event.id}
-        poster={event.poster}
-        name={event.ime}
-        opis={event.opis}
-        time={event.vrijeme}
-        address={event.adresa}
-        date={new Date(event.datum)}
-      />
-    );
-  });
+  const filteredEvents = renderEvents(filterByName);
 
   return (
     <div className="flex flex-col items-center justify-center">
