@@ -78,10 +78,9 @@ const EventContainer = (props) => {
 
   let emptyFilterMessage = '';
 
-  if (
-    (isTypeChecked && checkboxFilteredEvents.length === 0) ||
-    (isDayChecked && checkboxDayFilteredEvents.length === 0)
-  ) {
+  if (isTypeChecked && checkboxFilteredEvents.length === 0) {
+    emptyFilterMessage = 'Za željeni filter nema eventova!';
+  } else if (isDayChecked && checkboxDayFilteredEvents.length === 0) {
     emptyFilterMessage = 'Za željeni filter nema eventova!';
   }
 
