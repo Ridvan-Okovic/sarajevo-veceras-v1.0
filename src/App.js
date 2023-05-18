@@ -34,7 +34,7 @@ const router = createBrowserRouter([
             element: (
               <Suspense
                 fallback={
-                  <h1 className="mt-8 text-4xl text-[#e1e1e1] text-center font-manrope">
+                  <h1 className="mt-8 text-center font-manrope text-4xl text-[#e1e1e1]">
                     Loading events...
                   </h1>
                 }
