@@ -14,29 +14,29 @@ const SearchBar = (props) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 20 }}
-      className="w-full px-6 md:px-[10%] mt-[2rem] h-10"
+      className="mt-8 h-10 w-full px-6 md:px-[10%]"
     >
       <form
         onSubmit={(e) => {
           e.preventDefault();
         }}
-        className="w-full h-full flex flex-row items-center justify-center"
+        className="flex h-full w-full flex-row items-center justify-center"
       >
         <motion.button
           whileTap={{ scale: 0.85 }}
           whileHover={{ scale: 1.1 }}
           onClick={() => navigate('/events')}
-          className="flex flex-row mr-4 sm:mr-6 md:mr-8 bg-zinc-900 px-4 py-2 rounded-lg items-center justify-center text-md md:text-lg cursor-pointer"
+          className="text-md mr-4 flex cursor-pointer flex-row items-center justify-center rounded-lg bg-zinc-900 px-4 py-2 sm:mr-6 md:mr-8 md:text-lg"
         >
           <FaChevronLeft className="text-[#e1e1e1]" />
         </motion.button>
         <input
           placeholder="Das Ist Walter..."
           onChange={searchChangeHandler}
-          className="w-[80%] lg:w-[40rem] focus:border-[#ffb560] focus:bg-zinc-800 transition-colors bg-zinc-900 shadow-lg text-[#FAF7FF] outline-none border-[0.1rem] border-[#363636] border-r-0 rounded-l-lg rounded-r-none px-4 py-2 h-full"
+          className="h-full w-[80%] rounded-l-lg rounded-r-none border-[0.1rem] border-r-0 border-[#363636] bg-zinc-900 px-4 py-2 text-[#FAF7FF] shadow-lg outline-none transition-colors focus:border-[#ffb560] focus:bg-zinc-800 lg:w-[40rem]"
         />
-        <button className="h-full px-4 bg-[#ffb560] hover:opacity-80 transition-all duration-150 rounded-r-lg shadow-lg">
-          <FaSearch className="text-lg md:text-xl text-[#363636] cursor-pointer" />
+        <button className="h-full rounded-r-lg bg-[#ffb560] px-4 shadow-lg transition-all duration-150 hover:opacity-80">
+          <FaSearch className="cursor-pointer text-lg text-[#363636] md:text-xl" />
         </button>
       </form>
     </motion.div>
