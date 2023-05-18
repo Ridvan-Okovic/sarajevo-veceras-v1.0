@@ -70,7 +70,7 @@ const LikedEventContainer = () => {
 
   return (
     <>
-      <div className="md:flex flex-row items-center justify-center gap-8 mt-8 mb-4 md:mb-16">
+      <div className="mt-8 mb-4 flex-row items-center justify-center gap-8 md:mb-16 md:flex">
         <Filter
           setSelectedFilter={setSelectedTypeFilter}
           selectedFilter={selectedTypeFilter}
@@ -86,24 +86,24 @@ const LikedEventContainer = () => {
             whileTap={{ scale: 0.85 }}
             whileHover={{ scale: 1.1 }}
             onClick={() => navigate('/events')}
-            className="md:hidden flex flex-row mr-4 sm:mr-6 md:mr-8 bg-zinc-900 px-4 py-2 rounded-lg items-center justify-center text-md md:text-lg cursor-pointer absolute top-[2.1rem] -left-16 md:top-10 md:-left-20"
+            className="text-md absolute top-[2.1rem] -left-16 mr-4 flex cursor-pointer flex-row items-center justify-center rounded-lg bg-zinc-900 px-4 py-2 sm:mr-6 md:top-10 md:-left-20 md:mr-8 md:hidden md:text-lg"
           >
             <FaChevronLeft className="text-[#e1e1e1]" />
           </motion.button>
-          <h3 className="mt-8 lg:mt-0 text-3xl sm:text-4xl md:text-5xl text-[#e1e1e1] font-montserrat font-normal tracking-wide mb-8">
+          <h3 className="mt-8 mb-8 font-montserrat text-3xl font-normal tracking-wide text-[#e1e1e1] sm:text-4xl md:text-5xl lg:mt-0">
             Liked Events
           </h3>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 mx-6 gap-4 sm:gap-8 md:px-8 xl:px-12 2xl:grid-cols-3 place-items-center md:gap-8 text-center">
+        <div className="mx-6 grid grid-cols-1 place-items-center gap-4 text-center sm:grid-cols-2 sm:gap-8 md:gap-8 md:px-8 xl:px-12 2xl:grid-cols-3">
           {content}
         </div>
         {!isTypeChecked && !isDayChecked && likedEvents.length === 0 && (
-          <p className="font-montserrat font-normal sm:text-xl md:text-2xl lg:text-3xl text-[#e1e1e1] text-center">
+          <p className="text-center font-montserrat font-normal text-[#e1e1e1] sm:text-xl md:text-2xl lg:text-3xl">
             Trenutno nemate lajkanih eventova!
           </p>
         )}
         {emptyFilterMessage && (
-          <p className="font-montserrat font-normal text-3xl text-[#e1e1e1] text-center">
+          <p className="text-center font-montserrat text-3xl font-normal text-[#e1e1e1]">
             {emptyFilterMessage}
           </p>
         )}
