@@ -17,8 +17,8 @@ const SearchPage = () => {
   return (
     <>
       <SearchBar setSearchTerm={setSearchTerm} />
-      <div className="my-[4rem] flex flex-col items-center">
-        <div className="grid grid-cols-1 sm:grid-cols-2 mx-6 gap-4 sm:gap-8 md:px-8 xl:px-12 2xl:grid-cols-3 place-items-center md:gap-8 text-center">
+      <div className="my-16 flex flex-col items-center">
+        <div className="mx-6 grid grid-cols-1 place-items-center gap-4 text-center sm:grid-cols-2 sm:gap-8 md:gap-8 md:px-8 xl:px-12 2xl:grid-cols-3">
           {searchTerm.trim() !== '' && filteredEvents}
         </div>
       </div>

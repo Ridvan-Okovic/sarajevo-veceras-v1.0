@@ -29,16 +29,16 @@ const DetailsPage = () => {
           whileTap={{ scale: 0.85 }}
           whileHover={{ scale: 1.1 }}
           onClick={() => navigate(-1)}
-          className="flex flex-row gap-1 bg-zinc-900 px-4 py-2 rounded-lg items-center justify-center text-lg cursor-pointer"
+          className="flex cursor-pointer flex-row items-center justify-center gap-1 rounded-lg bg-zinc-900 px-4 py-2 text-lg"
         >
           <FaChevronLeft className="text-[#e1e1e1]" />
         </motion.button>
-        <h1 className="text-5xl my-8 font-montserrat tracking-wide capitalize text-[#e1e1e1]">
+        <h1 className="my-8 font-montserrat text-5xl capitalize tracking-wide text-[#e1e1e1]">
           {params.place}
         </h1>
       </div>
       <div className="flex flex-col">
-        <div className="grid grid-cols-1 sm:grid-cols-2 mx-6 gap-4 sm:gap-8 md:px-8 xl:px-12 2xl:grid-cols-3 place-items-center md:gap-8 text-center">
+        <div className="mx-6 grid grid-cols-1 place-items-center gap-4 text-center sm:grid-cols-2 sm:gap-8 md:gap-8 md:px-8 xl:px-12 2xl:grid-cols-3">
           {filteredEvents}
         </div>
       </div>

@@ -19,11 +19,11 @@ const LikedEventsCalendarPage = () => {
           whileTap={{ scale: 0.85 }}
           whileHover={{ scale: 1.1 }}
           onClick={() => navigate('/events')}
-          className="flex flex-row gap-1 bg-zinc-900 px-4 py-2 rounded-lg items-center justify-center text-lg cursor-pointer"
+          className="flex cursor-pointer flex-row items-center justify-center gap-1 rounded-lg bg-zinc-900 px-4 py-2 text-lg"
         >
           <FaChevronLeft className="text-[#e1e1e1]" />
         </motion.button>
-        <h1 className="text-5xl my-8 tracking-wide capitalize text-[#e1e1e1]">
+        <h1 className="my-8 text-5xl capitalize tracking-wide text-[#e1e1e1]">
           Calendar
         </h1>
       </div>
