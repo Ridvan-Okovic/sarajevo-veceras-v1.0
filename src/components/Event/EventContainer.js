@@ -86,7 +86,7 @@ const EventContainer = (props) => {
 
   return (
     <>
-      <div className="md:flex flex-row items-center justify-center gap-8 mt-8 mb-4 md:mb-16">
+      <div className="mt-8 mb-4 flex-row items-center justify-center gap-8 md:mb-16 md:flex">
         <Filter
           setSelectedFilter={setSelectedTypeFilter}
           selectedFilter={selectedTypeFilter}
@@ -97,15 +97,15 @@ const EventContainer = (props) => {
       </div>
 
       <div className="flex flex-col items-center">
-        <h3 className="mt-8 md:mt-0 text-3xl sm:text-4xl md:text-5xl text-[#e1e1e1] font-montserrat font-normal tracking-wide mb-8">
+        <h3 className="mt-8 mb-8 font-montserrat text-3xl font-normal tracking-wide text-[#e1e1e1] sm:text-4xl md:mt-0 md:text-5xl">
           Upcoming Events
         </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 mx-6 gap-4 sm:gap-8 md:px-8 xl:px-12 2xl:grid-cols-3 place-items-center md:gap-8 text-center">
+        <div className="mx-6 grid grid-cols-1 place-items-center gap-4 text-center sm:grid-cols-2 sm:gap-8 md:gap-8 md:px-8 xl:px-12 2xl:grid-cols-3">
           {content}
         </div>
 
         {emptyFilterMessage && (
-          <p className="font-montserrat font-normal text-3xl text-[#e1e1e1] text-center">
+          <p className="text-center font-montserrat text-3xl font-normal text-[#e1e1e1]">
             {emptyFilterMessage}
           </p>
         )}

@@ -15,7 +15,7 @@ const EventDate = (props) => {
 
   return (
     <h3 className="flex truncate">
-      <p className="pr-1 text-[#C25452] font-semibold">{days[dayindex]},</p>
+      <p className="pr-1 font-semibold text-[#C25452]">{days[dayindex]},</p>
       <p className="truncate">
         {day} {month}
       </p>
