@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
-import { BiSearchAlt, BiCalendar } from 'react-icons/bi';
+import { BiSearchAlt } from 'react-icons/bi';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi';
 import { IoMdClose } from 'react-icons/io';
 
@@ -30,7 +30,7 @@ const NavBar = () => {
   const ctx = useContext(EventContext);
 
   return (
-    <nav className="sticky top-0 z-30 flex h-[6rem] w-full flex-row items-center justify-between border-b border-zinc-800 border-opacity-40 bg-zinc-900 bg-opacity-80 px-[10%] uppercase text-[#e1e1e1] shadow-lg backdrop-blur-lg backdrop-filter">
+    <nav className="sticky top-0 z-30 flex h-[6rem] w-full flex-row items-center justify-between border-b border-zinc-800 border-opacity-40 bg-zinc-900 px-[10%] uppercase text-[#e1e1e1] md:bg-opacity-80 md:shadow-lg md:backdrop-blur-lg md:backdrop-filter ">
       <h1 className="text-3xl tracking-widest">Logo</h1>
 
       <ul className="hidden items-center gap-8 text-2xl tracking-wide md:flex">
@@ -71,16 +71,6 @@ const NavBar = () => {
             className={({ isActive }) =>
               isActive ? `opacity-100` : 'opacity-70'
             }
-            to="/liked/calendar"
-          >
-            <BiCalendar />
-          </NavLink>
-        </li>
-        <li className=" relative pb-1">
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? `opacity-100` : 'opacity-70'
-            }
             to="/events/search"
           >
             <BiSearchAlt />
@@ -110,7 +100,7 @@ const NavBar = () => {
             toggle
               ? 'translate-x-0 bg-opacity-60 backdrop-blur-md backdrop-filter'
               : 'translate-x-full'
-          } ease-in-[cubic-bezier(0.25, 1, 0.5, 1)] ease-out-[cubic-bezier(0.64, 0, 0.78, 0)] absolute top-24  right-0 z-50 flex h-[calc(100vh-6rem)] w-[60%] flex-col items-center gap-8 border border-t-0 border-zinc-800 border-opacity-40 bg-zinc-900 pt-10 font-sans text-xl font-semibold uppercase text-[#e1e1e1] duration-[0.6s] md:hidden`}
+          } ease-in-[cubic-bezier(0.25, 1, 0.5, 1)] ease-out-[cubic-bezier(0.64, 0, 0.78, 0)] absolute top-24  right-0 flex h-[calc(100vh-6rem)] w-[60%] flex-col items-center gap-8 border border-t-0 border-zinc-800 border-opacity-40 bg-zinc-900 pt-10 font-sans text-xl font-semibold uppercase text-[#e1e1e1] duration-[0.6s] md:hidden`}
         >
           <li className="py-1" onClick={() => setToggle(false)}>
             <NavLink
@@ -144,16 +134,6 @@ const NavBar = () => {
               </span>
             )}
           </div>
-          <li className=" relative pb-1" onClick={() => setToggle(false)}>
-            <NavLink
-              className={({ isActive }) =>
-                isActive ? `opacity-100` : 'opacity-70'
-              }
-              to="/liked/calendar"
-            >
-              <BiCalendar />
-            </NavLink>
-          </li>
           <li className=" relative pb-1" onClick={() => setToggle(false)}>
             <NavLink
               className={({ isActive }) =>

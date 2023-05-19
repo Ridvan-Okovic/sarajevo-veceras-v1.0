@@ -12,7 +12,6 @@ import LikedEvents from './components/Pages/LikedEvents';
 import RootLayout from './components/Pages/RootLayout';
 import PlaceDetailsPage from './components/Pages/PlaceDetailsPage';
 import SearchPage from './components/Pages/SearchPage';
-import LikedEventsCalendarPage from './components/Pages/LikedEventsCalendarPage';
 import AddEventPage from './components/Pages/AddEventPage';
 
 const EventDetailsPage = lazy(() =>
@@ -64,10 +63,6 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <LikedEvents />,
-          },
-          {
-            path: 'calendar',
-            element: <LikedEventsCalendarPage />,
           },
         ],
       },

@@ -21,7 +21,7 @@ const EventDetailsPage = () => {
               whileTap={{ scale: 0.85 }}
               whileHover={{ scale: 1.1 }}
               onClick={() => navigate('/events')}
-              className="text-md absolute top-8 -left-16 mr-4 flex cursor-pointer flex-row items-center justify-center rounded-lg bg-zinc-900 px-4 py-2 sm:mr-6 md:top-10 md:-left-20 md:mr-8 md:text-lg"
+              className="text-md absolute top-[34px] -left-16 mr-4 flex cursor-pointer flex-row items-center justify-center rounded-lg bg-zinc-900 px-4 py-2 sm:mr-6 md:top-10 md:-left-20 md:mr-8 md:text-lg"
             >
               <FaChevronLeft className="text-[#e1e1e1]" />
             </motion.button>
