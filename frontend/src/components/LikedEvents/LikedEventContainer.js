@@ -86,11 +86,11 @@ const LikedEventContainer = () => {
             whileTap={{ scale: 0.85 }}
             whileHover={{ scale: 1.1 }}
             onClick={() => navigate('/events')}
-            className="text-md absolute top-[2.1rem] -left-16 mr-4 flex cursor-pointer flex-row items-center justify-center rounded-lg bg-zinc-900 px-4 py-2 sm:mr-6 md:top-10 md:-left-20 md:mr-8 md:hidden md:text-lg"
+            className="text-md absolute top-[34px] -left-16 mr-4 flex cursor-pointer flex-row items-center justify-center rounded-lg bg-zinc-900 px-4 py-2 md:top-2 md:-left-20 md:text-lg"
           >
             <FaChevronLeft className="text-[#e1e1e1]" />
           </motion.button>
-          <h3 className="mt-8 mb-8 font-montserrat text-3xl font-normal tracking-wide text-[#e1e1e1] sm:text-4xl md:text-5xl lg:mt-0">
+          <h3 className="mt-8 mb-8 font-montserrat text-3xl font-normal tracking-wide text-[#e1e1e1] sm:text-4xl md:mt-0 md:text-5xl">
             Liked Events
           </h3>
         </div>
