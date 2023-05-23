@@ -1,16 +1,12 @@
-import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import NavBar from '../Layout/NavBar';
 
 const RootLayout = () => {
-  const [isFilterShown, setIsFilterShown] = useState(false);
-
   return (
-    <main className="min-h-screen overflow-clip bg-[#121212] pb-8 font-manrope">
-      <NavBar setIsFilterShown={setIsFilterShown} />
-
-      <Outlet context={isFilterShown} />
+    <main className="relative min-h-screen overflow-clip bg-[#121212] pb-8 font-manrope md:pb-16">
+      <NavBar />
+      <Outlet />
     </main>
   );
 };

@@ -45,7 +45,6 @@ export function renderEvents(events) {
 
 export function renderLikedEvents(events) {
   return events.map((eventInfo, index) => {
-    console.log(eventInfo.tip);
     return (
       <LikedEvent
         key={eventInfo.id}
