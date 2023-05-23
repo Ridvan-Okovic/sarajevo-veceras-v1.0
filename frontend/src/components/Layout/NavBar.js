@@ -93,20 +93,20 @@ const NavBar = () => {
           </li>
           {!authContext.currentUserData && (
             <li>
-              <motion.button
+              <button
                 whileTap={{ scale: 0.95 }}
                 onClick={signInWithGooglePopUp}
                 className=" flex items-center justify-center rounded border border-[#C25452] py-1 px-4 text-lg text-[#C25452] duration-200 hover:bg-[#C25452] hover:text-white active:bg-[#a34240] "
               >
                 Sign in
-              </motion.button>
+              </button>
             </li>
           )}
           {authContext.currentUserData && (
             <div className="relative">
               <img
                 onClick={toggleSignOutDropDown}
-                className="w-10 cursor-pointer rounded-full text-xs capitalize"
+                className="w-10 cursor-pointer rounded-full border border-zinc-800 text-xs capitalize shadow-lg hover:opacity-80 active:opacity-60"
                 src={authContext.currentUserData.photoURL}
                 alt="Profile img"
               />
@@ -117,7 +117,7 @@ const NavBar = () => {
                       signOut(auth, googleProvider);
                       setSignOutToggle(false);
                     }}
-                    className="rounded border border-[#C25452] py-1 px-3 text-base text-[#C25452]"
+                    className="flex items-center justify-center rounded border border-[#C25452] py-1 px-4 text-lg text-[#C25452] duration-200 hover:bg-[#C25452] hover:text-white active:bg-[#a34240] "
                   >
                     Sign out
                   </button>
