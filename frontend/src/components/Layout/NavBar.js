@@ -7,13 +7,13 @@ import { IoMdClose } from 'react-icons/io';
 import { auth, googleProvider } from '../../config/firebase-config';
 import { signOut } from 'firebase/auth';
 
-import EventContext from '../../context/liked-context';
+import LikedContext from '../../context/liked-context';
 import AuthContext from '../../context/auth-context';
 
 const NavBar = () => {
   const [toggle, setToggle] = useState(false);
   const [signOutToggle, setSignOutToggle] = useState(false);
-  const ctx = useContext(EventContext);
+  const ctx = useContext(LikedContext);
   const authContext = useContext(AuthContext);
 
   const menuRef = useRef();
