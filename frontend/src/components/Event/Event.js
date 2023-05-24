@@ -10,12 +10,27 @@ import { VscHeart } from 'react-icons/vsc';
 import { MdOutlineReadMore } from 'react-icons/md';
 
 const Event = (props) => {
-  const notify = () =>
+  const notifySuccess = () =>
     toast.success('Event added to liked.', { duration: 800 });
+
+  const notifyError = () =>
+    toast.error('Event already added to liked', { duration: 800 });
 
   const ctx = useContext(LikedContext);
 
-  const likedEventsIds = ctx.events.map((eventInfo) => eventInfo.id);
+  if (ctx.events.length !== 0) {
+    localStorage.setItem('liked-events', JSON.stringify(ctx.events));
+  }
+
+  let likedEventsIds;
+  let likedIds = localStorage.getItem('liked-events');
+
+  if (likedIds !== null) {
+    likedIds = JSON.parse(likedIds);
+    likedEventsIds = likedIds.map((eventInfo) => eventInfo.id);
+  } else {
+    likedEventsIds = ctx.events.map((eventInfo) => eventInfo.id);
+  }
 
   const addEventToLiked = () => {
     ctx.addEvent({
@@ -32,7 +47,9 @@ const Event = (props) => {
     });
 
     if (!likedEventsIds.includes(props.id)) {
-      notify();
+      notifySuccess();
+    } else {
+      notifyError();
     }
   };
 

@@ -16,6 +16,19 @@ const NavBar = () => {
   const ctx = useContext(LikedContext);
   const authContext = useContext(AuthContext);
 
+  if (ctx.amount !== 0) {
+    localStorage.setItem('liked-amount', ctx.amount);
+  }
+
+  let likedAmount;
+  const amount = localStorage.getItem('liked-amount');
+
+  if (amount !== null) {
+    likedAmount = amount;
+  } else {
+    likedAmount = ctx.amount;
+  }
+
   const menuRef = useRef();
 
   useEffect(() => {
@@ -74,9 +87,9 @@ const NavBar = () => {
                 Liked
               </NavLink>
             </li>
-            {ctx.amount !== 0 && (
+            {likedAmount !== 0 && (
               <span className="absolute -top-[0.2rem] -right-[0.5rem] z-20 grid h-[1.2rem] w-[1.2rem] place-items-center rounded-full bg-[#C25452] pb-[0.5px] text-[12px] font-bold leading-[14px] text-[#e1e1e1] text-opacity-90">
-                {ctx.amount}
+                {likedAmount}
               </span>
             )}
           </div>
@@ -175,9 +188,9 @@ const NavBar = () => {
                   Liked
                 </NavLink>
               </li>
-              {ctx.amount !== 0 && (
+              {likedAmount !== 0 && (
                 <span className="absolute -top-[0.2rem] -right-[0.5rem] z-20 grid h-[1rem] w-[1rem] place-items-center rounded-full bg-[#C25452] pt-[0.2px] text-[10px] font-bold leading-[14px] text-[#e1e1e1] text-opacity-90">
-                  {ctx.amount}
+                  {likedAmount}
                 </span>
               )}
             </div>

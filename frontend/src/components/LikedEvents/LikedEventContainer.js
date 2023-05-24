@@ -8,6 +8,8 @@ import { renderLikedEvents } from '../../utils/events';
 import { filterBycheckBoxInput, filterByDaySelected } from '../../utils/filter';
 import { motion } from 'framer-motion';
 
+// TODO: Fix resseting liked events on reload
+
 const LikedEventContainer = () => {
   const [selectedTypeFilter, setSelectedTypeFilter] = useState([]);
   const [selectedDayFilter, setSelectedDayFilter] = useState([]);
@@ -17,7 +19,14 @@ const LikedEventContainer = () => {
 
   const events = ctx.events;
 
-  const likedEvents = renderLikedEvents(events);
+  let likedEvents;
+  const liked = localStorage.getItem('liked-events');
+
+  if (liked !== null) {
+    likedEvents = renderLikedEvents(JSON.parse(liked));
+  } else {
+    likedEvents = renderLikedEvents(events);
+  }
 
   const likedCheckboxFilter = filterBycheckBoxInput(events, selectedTypeFilter);
   const checkboxFilteredLikedEvents = renderLikedEvents(likedCheckboxFilter);

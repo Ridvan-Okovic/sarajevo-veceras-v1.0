@@ -110,8 +110,8 @@ const Filter = (props) => {
           onClick={() => setIsDropdownOpen((prev) => !prev)}
           className={
             isDropdownOpen
-              ? 'flex h-8 w-32 flex-row items-center justify-between rounded-md bg-zinc-800 pl-3 pr-1 opacity-100 shadow-2xl'
-              : 'flex h-8 w-32 flex-row items-center justify-between rounded-md bg-zinc-800 pl-3 pr-1 opacity-80 shadow-2xl hover:opacity-100 active:opacity-100'
+              ? 'flex h-8 w-28 flex-row items-center justify-between rounded-md bg-zinc-800 pl-3 pr-1 opacity-100 shadow-2xl lg:w-32'
+              : 'flex h-8 w-28 flex-row items-center justify-between rounded-md bg-zinc-800 pl-3 pr-1 opacity-80 shadow-2xl hover:opacity-100 active:opacity-100 lg:w-32'
           }
         >
           <p className="text-[#e1e1e1]">Days</p>
@@ -122,7 +122,7 @@ const Filter = (props) => {
           )}
         </button>
         {isDropdownOpen && (
-          <div className="absolute top-10 left-0 z-20 w-32 space-y-1 rounded-md border-[1px] border-zinc-700 border-opacity-50 bg-zinc-800 bg-opacity-50 px-2 py-2 shadow-lg backdrop-blur-md backdrop-filter md:-left-4 md:w-40">
+          <div className="absolute top-10 -left-2 z-20 w-32 space-y-1 rounded-md border-[1px] border-zinc-700 border-opacity-50 bg-zinc-800 bg-opacity-50 px-2 py-2 shadow-lg backdrop-blur-md backdrop-filter md:-left-6 md:w-40 lg:-left-4">
             {daysFilter}
           </div>
         )}
