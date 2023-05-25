@@ -18,19 +18,7 @@ const Event = (props) => {
 
   const ctx = useContext(LikedContext);
 
-  if (ctx.events.length !== 0) {
-    localStorage.setItem('liked-events', JSON.stringify(ctx.events));
-  }
-
-  let likedEventsIds;
-  let likedIds = localStorage.getItem('liked-events');
-
-  if (likedIds !== null) {
-    likedIds = JSON.parse(likedIds);
-    likedEventsIds = likedIds.map((eventInfo) => eventInfo.id);
-  } else {
-    likedEventsIds = ctx.events.map((eventInfo) => eventInfo.id);
-  }
+  let likedEventsIds = ctx.events.map((eventInfo) => eventInfo.id);
 
   const addEventToLiked = () => {
     ctx.addEvent({

@@ -13,6 +13,7 @@ import RootLayout from './components/Pages/RootLayout';
 import PlaceDetailsPage from './components/Pages/PlaceDetailsPage';
 import SearchPage from './components/Pages/SearchPage';
 import AddEventPage from './components/Pages/AddEventPage';
+import Error from './components/Pages/Error';
 
 const EventDetailsPage = lazy(() =>
   import('./components/Pages/EventDetailsPage')
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
+    errorElement: <Error />,
     children: [
       {
         path: 'events',

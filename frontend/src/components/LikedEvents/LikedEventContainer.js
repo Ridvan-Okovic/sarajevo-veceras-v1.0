@@ -20,14 +20,7 @@ const LikedEventContainer = () => {
 
   const events = ctx.events;
 
-  let likedEvents;
-  const liked = localStorage.getItem('liked-events');
-
-  if (liked !== null) {
-    likedEvents = renderLikedEvents(JSON.parse(liked));
-  } else {
-    likedEvents = renderLikedEvents(events);
-  }
+  const likedEvents = renderLikedEvents(events);
 
   const likedCheckboxFilter = filterBycheckBoxInput(events, selectedTypeFilter);
   const checkboxFilteredLikedEvents = renderLikedEvents(likedCheckboxFilter);

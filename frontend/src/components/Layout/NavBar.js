@@ -16,18 +16,7 @@ const NavBar = () => {
   const ctx = useContext(LikedContext);
   const authContext = useContext(AuthContext);
 
-  if (ctx.amount !== 0) {
-    localStorage.setItem('liked-amount', ctx.amount);
-  }
-
-  let likedAmount;
-  const amount = localStorage.getItem('liked-amount');
-
-  if (amount !== null) {
-    likedAmount = amount;
-  } else {
-    likedAmount = ctx.amount;
-  }
+  const likedAmount = ctx.amount;
 
   const menuRef = useRef();
 
