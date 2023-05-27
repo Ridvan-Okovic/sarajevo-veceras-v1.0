@@ -2,7 +2,8 @@ import React from 'react';
 
 const AuthContext = React.createContext({
   currentUserData: {},
-  authenticateWithPopUp: () => {},
+  success: Boolean,
+  authenticate: () => {},
 });
 
 export default AuthContext;

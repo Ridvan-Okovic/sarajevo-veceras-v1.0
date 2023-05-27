@@ -1,18 +1,24 @@
 import { useState } from 'react';
-import { auth, googleProvider } from '../config/firebase-config';
-import { signInWithPopup, onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../config/firebase-config';
+import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
 
 import AuthContext from './auth-context';
 
 const AuthProvider = (props) => {
   const [currentUser, setCurrentUser] = useState({});
+  const [success, setSuccess] = useState(null);
 
   onAuthStateChanged(auth, (currentUser) => {
-    setCurrentUser(currentUser);
+    if (currentUser) {
+      setCurrentUser(currentUser);
+      setSuccess(true);
+    } else {
+      setSuccess(false);
+    }
   });
 
-  const authenticateWithPopUp = () => {
-    signInWithPopup(auth, googleProvider)
+  const authenticate = (email, pass) => {
+    signInWithEmailAndPassword(auth, email, pass)
       .then((res) => {
         console.log(res);
         setCurrentUser(res.user);
@@ -24,7 +30,8 @@ const AuthProvider = (props) => {
 
   const authContext = {
     currentUserData: currentUser,
-    authenticateWithPopUp,
+    authenticate,
+    success,
   };
 
   return (

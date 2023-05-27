@@ -12,9 +12,9 @@ import AuthContext from '../../context/auth-context';
 
 const NavBar = () => {
   const [toggle, setToggle] = useState(false);
-  const [signOutToggle, setSignOutToggle] = useState(false);
+  // const [signOutToggle, setSignOutToggle] = useState(false);
   const ctx = useContext(LikedContext);
-  const authContext = useContext(AuthContext);
+  // const authContext = useContext(AuthContext);
 
   const likedAmount = ctx.amount;
 
@@ -36,13 +36,13 @@ const NavBar = () => {
     document.addEventListener('mousedown', closeNav);
   }, []);
 
-  const signInWithGooglePopUp = () => {
-    authContext.authenticateWithPopUp();
-  };
+  // const signInWithGooglePopUp = () => {
+  //   authContext.authenticateWithPopUp();
+  // };
 
-  const toggleSignOutDropDown = () => {
-    setSignOutToggle((prev) => !prev);
-  };
+  // const toggleSignOutDropDown = () => {
+  //   setSignOutToggle((prev) => !prev);
+  // };
 
   return (
     <header className="sticky top-0 z-30">
@@ -92,7 +92,32 @@ const NavBar = () => {
               <BiSearchAlt />
             </NavLink>
           </li>
-          {!authContext.currentUserData && (
+          {!auth.currentUser ? (
+            <li>
+              <NavLink
+                to="/login"
+                className={({ isActive }) =>
+                  isActive
+                    ? ` flex items-center justify-center rounded border border-[#C25452] bg-[#C25452] py-1 px-4 text-lg text-white`
+                    : 'flex items-center justify-center rounded border border-[#C25452] py-1 px-4 text-lg text-[#C25452] duration-200 hover:bg-[#C25452] hover:text-white active:bg-[#8f3836]'
+                }
+              >
+                Sign in
+              </NavLink>
+            </li>
+          ) : (
+            <li>
+              <button
+                onClick={() => {
+                  signOut(auth);
+                }}
+                className="flex items-center justify-center rounded border border-[#C25452] py-1 px-4 text-lg text-[#C25452] duration-200 hover:bg-[#C25452] hover:text-white active:bg-[#8f3836]"
+              >
+                Sign out
+              </button>
+            </li>
+          )}
+          {/* {!authContext.currentUserData && (
             <li>
               <button
                 onClick={signInWithGooglePopUp}
@@ -101,8 +126,8 @@ const NavBar = () => {
                 Sign in
               </button>
             </li>
-          )}
-          {authContext.currentUserData && (
+          )} */}
+          {/* {authContext.currentUserData && (
             <div className="relative">
               <img
                 onClick={toggleSignOutDropDown}
@@ -124,7 +149,7 @@ const NavBar = () => {
                 </div>
               )}
             </div>
-          )}
+          )} */}
         </ul>
         <div ref={menuRef} className="md:hidden">
           {!toggle && (
@@ -193,7 +218,7 @@ const NavBar = () => {
                 <BiSearchAlt />
               </NavLink>
             </li>
-            {!authContext.currentUserData ? (
+            {/* {!authContext.currentUserData ? (
               <li>
                 <button className=" flex items-center justify-center rounded border border-[#C25452] py-1 px-4 text-xl text-[#C25452]">
                   Sign in
@@ -210,7 +235,7 @@ const NavBar = () => {
                   Sign out
                 </button>
               </li>
-            )}
+            )} */}
           </ul>
         </div>
       </nav>
