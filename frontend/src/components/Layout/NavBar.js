@@ -86,6 +86,18 @@ const NavBar = () => {
               <BiSearchAlt />
             </NavLink>
           </li>
+          {loginSuccess && (
+            <li>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? `opacity-100` : 'opacity-70'
+                }
+                to="/events/new"
+              >
+                Add
+              </NavLink>
+            </li>
+          )}
           {!loginSuccess ? (
             <li>
               <NavLink
