@@ -4,7 +4,7 @@ import { BiSearchAlt } from 'react-icons/bi';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi';
 import { IoMdClose } from 'react-icons/io';
 
-import { auth, googleProvider } from '../../config/firebase-config';
+import { auth } from '../../config/firebase-config';
 import { signOut } from 'firebase/auth';
 
 import LikedContext from '../../context/liked-context';
@@ -14,7 +14,9 @@ const NavBar = () => {
   const [toggle, setToggle] = useState(false);
   // const [signOutToggle, setSignOutToggle] = useState(false);
   const ctx = useContext(LikedContext);
-  // const authContext = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+
+  const loginSuccess = authContext.success;
 
   const likedAmount = ctx.amount;
 
@@ -35,14 +37,6 @@ const NavBar = () => {
 
     document.addEventListener('mousedown', closeNav);
   }, []);
-
-  // const signInWithGooglePopUp = () => {
-  //   authContext.authenticateWithPopUp();
-  // };
-
-  // const toggleSignOutDropDown = () => {
-  //   setSignOutToggle((prev) => !prev);
-  // };
 
   return (
     <header className="sticky top-0 z-30">
@@ -92,7 +86,7 @@ const NavBar = () => {
               <BiSearchAlt />
             </NavLink>
           </li>
-          {!auth.currentUser ? (
+          {!loginSuccess ? (
             <li>
               <NavLink
                 to="/login"
@@ -117,39 +111,6 @@ const NavBar = () => {
               </button>
             </li>
           )}
-          {/* {!authContext.currentUserData && (
-            <li>
-              <button
-                onClick={signInWithGooglePopUp}
-                className=" flex items-center justify-center rounded border border-[#C25452] py-1 px-4 text-lg text-[#C25452] duration-200 hover:bg-[#C25452] hover:text-white active:bg-[#a34240] "
-              >
-                Sign in
-              </button>
-            </li>
-          )} */}
-          {/* {authContext.currentUserData && (
-            <div className="relative">
-              <img
-                onClick={toggleSignOutDropDown}
-                className="w-10 cursor-pointer rounded-full border border-zinc-800 text-xs capitalize shadow-lg hover:opacity-80 active:opacity-60"
-                src={authContext.currentUserData.photoURL}
-                alt="Profile img"
-              />
-              {signOutToggle && (
-                <div className="absolute right-0 mt-4 flex h-24 w-40 items-center justify-center rounded border border-zinc-800 border-opacity-75 bg-zinc-900 shadow-lg">
-                  <button
-                    onClick={() => {
-                      signOut(auth, googleProvider);
-                      setSignOutToggle(false);
-                    }}
-                    className="flex items-center justify-center rounded border border-[#C25452] py-1 px-4 text-lg text-[#C25452] duration-200 hover:bg-[#C25452] hover:text-white active:bg-[#a34240] "
-                  >
-                    Sign out
-                  </button>
-                </div>
-              )}
-            </div>
-          )} */}
         </ul>
         <div ref={menuRef} className="md:hidden">
           {!toggle && (
@@ -218,24 +179,6 @@ const NavBar = () => {
                 <BiSearchAlt />
               </NavLink>
             </li>
-            {/* {!authContext.currentUserData ? (
-              <li>
-                <button className=" flex items-center justify-center rounded border border-[#C25452] py-1 px-4 text-xl text-[#C25452]">
-                  Sign in
-                </button>
-              </li>
-            ) : (
-              <li>
-                <button
-                  onClick={() => {
-                    signOut(auth, googleProvider);
-                  }}
-                  className=" flex items-center justify-center rounded border border-[#C25452] py-1 px-4 text-xl text-[#C25452]"
-                >
-                  Sign out
-                </button>
-              </li>
-            )} */}
           </ul>
         </div>
       </nav>
