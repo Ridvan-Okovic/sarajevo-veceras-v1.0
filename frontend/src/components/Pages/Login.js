@@ -16,9 +16,8 @@ const Login = () => {
   useEffect(() => {
     if (authCtx.success) {
       setTimeout(() => {
-        message = 'Signing you in...';
         navigate('/events');
-      }, 1000);
+      }, 500);
     }
   }, [authCtx.success, navigate]);
 
@@ -33,13 +32,13 @@ const Login = () => {
 
   return (
     <div className="grid w-full place-items-center">
-      <h3 className="mt-8 mb-8 font-montserrat text-3xl font-normal tracking-wide text-[#e1e1e1] sm:text-4xl md:text-5xl">
+      <h3 className="mt-8 mb-8 text-center font-montserrat text-2xl font-normal tracking-wide text-[#e1e1e1] sm:text-4xl md:text-5xl">
         If you are already a verified event creator,{' '}
         <span className="text-[#C25452]">sign in!</span>
       </h3>
       <form
         onSubmit={signInHandler}
-        className="flex w-96 flex-col gap-4 rounded bg-zinc-900 px-6 py-10 shadow-lg"
+        className=" flex w-96 flex-col gap-4 rounded bg-zinc-900 px-6 py-10 shadow-lg"
       >
         <div className="flex flex-col gap-1">
           <label className="text-lg text-[#e1e1e1]">Email</label>
