@@ -108,7 +108,7 @@ const NavBar = () => {
                     : 'flex items-center justify-center rounded border border-[#C25452] py-1 px-4 text-lg text-[#C25452] duration-200 hover:bg-[#C25452] hover:text-white active:bg-[#8f3836]'
                 }
               >
-                Sign in
+                Sign up
               </NavLink>
             </li>
           ) : (
