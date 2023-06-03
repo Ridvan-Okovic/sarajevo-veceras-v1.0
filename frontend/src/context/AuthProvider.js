@@ -1,19 +1,26 @@
 import { useState } from 'react';
 import { auth } from '../config/firebase-config';
-import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
+import { googleProvider } from '../config/firebase-config';
+import {
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithPopup,
+} from 'firebase/auth';
 
 import AuthContext from './auth-context';
 
 const AuthProvider = (props) => {
   const [currentUser, setCurrentUser] = useState({});
-  const [success, setSuccess] = useState(null);
+  const [admin, setAdmin] = useState(null);
+  const [loginSuccess, setLoginSuccess] = useState(null);
 
   onAuthStateChanged(auth, (currentUser) => {
     if (currentUser) {
       setCurrentUser(currentUser);
-      setSuccess(true);
+      setLoginSuccess(true);
     } else {
-      setSuccess(false);
+      setLoginSuccess(false);
+      return;
     }
   });
 
@@ -21,6 +28,19 @@ const AuthProvider = (props) => {
     signInWithEmailAndPassword(auth, email, pass)
       .then((res) => {
         console.log(res);
+        setAdmin(true);
+        setCurrentUser(res.user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const googleAuth = () => {
+    signInWithPopup(auth, googleProvider)
+      .then((res) => {
+        console.log(res);
+        setAdmin(false);
         setCurrentUser(res.user);
       })
       .catch((error) => {
@@ -31,7 +51,9 @@ const AuthProvider = (props) => {
   const authContext = {
     currentUserData: currentUser,
     authenticate,
-    success,
+    googleAuth,
+    admin,
+    loginSuccess,
   };
 
   return (

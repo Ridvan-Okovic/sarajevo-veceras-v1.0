@@ -2,8 +2,10 @@ import React from 'react';
 
 const AuthContext = React.createContext({
   currentUserData: {},
-  success: Boolean,
+  admin: Boolean,
+  loginSuccess: Boolean,
   authenticate: () => {},
+  googleAuth: () => {},
 });
 
 export default AuthContext;

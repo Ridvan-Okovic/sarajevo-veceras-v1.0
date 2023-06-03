@@ -16,7 +16,7 @@ const NavBar = () => {
   const ctx = useContext(LikedContext);
   const authContext = useContext(AuthContext);
 
-  const loginSuccess = authContext.success;
+  const admin = authContext.admin;
 
   const likedAmount = ctx.amount;
 
@@ -86,7 +86,7 @@ const NavBar = () => {
               <BiSearchAlt />
             </NavLink>
           </li>
-          {loginSuccess && (
+          {admin && (
             <li>
               <NavLink
                 className={({ isActive }) =>
@@ -98,7 +98,7 @@ const NavBar = () => {
               </NavLink>
             </li>
           )}
-          {!loginSuccess ? (
+          {!auth.currentUser ? (
             <li>
               <NavLink
                 to="/login"
@@ -108,7 +108,7 @@ const NavBar = () => {
                     : 'flex items-center justify-center rounded border border-[#C25452] py-1 px-4 text-lg text-[#C25452] duration-200 hover:bg-[#C25452] hover:text-white active:bg-[#8f3836]'
                 }
               >
-                Sign up
+                Sign in
               </NavLink>
             </li>
           ) : (
@@ -191,7 +191,7 @@ const NavBar = () => {
                 <BiSearchAlt />
               </NavLink>
             </li>
-            {!loginSuccess ? (
+            {!auth.currentUser ? (
               <li onClick={() => setToggle(false)}>
                 <NavLink
                   to="/login"

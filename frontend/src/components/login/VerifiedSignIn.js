@@ -11,12 +11,12 @@ const VerifiedSignIn = () => {
   };
 
   useEffect(() => {
-    if (authCtx.success) {
+    if (authCtx.loginSuccess)
       setTimeout(() => {
         navigate('/events');
       }, 500);
-    }
-  }, [authCtx.success, navigate]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [authCtx.loginSuccess]);
 
   const emailRef = useRef();
   const passRef = useRef();
@@ -26,6 +26,9 @@ const VerifiedSignIn = () => {
         onSubmit={signInHandler}
         className=" flex w-96 flex-col gap-4 rounded bg-zinc-900 px-6 py-10 shadow-lg"
       >
+        <h3 className="text-center text-2xl text-[#e1e1e1]">
+          Sign in za <span className="text-[#c25452]">event</span> kreatore
+        </h3>
         <div className="flex flex-col gap-1">
           <label className="text-lg text-[#e1e1e1]">Email</label>
           <input
