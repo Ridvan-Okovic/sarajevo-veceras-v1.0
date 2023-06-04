@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import VerifiedSignIn from '../login/VerifiedSignIn';
+import VerifiedSignIn from '../Login/VerifiedSignIn';
 import AuthContext from '../../context/auth-context';
 
 const Login = () => {
