@@ -70,7 +70,7 @@ const LikedEvent = (props) => {
             <FaCalendar className="mr-2 text-[#ffb560]" />
             <EventDate datum={props.date} />
           </div>
-          <div className="flex h-10 w-full items-baseline justify-end gap-2 px-4 text-2xl sm:gap-1 sm:py-1 md:py-0 lg:px-6 lg:py-1">
+          <div className="flex h-10 w-full items-baseline justify-end gap-1 px-4 text-2xl sm:gap-1 sm:py-1 md:py-0 lg:px-6 lg:py-1">
             <motion.button
               whileTap={{ scale: 0.8 }}
               whileHover={{ scale: 1.1 }}
