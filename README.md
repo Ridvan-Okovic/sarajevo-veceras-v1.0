@@ -4,6 +4,6 @@ Event tracking web application for Sarajevo. Built using ReactJS.
 
 ![My Image](images/localhost_3000_events.png)
 ![My Image](images/localhost_3000_events_filtered.png)
-![My Image](images/localhost_3000_events(2).png)
-![My Image](images/localhost_3000_events(3).png)
-![My Image](images/localhost_3000_events(4).png)
+![My Image](images/localhost_3000_events_liked.png)
+![My Image](images/localhost_3000_events_search.png)
+![My Image](images/localhost_3000_sign_in.png)
