@@ -24,3 +24,25 @@ export async function getEventDetails(eventId) {
 
   return res;
 }
+
+export async function createEvent(event) {
+  const res = await fetch(
+    `https://sarajevo-veceras-default-rtdb.europe-west1.firebasedatabase.app/events/${Math.random()}.json`,
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        address: event.address,
+        date: event.date,
+        description: event.description,
+        name: event.name,
+        poster: event.poster,
+        time: event.time,
+        type: event.type,
+      }),
+    }
+  );
+
+  if (!res.ok) {
+    throw new Error('Could not create event!');
+  }
+}
