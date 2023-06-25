@@ -23,8 +23,6 @@ const AddEventPage = () => {
     }));
   };
 
-  console.log(eventDetails);
-
   return (
     <div className="mt-16 grid w-full place-items-center text-[#e1e1e1]">
       <div className="w-[32rem] rounded-lg border-zinc-800 bg-zinc-900 px-4 shadow-lg">
