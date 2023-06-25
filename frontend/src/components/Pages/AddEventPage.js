@@ -1,35 +1,43 @@
-import { useRef } from 'react';
+import { useState } from 'react';
 import { createEvent } from '../../api/api';
 
 import { motion } from 'framer-motion';
 
 const AddEventPage = () => {
-  const location = useRef();
-  const event = useRef();
-  const address = useRef();
-  const time = useRef();
-  const date = useRef();
-  const type = useRef();
-  const poster = useRef();
+  const [eventDetails, setEventDetails] = useState({
+    address: '',
+    date: '',
+    description: '',
+    name: '',
+    poster: '',
+    time: '',
+    type: '',
+  });
 
-  const eventToAdd = {
-    address: address.current,
-    date: date.current,
-    description: event.current,
-    name: location.current,
-    poster: poster.current,
-    time: time.current,
-    type: type.current,
+  const handleChange = (event) => {
+    event.persist();
+
+    setEventDetails((prevEvent) => ({
+      ...prevEvent,
+      [event.target.name]: event.target.value,
+    }));
   };
+
+  console.log(eventDetails);
 
   return (
     <div className="mt-16 grid w-full place-items-center text-[#e1e1e1]">
       <div className="w-[32rem] rounded-lg border-zinc-800 bg-zinc-900 px-4 shadow-lg">
-        <form className="flex w-full flex-col space-y-4 px-4 py-6 ">
+        <form
+          onSubmit={() => createEvent(eventDetails)}
+          className="flex w-full flex-col space-y-4 px-4 py-6 "
+        >
           <div className="flex flex-col gap-1">
             <label className="text-xl">Lokacija</label>
             <input
-              ref={location}
+              name="name"
+              value={eventDetails.name}
+              onChange={handleChange}
               placeholder="Sloga, Dorian Gray..."
               className="h-8 rounded border border-gray-300 border-opacity-50 bg-zinc-800 px-2 shadow-lg"
             />
@@ -37,7 +45,9 @@ const AddEventPage = () => {
           <div className="flex flex-col">
             <label className="text-xl">Opis</label>
             <input
-              ref={event}
+              name="description"
+              value={eventDetails.description}
+              onChange={handleChange}
               placeholder="DJ Nimra..."
               className="h-8 rounded border border-gray-300 border-opacity-50 bg-zinc-800 px-2 shadow-lg"
             />
@@ -45,7 +55,9 @@ const AddEventPage = () => {
           <div className="flex flex-col gap-1">
             <label className="text-xl">Adresa</label>
             <input
-              ref={address}
+              name="address"
+              value={eventDetails.address}
+              onChange={handleChange}
               placeholder="Mehmeda Spahe, 20"
               className="h-8 rounded border border-gray-300 border-opacity-50 bg-zinc-800 px-2 shadow-lg"
             />
@@ -53,7 +65,9 @@ const AddEventPage = () => {
           <div className="flex flex-col gap-1">
             <label className="text-xl">Vrijeme</label>
             <input
-              ref={time}
+              name="time"
+              value={eventDetails.time}
+              onChange={handleChange}
               type="time"
               className="h-8 rounded border border-gray-300 border-opacity-50 bg-zinc-800 px-2 shadow-lg"
             />
@@ -62,7 +76,9 @@ const AddEventPage = () => {
           <div className="flex flex-col gap-1">
             <label className="text-xl">Datum</label>
             <input
-              ref={date}
+              name="date"
+              value={eventDetails.date}
+              onChange={handleChange}
               type="date"
               className="h-8 rounded border border-gray-300 border-opacity-50 bg-zinc-800 px-2 text-[#e1e1e1] shadow-lg placeholder:text-[#e1e1e1]"
             />
@@ -70,7 +86,8 @@ const AddEventPage = () => {
           <div className="flex flex-col gap-1">
             <label className="text-xl">Tip</label>
             <input
-              ref={type}
+              name="type"
+              onChange={handleChange}
               placeholder="Pub, club..."
               className="h-8 rounded border border-gray-300 border-opacity-50 bg-zinc-800 px-2 shadow-lg"
             />
@@ -78,7 +95,9 @@ const AddEventPage = () => {
           <div className="flex flex-col gap-1">
             <label className="text-xl">Slika</label>
             <input
-              ref={poster}
+              name="poster"
+              value={eventDetails.poster}
+              onChange={handleChange}
               placeholder="Link slike (https://...)"
               className="h-8 rounded border border-gray-300 border-opacity-50 bg-zinc-800 px-2 shadow-lg"
             />
@@ -86,7 +105,7 @@ const AddEventPage = () => {
 
           <div className="flex w-full items-center justify-center">
             <motion.button
-              onClick={() => createEvent(eventToAdd)}
+              type="submit"
               whileTap={{ scale: 0.95 }}
               whileHover={{ scale: 1.05 }}
               className="mt-8 w-24 rounded-lg bg-zinc-800 py-1 shadow-md"

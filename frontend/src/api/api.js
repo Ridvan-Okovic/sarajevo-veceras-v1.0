@@ -30,15 +30,7 @@ export async function createEvent(event) {
     `https://sarajevo-veceras-default-rtdb.europe-west1.firebasedatabase.app/events.json`,
     {
       method: 'POST',
-      body: JSON.stringify({
-        address: event.address,
-        date: event.date,
-        description: event.description,
-        name: event.name,
-        poster: event.poster,
-        time: event.time,
-        type: event.type,
-      }),
+      body: JSON.stringify(event),
       headers: {
         'Content-Type': 'application.json',
       },
