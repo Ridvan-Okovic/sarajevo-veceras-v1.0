@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { createEvent } from '../../api/api';
 
 import { motion } from 'framer-motion';
 
@@ -20,8 +21,6 @@ const AddEventPage = () => {
     time: time.current,
     type: type.current,
   };
-
-  console.log(eventToAdd);
 
   return (
     <div className="mt-16 grid w-full place-items-center text-[#e1e1e1]">
@@ -87,6 +86,7 @@ const AddEventPage = () => {
 
           <div className="flex w-full items-center justify-center">
             <motion.button
+              onClick={() => createEvent(eventToAdd)}
               whileTap={{ scale: 0.95 }}
               whileHover={{ scale: 1.05 }}
               className="mt-8 w-24 rounded-lg bg-zinc-800 py-1 shadow-md"

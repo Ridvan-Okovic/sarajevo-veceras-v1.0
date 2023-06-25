@@ -27,7 +27,7 @@ export async function getEventDetails(eventId) {
 
 export async function createEvent(event) {
   const res = await fetch(
-    `https://sarajevo-veceras-default-rtdb.europe-west1.firebasedatabase.app/events/${Math.random()}.json`,
+    `https://sarajevo-veceras-default-rtdb.europe-west1.firebasedatabase.app/events.json`,
     {
       method: 'POST',
       body: JSON.stringify({
@@ -39,6 +39,9 @@ export async function createEvent(event) {
         time: event.time,
         type: event.type,
       }),
+      headers: {
+        'Content-Type': 'application.json',
+      },
     }
   );
 
