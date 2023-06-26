@@ -8,6 +8,7 @@ import {
 } from 'firebase/auth';
 
 import AuthContext from './auth-context';
+import { createUser } from '../utils/create-user';
 
 const AuthProvider = (props) => {
   const [currentUser, setCurrentUser] = useState({});
@@ -26,11 +27,7 @@ const AuthProvider = (props) => {
 
   const authenticate = (email, pass) => {
     signInWithEmailAndPassword(auth, email, pass)
-      .then((res) => {
-        console.log(res);
-        setAdmin(true);
-        setCurrentUser(res.user);
-      })
+      .then((res) => createUser(res.uid, res))
       .catch((error) => {
         console.log(error);
       });

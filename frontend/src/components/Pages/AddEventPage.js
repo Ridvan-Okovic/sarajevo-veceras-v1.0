@@ -33,6 +33,7 @@ const AddEventPage = () => {
           <div className="flex flex-col gap-1">
             <label className="text-xl">Lokacija</label>
             <input
+              required
               name="name"
               value={eventDetails.name}
               onChange={handleChange}
@@ -43,6 +44,7 @@ const AddEventPage = () => {
           <div className="flex flex-col">
             <label className="text-xl">Opis</label>
             <input
+              required
               name="description"
               value={eventDetails.description}
               onChange={handleChange}
@@ -53,6 +55,7 @@ const AddEventPage = () => {
           <div className="flex flex-col gap-1">
             <label className="text-xl">Adresa</label>
             <input
+              required
               name="address"
               value={eventDetails.address}
               onChange={handleChange}
@@ -63,6 +66,7 @@ const AddEventPage = () => {
           <div className="flex flex-col gap-1">
             <label className="text-xl">Vrijeme</label>
             <input
+              required
               name="time"
               value={eventDetails.time}
               onChange={handleChange}
@@ -74,6 +78,7 @@ const AddEventPage = () => {
           <div className="flex flex-col gap-1">
             <label className="text-xl">Datum</label>
             <input
+              required
               name="date"
               value={eventDetails.date}
               onChange={handleChange}
@@ -84,6 +89,7 @@ const AddEventPage = () => {
           <div className="flex flex-col gap-1">
             <label className="text-xl">Tip</label>
             <input
+              required
               name="type"
               onChange={handleChange}
               placeholder="Pub, club..."
@@ -93,6 +99,7 @@ const AddEventPage = () => {
           <div className="flex flex-col gap-1">
             <label className="text-xl">Slika</label>
             <input
+              required
               name="poster"
               value={eventDetails.poster}
               onChange={handleChange}
