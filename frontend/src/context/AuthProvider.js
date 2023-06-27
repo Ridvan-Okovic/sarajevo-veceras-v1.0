@@ -27,7 +27,12 @@ const AuthProvider = (props) => {
 
   const authenticate = (email, pass) => {
     signInWithEmailAndPassword(auth, email, pass)
-      .then((res) => createUser(res.uid, res))
+      .then((res) => {
+        setAdmin(true);
+        const newUser = { name: res.user.email, role: 'viewer' };
+        createUser(res.uid, newUser);
+      })
+
       .catch((error) => {
         console.log(error);
       });
