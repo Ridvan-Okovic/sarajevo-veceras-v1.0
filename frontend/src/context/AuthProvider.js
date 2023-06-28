@@ -29,8 +29,8 @@ const AuthProvider = (props) => {
     signInWithEmailAndPassword(auth, email, pass)
       .then((res) => {
         setAdmin(true);
-        const newUser = { name: res.user.email, role: 'viewer' };
-        createUser(res.uid, newUser);
+        const newUser = { name: res.user.email, role: 'author' };
+        createUser(res.user.uid, newUser);
       })
 
       .catch((error) => {
@@ -41,9 +41,9 @@ const AuthProvider = (props) => {
   const googleAuth = () => {
     signInWithPopup(auth, googleProvider)
       .then((res) => {
-        console.log(res);
         setAdmin(false);
-        setCurrentUser(res.user);
+        const newUser = { name: res.user.displayName, role: 'viewer' };
+        createUser(res.user.uid, newUser);
       })
       .catch((error) => {
         console.log(error);
