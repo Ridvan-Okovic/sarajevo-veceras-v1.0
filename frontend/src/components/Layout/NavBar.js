@@ -16,7 +16,7 @@ const NavBar = () => {
   const ctx = useContext(LikedContext);
   const authContext = useContext(AuthContext);
 
-  const admin = authContext.admin;
+  const role = authContext.role.user?.role;
 
   const likedAmount = ctx.amount;
 
@@ -86,7 +86,7 @@ const NavBar = () => {
               <BiSearchAlt />
             </NavLink>
           </li>
-          {admin && (
+          {role === 'author' && (
             <li>
               <NavLink
                 className={({ isActive }) =>

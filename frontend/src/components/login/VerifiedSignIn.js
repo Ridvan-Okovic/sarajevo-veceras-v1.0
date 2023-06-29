@@ -5,9 +5,10 @@ import { useNavigate } from 'react-router-dom';
 const VerifiedSignIn = () => {
   const navigate = useNavigate();
   const authCtx = useContext(AuthContext);
+
   const signInHandler = (e) => {
     e.preventDefault();
-    authCtx.authenticate(emailRef.current.value, passRef.current.value);
+    authCtx.emailAuth(emailRef.current.value, passRef.current.value);
   };
 
   useEffect(() => {
