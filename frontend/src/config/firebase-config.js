@@ -4,14 +4,13 @@ import { GoogleAuthProvider, getAuth, EmailAuthProvider } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyCKkxRA7r4CInWv-U2R2QBUlY_YWSlGk3w',
-  authDomain: 'sarajevo-veceras.firebaseapp.com',
-  databaseURL:
-    'https://sarajevo-veceras-default-rtdb.europe-west1.firebasedatabase.app',
-  projectId: 'sarajevo-veceras',
-  storageBucket: 'sarajevo-veceras.appspot.com',
-  messagingSenderId: '603926208665',
-  appId: '1:603926208665:web:ffb97f2ef3316a2dae1808',
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
 };
 
 // Initialize Firebase

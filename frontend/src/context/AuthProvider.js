@@ -25,7 +25,6 @@ const AuthProvider = (props) => {
       getDoc(doc(db, 'users', currentUser.uid)).then((docSnap) => {
         if (docSnap.exists()) {
           setRole(docSnap.data());
-          console.log(docSnap.data());
         } else {
           console.log('No such document');
         }

@@ -56,47 +56,62 @@ const NavBar = () => {
               Events
             </NavLink>
           </li>
-
-          <div className="relative">
-            <li>
-              <NavLink
-                className={({ isActive }) =>
-                  isActive
-                    ? `border-b-[0.1rem] border-white opacity-100`
-                    : 'opacity-70'
-                }
-                to="/liked"
-              >
-                Liked
-              </NavLink>
-            </li>
-            {likedAmount !== 0 && (
-              <span className="absolute -top-[0.2rem] -right-[0.5rem] z-20 grid h-[1.2rem] w-[1.2rem] place-items-center rounded-full bg-[#C25452] pb-[0.5px] text-[12px] font-bold leading-[14px] text-[#e1e1e1] text-opacity-90">
-                {likedAmount}
-              </span>
-            )}
-          </div>
-          <li>
-            <NavLink
-              className={({ isActive }) =>
-                isActive ? `opacity-100` : 'opacity-70'
-              }
-              to="/events/search"
-            >
-              <BiSearchAlt />
-            </NavLink>
-          </li>
+          {role === 'viewer' && (
+            <>
+              <div className="relative">
+                <li>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive
+                        ? `border-b-[0.1rem] border-white opacity-100`
+                        : 'opacity-70'
+                    }
+                    to="/liked"
+                  >
+                    Liked
+                  </NavLink>
+                </li>
+                {likedAmount !== 0 && (
+                  <span className="absolute -top-[0.2rem] -right-[0.5rem] z-20 grid h-[1.2rem] w-[1.2rem] place-items-center rounded-full bg-[#C25452] pb-[0.5px] text-[12px] font-bold leading-[14px] text-[#e1e1e1] text-opacity-90">
+                    {likedAmount}
+                  </span>
+                )}
+              </div>
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? `opacity-100` : 'opacity-70'
+                  }
+                  to="/events/search"
+                >
+                  <BiSearchAlt />
+                </NavLink>
+              </li>
+            </>
+          )}
           {role === 'author' && (
-            <li>
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? `opacity-100` : 'opacity-70'
-                }
-                to="/events/new"
-              >
-                Add
-              </NavLink>
-            </li>
+            <>
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? `opacity-100` : 'opacity-70'
+                  }
+                  to="/events/my-events"
+                >
+                  My events
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? `opacity-100` : 'opacity-70'
+                  }
+                  to="/events/new"
+                >
+                  Add
+                </NavLink>
+              </li>
+            </>
           )}
           {!auth.currentUser ? (
             <li>
