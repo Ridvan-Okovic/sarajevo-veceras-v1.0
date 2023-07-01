@@ -1,5 +1,5 @@
-import { useContext, useState, useEffect } from 'react';
-import { filterBySearchTerm } from '../../utils/filter';
+import { useContext, useState } from 'react';
+import { filterByDateAscending, filterBySearchTerm } from '../../utils/filter';
 import { renderEvents } from '../../utils/events';
 
 import SearchBar from '../Layout/SearchBar';
@@ -10,10 +10,9 @@ const SearchPage = () => {
   const ctx = useContext(EventContext);
   const events = ctx.events;
 
-  useEffect(() => {}, []);
-
-  const featuredEvents = renderEvents(events);
-  const filtered = filterBySearchTerm(events, searchTerm);
+  const dateFilteredEvents = filterByDateAscending(events);
+  const featuredEvents = renderEvents(dateFilteredEvents);
+  const filtered = filterBySearchTerm(dateFilteredEvents, searchTerm);
   const filteredEvents = renderEvents(filtered);
 
   return (

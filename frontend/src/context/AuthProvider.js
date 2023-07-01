@@ -20,6 +20,7 @@ const AuthProvider = (props) => {
     onAuthStateChanged(auth, (currentUser) => {
       if (!currentUser) {
         setLoginSuccess(false);
+        setRole('');
         return;
       }
       getDoc(doc(db, 'users', currentUser.uid)).then((docSnap) => {
