@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
-import { BiSearchAlt } from 'react-icons/bi';
+import { BiSearch } from 'react-icons/bi';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi';
 import { IoMdClose } from 'react-icons/io';
 
@@ -9,12 +9,15 @@ import { signOut } from 'firebase/auth';
 
 import LikedContext from '../../context/liked-context';
 import AuthContext from '../../context/auth-context';
+import ThemeContext from '../../context/theme-context';
+
+import { BsSun, BsMoon } from 'react-icons/bs';
 
 const NavBar = () => {
   const [toggle, setToggle] = useState(false);
-  // const [signOutToggle, setSignOutToggle] = useState(false);
   const ctx = useContext(LikedContext);
   const authContext = useContext(AuthContext);
+  const { theme, setTheme } = useContext(ThemeContext);
 
   const role = authContext.role?.user?.role || '';
 
@@ -40,7 +43,13 @@ const NavBar = () => {
 
   return (
     <header className="sticky top-0 z-30">
-      <nav className=" flex h-[6rem] w-full flex-row items-center justify-between border-b border-zinc-800 border-opacity-40 bg-zinc-900 px-[10%] uppercase text-[#e1e1e1] md:bg-opacity-80 md:shadow-lg md:backdrop-blur-lg md:backdrop-filter ">
+      <nav
+        className={
+          theme === 'dark'
+            ? 'flex h-[6rem] w-full flex-row items-center justify-between border-b border-zinc-800 border-opacity-40 bg-zinc-900 px-[10%] uppercase text-[#e1e1e1] md:bg-opacity-80 md:shadow-lg md:backdrop-blur-lg md:backdrop-filter'
+            : 'flex h-[6rem] w-full flex-row items-center justify-between border-b border-zinc-300 border-opacity-40 bg-white px-[10%] uppercase text-zinc-900 md:shadow-lg md:backdrop-blur-lg md:backdrop-filter'
+        }
+      >
         <h1 className="text-3xl tracking-widest">Logo</h1>
 
         <ul className="hidden items-center gap-8 text-2xl tracking-wide md:flex">
@@ -48,7 +57,9 @@ const NavBar = () => {
             <NavLink
               className={({ isActive }) =>
                 isActive
-                  ? `border-b-[0.1rem] border-white opacity-100`
+                  ? theme === 'dark'
+                    ? `border-b-[0.1rem] border-white opacity-100`
+                    : `border-b-[0.1rem] border-zinc-900 opacity-100`
                   : 'opacity-70'
               }
               to="/events"
@@ -57,16 +68,36 @@ const NavBar = () => {
             </NavLink>
           </li>
           {role === '' && (
-            <li>
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? `opacity-100` : 'opacity-70'
+            <>
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? `opacity-100` : 'opacity-70'
+                  }
+                  to="/events/search"
+                >
+                  <BiSearch />
+                </NavLink>
+              </li>
+              <div
+                className={
+                  theme === 'dark'
+                    ? 'h-6 w-[1px] bg-[#e1e1e1]'
+                    : 'h-6 w-[1px] bg-zinc-900'
                 }
-                to="/events/search"
-              >
-                <BiSearchAlt />
-              </NavLink>
-            </li>
+              ></div>
+              {theme === 'dark' ? (
+                <BsSun
+                  onClick={() => setTheme('light')}
+                  className="cursor-pointer text-xl"
+                />
+              ) : (
+                <BsMoon
+                  onClick={() => setTheme('dark')}
+                  className="cursor-pointer text-xl"
+                />
+              )}
+            </>
           )}
 
           {role === 'viewer' && (
@@ -97,7 +128,7 @@ const NavBar = () => {
                   }
                   to="/events/search"
                 >
-                  <BiSearchAlt />
+                  <BiSearch />
                 </NavLink>
               </li>
             </>
@@ -221,7 +252,7 @@ const NavBar = () => {
                     }
                     to="/events/search"
                   >
-                    <BiSearchAlt />
+                    <BiSearch />
                   </NavLink>
                 </li>
               </>
