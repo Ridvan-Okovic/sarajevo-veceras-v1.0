@@ -8,12 +8,15 @@ import EventDate from '../Event/EventDate';
 import toast, { Toaster } from 'react-hot-toast';
 import { motion } from 'framer-motion';
 import { MdOutlineReadMore } from 'react-icons/md';
+import ThemeContext from '../../context/theme-context';
 
 const LikedEvent = (props) => {
   const notify = () =>
     toast.error('Event removed from liked.', { duration: 800 });
 
   const ctx = useContext(LikedContext);
+
+  const { theme } = useContext(ThemeContext);
 
   const removeEventFromLiked = () => {
     ctx.removeEvent(props.id);
@@ -28,17 +31,28 @@ const LikedEvent = (props) => {
       exit={{ opacity: 0, y: 20 }}
     >
       <Toaster />
-      <div className="flex h-48 max-w-[450px] flex-row items-center justify-center overflow-hidden rounded-md bg-zinc-900 shadow-md sm:h-full sm:max-w-[15rem] sm:flex-col md:h-[12.5rem] md:max-w-[35em] md:flex-row lg:h-60 ">
+      <div
+        className={`${
+          theme === 'dark' ? 'bg-zinc-900' : 'border-[0.5px] bg-white'
+        } flex h-48
+            max-w-[450px] flex-row
+            items-center justify-center overflow-hidden rounded-md
+        border-[#f2f2f2]  shadow-md sm:h-full sm:max-w-[15rem] sm:flex-col md:h-[12.5rem] md:max-w-[35em] md:flex-row lg:h-60`}
+      >
         <img
           src={props.poster}
           alt="Mjesto"
           className="h-full w-[50%] object-cover shadow-md sm:h-full sm:w-full md:h-full md:w-[45%]"
         />
 
-        <div className="md:text-md relative h-full w-[50%] space-y-2 py-1 text-sm sm:w-full sm:space-y-2 sm:pt-2 md:w-[55%] md:py-2 lg:space-y-2 lg:py-2 lg:text-lg ">
+        <div
+          className={`md:text-md relative h-full w-[50%] space-y-2 py-1 text-sm ${
+            theme === 'dark' ? 'text-[#e1e1e1]' : 'text-zinc-900'
+          }  sm:w-full sm:space-y-2 sm:pt-2 md:w-[55%] md:py-2 lg:space-y-2 lg:py-2 lg:text-lg`}
+        >
           <h1 className="text-center text-lg tracking-tight md:text-xl lg:text-2xl">
             <Link
-              className=" font-bold text-[#ffb560] opacity-90"
+              className="font-bold text-[#ffb560] underline opacity-90"
               to={`/events/place/${props.name.toLocaleLowerCase()}`}
             >
               {props.name}
@@ -52,21 +66,25 @@ const LikedEvent = (props) => {
           >
             <TiDelete className="hidden cursor-pointer text-4xl text-[#C25452] hover:opacity-75 lg:inline-block" />
           </motion.button>
-          <h3 className="mx-3 flex flex-row items-center border-b-[1px] border-gray-300 border-opacity-70 text-[#e1e1e1] text-opacity-70 sm:mx-4 lg:mx-6">
+          <h3 className="mx-3 flex flex-row items-center border-b-[1px] border-gray-300 border-opacity-70  text-opacity-70 sm:mx-4 lg:mx-6">
             <MdCelebration className="mr-2 text-lg text-[#ffb560]" />
-            <p className="truncate font-semibold text-[#e1e1e1] text-opacity-80">
+            <p
+              className={`truncate font-bold ${
+                theme === 'dark' ? 'text-[#e1e1e1]' : 'text-zinc-900'
+              }  text-opacity-80`}
+            >
               {props.opis}
             </p>
           </h3>
-          <h3 className="mx-3 mb-2 flex flex-row items-center border-b-[1px] border-gray-300  border-opacity-70 text-[#e1e1e1] text-opacity-70 sm:mx-4 lg:mx-6">
+          <h3 className="mx-3 mb-2 flex flex-row items-center border-b-[1px] border-gray-300  border-opacity-70  text-opacity-70 sm:mx-4 lg:mx-6">
             <FaMapPin className="mr-2 text-[#ffb560]" />
             <p className="truncate">{props.address}</p>
           </h3>
-          <h3 className="mx-3 mb-2 flex flex-row items-center border-b-[1px] border-gray-300  border-opacity-70 text-[#e1e1e1] text-opacity-70 sm:mx-4 lg:mx-6">
+          <h3 className="mx-3 mb-2 flex flex-row items-center border-b-[1px] border-gray-300  border-opacity-70  text-opacity-70 sm:mx-4 lg:mx-6">
             <FaClock className="mr-2 text-[#ffb560]" />
             {props.time}
           </h3>
-          <div className="mx-3 mb-2 flex flex-row items-center border-b-[1px] border-gray-300  border-opacity-70 text-[#e1e1e1] text-opacity-70 sm:mx-4 lg:mx-6">
+          <div className="mx-3 mb-2 flex flex-row items-center border-b-[1px] border-gray-300  border-opacity-70  text-opacity-70 sm:mx-4 lg:mx-6">
             <FaCalendar className="mr-2 text-[#ffb560]" />
             <EventDate datum={props.date} />
           </div>

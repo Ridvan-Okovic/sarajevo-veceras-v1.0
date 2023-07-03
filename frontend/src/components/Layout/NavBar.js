@@ -58,8 +58,8 @@ const NavBar = () => {
               className={({ isActive }) =>
                 isActive
                   ? theme === 'dark'
-                    ? `border-b-[0.1rem] border-white opacity-100`
-                    : `border-b-[0.1rem] border-zinc-900 opacity-100`
+                    ? ` border-white opacity-100`
+                    : ` border-zinc-900 opacity-100`
                   : 'opacity-70'
               }
               to="/events"
@@ -74,9 +74,13 @@ const NavBar = () => {
                   className={({ isActive }) =>
                     isActive ? `opacity-100` : 'opacity-70'
                   }
-                  to="/events/search"
+                  to="/search"
                 >
-                  <BiSearch />
+                  <BiSearch
+                    className={
+                      theme === 'dark' ? 'text-[#e1e1e1]' : 'text-zinc-900'
+                    }
+                  />
                 </NavLink>
               </li>
               <div
@@ -126,11 +130,33 @@ const NavBar = () => {
                   className={({ isActive }) =>
                     isActive ? `opacity-100` : 'opacity-70'
                   }
-                  to="/events/search"
+                  to="/search"
                 >
-                  <BiSearch />
+                  <BiSearch
+                    className={
+                      theme === 'dark' ? 'text-[#e1e1e1]' : 'text-zinc-900'
+                    }
+                  />
                 </NavLink>
               </li>
+              <div
+                className={
+                  theme === 'dark'
+                    ? 'h-6 w-[1px] bg-[#e1e1e1]'
+                    : 'h-6 w-[1px] bg-zinc-900'
+                }
+              ></div>
+              {theme === 'dark' ? (
+                <BsSun
+                  onClick={() => setTheme('light')}
+                  className="cursor-pointer text-xl"
+                />
+              ) : (
+                <BsMoon
+                  onClick={() => setTheme('dark')}
+                  className="cursor-pointer text-xl"
+                />
+              )}
             </>
           )}
           {role === 'author' && (

@@ -10,6 +10,7 @@ import { transformEvents, renderEvents } from '../../utils/events';
 
 import Filter from '../Layout/Filter';
 import EventContext from '../../context/event-context';
+import ThemeContext from '../../context/theme-context';
 
 const EventContainer = (props) => {
   const [selectedTypeFilter, setSelectedTypeFilter] = useState([]);
@@ -17,6 +18,8 @@ const EventContainer = (props) => {
 
   const ctx = useContext(EventContext);
   const events = transformEvents(props.events);
+
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     ctx.addEvents(events);
@@ -97,7 +100,11 @@ const EventContainer = (props) => {
       </div>
 
       <div className="flex flex-col items-center">
-        <h3 className="mt-8 mb-8 font-montserrat text-3xl font-normal tracking-wide text-[#e1e1e1] sm:text-4xl md:mt-0 md:text-5xl">
+        <h3
+          className={`mt-8 mb-8 font-montserrat text-3xl font-normal tracking-wide ${
+            theme === 'dark' ? 'text-[#e1e1e1]' : 'text-zinc-900'
+          } sm:text-4xl md:mt-0 md:text-5xl`}
+        >
           Upcoming Events
         </h3>
         <div className="mx-6 grid grid-cols-1 place-items-center gap-4 text-center sm:grid-cols-2 sm:gap-8 md:gap-8 md:px-8 xl:px-12 2xl:grid-cols-3">
@@ -105,7 +112,11 @@ const EventContainer = (props) => {
         </div>
 
         {emptyFilterMessage && (
-          <p className="text-center font-montserrat text-3xl font-normal text-[#e1e1e1]">
+          <p
+            className={`text-center font-montserrat text-3xl font-normal ${
+              theme === 'dark' ? 'text-[#e1e1e1]' : 'text-zinc-900'
+            } `}
+          >
             {emptyFilterMessage}
           </p>
         )}

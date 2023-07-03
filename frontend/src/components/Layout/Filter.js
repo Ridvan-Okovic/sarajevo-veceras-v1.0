@@ -1,9 +1,12 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useContext } from 'react';
 
 import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/md';
 
+import ThemeContext from '../../context/theme-context';
+
 const Filter = (props) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const { theme } = useContext(ThemeContext);
 
   const dropDownRef = useRef();
 
@@ -61,11 +64,17 @@ const Filter = (props) => {
     return (
       <label
         key={i}
-        className="text-md flex items-center justify-between gap-3 text-[#e1e1e1] md:gap-2 md:text-lg lg:gap-4"
+        className={
+          theme === 'dark'
+            ? 'text-md flex items-center justify-between gap-3 text-[#e1e1e1] md:gap-2 md:text-lg lg:gap-4'
+            : 'text-md flex items-center justify-between gap-3 text-zinc-900 md:gap-2 md:text-lg lg:gap-4'
+        }
       >
         {type}
         <input
-          className="relative h-5 w-5 cursor-pointer appearance-none rounded-sm border transition-all duration-300 after:absolute after:h-full after:w-full after:bg-[length:15px] after:bg-center after:bg-no-repeat after:content-[''] checked:border-[#ffb560] checked:bg-[#ffb560] after:checked:bg-[url('https://www.svgrepo.com/show/105291/check-mark.svg')] focus:outline-none md:h-5 md:w-5"
+          className={`relative h-5 w-5 cursor-pointer appearance-none rounded-sm border ${
+            theme === 'dark' ? 'border-[#e1e1e1]' : 'border-zinc-900'
+          } transition-all duration-300 after:absolute after:h-full after:w-full after:bg-[length:15px] after:bg-center after:bg-no-repeat after:content-[''] checked:border-[#ffb560] checked:bg-[#ffb560] after:checked:bg-[url('https://www.svgrepo.com/show/105291/check-mark.svg')] focus:outline-none md:h-5 md:w-5`}
           type="checkbox"
           id={i}
           value={type}
@@ -80,8 +89,12 @@ const Filter = (props) => {
       <label
         className={
           props.selectedDayFilter.includes(day)
-            ? 'peer peer flex cursor-pointer flex-row items-center justify-between text-base text-[#e1e1e1] text-opacity-100 md:text-lg'
-            : 'peer peer flex cursor-pointer flex-row items-center justify-between text-base text-[#e1e1e1] text-opacity-60 hover:text-opacity-100 md:text-lg'
+            ? `peer peer flex cursor-pointer flex-row items-center ${
+                theme === 'dark' ? 'text-[#e1e1e1]' : 'text-zinc-900'
+              } justify-between text-base text-opacity-100 md:text-lg`
+            : `peer peer flex cursor-pointer flex-row items-center ${
+                theme === 'dark' ? 'text-[#e1e1e1]' : 'text-zinc-900'
+              } justify-between text-base text-opacity-60 hover:text-opacity-100 md:text-lg`
         }
         key={index}
       >
@@ -91,7 +104,9 @@ const Filter = (props) => {
           id={day}
           value={day}
           type="checkbox"
-          className="relative h-4 w-4 cursor-pointer appearance-none rounded-sm border opacity-80 transition-all duration-300 after:absolute after:h-full after:w-full after:bg-[length:15px] after:bg-center after:bg-no-repeat after:content-[''] checked:border-[#ffb560] checked:bg-[#ffb560] after:checked:bg-[url('https://www.svgrepo.com/show/105291/check-mark.svg')] focus:outline-none peer-hover:opacity-100 md:h-5 md:w-5"
+          className={`relative h-4 w-4 cursor-pointer appearance-none rounded-sm border ${
+            theme === 'dark' ? 'border-[#e1e1e1]' : 'border-zinc-900'
+          }  opacity-80 transition-all duration-300 after:absolute after:h-full after:w-full after:bg-[length:15px] after:bg-center after:bg-no-repeat after:content-[''] checked:border-[#ffb560] checked:bg-[#ffb560] after:checked:bg-[url('https://www.svgrepo.com/show/105291/check-mark.svg')] focus:outline-none peer-hover:opacity-100 md:h-5 md:w-5`}
           onChange={handleChangeDay(day)}
           checked={props.selectedDayFilter.includes(day)}
         />
@@ -100,7 +115,13 @@ const Filter = (props) => {
   });
 
   return (
-    <div className="flex flex-col items-center justify-center gap-2 rounded-none bg-zinc-900 bg-opacity-80 py-4 shadow-lg md:flex-row md:gap-6 md:rounded-lg md:px-8 lg:gap-10 lg:px-12">
+    <div
+      className={`flex flex-col items-center justify-center gap-2 rounded-none ${
+        theme === 'dark'
+          ? 'bg-zinc-900'
+          : 'border-[0.5px] border-[#f2f2f2] bg-white'
+      }  bg-opacity-80 py-4 shadow-lg md:flex-row md:gap-6 md:rounded-lg md:px-8 lg:gap-10 lg:px-12`}
+    >
       <div className="grid grid-cols-3 gap-x-8 gap-y-2 md:flex md:flex-row md:gap-6 lg:gap-10">
         {filter}
       </div>
@@ -110,19 +131,43 @@ const Filter = (props) => {
           onClick={() => setIsDropdownOpen((prev) => !prev)}
           className={
             isDropdownOpen
-              ? 'flex h-8 w-28 flex-row items-center justify-between rounded-md bg-zinc-800 pl-3 pr-1 opacity-100 shadow-2xl lg:w-32'
-              : 'flex h-8 w-28 flex-row items-center justify-between rounded-md bg-zinc-800 pl-3 pr-1 opacity-80 shadow-2xl hover:opacity-100 active:opacity-100 lg:w-32'
+              ? `flex h-8 w-28 flex-row items-center justify-between rounded-md ${
+                  theme === 'dark'
+                    ? 'bg-zinc-800'
+                    : 'border border-[#f2f2f2] bg-white text-zinc-900'
+                }  pl-3 pr-1 opacity-100 shadow-lg lg:w-32`
+              : `flex h-8 w-28 flex-row items-center justify-between rounded-md ${
+                  theme === 'dark'
+                    ? 'bg-zinc-800'
+                    : 'border border-[#f2f2f2] bg-white text-zinc-900'
+                } pl-3 pr-1 opacity-80 shadow-lg hover:opacity-100 active:opacity-100 lg:w-32`
           }
         >
-          <p className="text-[#e1e1e1]">Days</p>
+          <p className={theme === 'dark' ? 'text-[#e1e1e1]' : 'text-zinc-900'}>
+            Days
+          </p>
           {!isDropdownOpen ? (
-            <MdArrowDropDown className="text-3xl text-[#e1e1e1]" />
+            <MdArrowDropDown
+              className={`text-3xl ${
+                theme === 'dark' ? 'text-[#e1e1e1]' : 'text-zinc-900'
+              }`}
+            />
           ) : (
-            <MdArrowDropUp className="text-3xl text-[#e1e1e1]" />
+            <MdArrowDropUp
+              className={`text-3xl ${
+                theme === 'dark' ? 'text-[#e1e1e1]' : 'text-zinc-900'
+              }`}
+            />
           )}
         </button>
         {isDropdownOpen && (
-          <div className="absolute top-10 -left-2 z-20 w-32 space-y-1 rounded-md border-[1px] border-zinc-700 border-opacity-50 bg-zinc-800 bg-opacity-50 px-2 py-2 shadow-lg backdrop-blur-md backdrop-filter md:-left-6 md:w-40 lg:-left-4">
+          <div
+            className={`absolute top-10 -left-2 z-20 w-32 space-y-1 rounded-md border-[1px] ${
+              theme === 'dark'
+                ? 'border-zinc-700 bg-zinc-800'
+                : 'border-[#e1e1e1] bg-[#f2f2f2]'
+            }  border-opacity-50  bg-opacity-50 px-2 py-2 shadow-lg backdrop-blur-md backdrop-filter md:-left-6 md:w-40 lg:-left-4`}
+          >
             {daysFilter}
           </div>
         )}

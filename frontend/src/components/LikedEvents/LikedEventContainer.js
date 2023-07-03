@@ -7,6 +7,7 @@ import Filter from '../Layout/Filter';
 import { renderLikedEvents } from '../../utils/events';
 import { filterBycheckBoxInput, filterByDaySelected } from '../../utils/filter';
 import { motion } from 'framer-motion';
+import ThemeContext from '../../context/theme-context';
 
 const LikedEventContainer = () => {
   const [selectedTypeFilter, setSelectedTypeFilter] = useState([]);
@@ -16,6 +17,8 @@ const LikedEventContainer = () => {
   const ctx = useContext(LikedContext);
 
   const events = ctx.events;
+
+  const { theme } = useContext(ThemeContext);
 
   const likedEvents = renderLikedEvents(events);
 
@@ -86,11 +89,19 @@ const LikedEventContainer = () => {
             whileTap={{ scale: 0.85 }}
             whileHover={{ scale: 1.1 }}
             onClick={() => navigate('/events')}
-            className="text-md absolute top-[34px] -left-16 mr-4 flex cursor-pointer flex-row items-center justify-center rounded-lg bg-zinc-900 px-4 py-2 md:top-2 md:-left-20 md:text-lg"
+            className={`text-md absolute top-[34px] -left-16 mr-4 flex cursor-pointer flex-row items-center justify-center rounded-lg ${
+              theme === 'dark'
+                ? 'bg-zinc-900 text-[e1e1e1]'
+                : 'border-[0.5px] border-[#f2f2f2] bg-white text-zinc-900 shadow-lg'
+            } px-4 py-2 md:top-2 md:-left-20 md:text-lg`}
           >
-            <FaChevronLeft className="text-[#e1e1e1]" />
+            <FaChevronLeft />
           </motion.button>
-          <h3 className="mt-8 mb-8 font-montserrat text-3xl font-normal tracking-wide text-[#e1e1e1] sm:text-4xl md:mt-0 md:text-5xl">
+          <h3
+            className={`mt-8 mb-8 font-montserrat text-3xl font-normal tracking-wide ${
+              theme === 'dark' ? 'text-[#e1e1e1]' : 'text-zinc-900'
+            } sm:text-4xl md:mt-0 md:text-5xl`}
+          >
             Liked Events
           </h3>
         </div>

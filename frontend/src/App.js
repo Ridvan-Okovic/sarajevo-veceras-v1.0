@@ -52,12 +52,13 @@ const router = createBrowserRouter([
             path: 'place/:place',
             element: <PlaceDetailsPage />,
           },
-          {
-            path: 'search',
-            element: <SearchPage />,
-          },
+
           { path: 'new', element: <AddEventPage /> },
         ],
+      },
+      {
+        path: 'search',
+        element: <SearchPage />,
       },
       { path: 'login', element: <Login /> },
       {
