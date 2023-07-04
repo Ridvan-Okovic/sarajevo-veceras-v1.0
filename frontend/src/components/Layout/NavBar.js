@@ -146,7 +146,7 @@ const NavBar = () => {
               <div
                 className={
                   theme === 'dark'
-                    ? 'h-6 w-[1px] bg-[#e1e1e1]'
+                    ? 'h-6 w-[1px] bg-[#e1e1e1] opacity-80'
                     : 'h-6 w-[1px] bg-zinc-900'
                 }
               ></div>

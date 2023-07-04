@@ -1,10 +1,13 @@
 import { useContext, useEffect, useRef } from 'react';
 import AuthContext from '../../context/auth-context';
 import { useNavigate } from 'react-router-dom';
+import ThemeContext from '../../context/theme-context';
 
 const VerifiedSignIn = () => {
   const navigate = useNavigate();
   const authCtx = useContext(AuthContext);
+
+  const { theme } = useContext(ThemeContext);
 
   const signInHandler = (e) => {
     e.preventDefault();
@@ -26,25 +29,47 @@ const VerifiedSignIn = () => {
     <>
       <form
         onSubmit={signInHandler}
-        className=" flex w-96 flex-col gap-4 rounded bg-zinc-900 px-6 py-10 shadow-lg"
+        className={`flex w-96 flex-col gap-4 rounded px-6 py-10 shadow-lg ${
+          theme === 'dark' ? 'bg-zinc-900' : 'border border-[#f2f2f2] bg-white'
+        }`}
       >
-        <h3 className="text-center text-2xl text-[#e1e1e1]">
+        <h3
+          className={`text-center text-2xl ${
+            theme === 'dark' ? 'text-[#e1e1e1]' : 'text-zinc-900'
+          } `}
+        >
           Sign in za <span className="text-[#c25452]">event</span> kreatore
         </h3>
-        <div className="flex flex-col gap-1">
-          <label className="text-lg text-[#e1e1e1]">Email</label>
+        <div
+          className={`flex flex-col gap-1 ${
+            theme === 'dark' ? 'text-[#e1e1e1]' : 'text-zinc-900'
+          }`}
+        >
+          <label className="text-lg">Email</label>
           <input
             ref={emailRef}
-            className="rounded bg-zinc-800 bg-opacity-50 p-2 text-[#e1e1e1] shadow outline-none focus:border focus:border-zinc-500"
+            className={`rounded bg-opacity-50 p-2 shadow outline-none focus:outline focus:outline-1  ${
+              theme === 'dark'
+                ? 'bg-zinc-800 focus:outline-zinc-500'
+                : 'border border-[#f2f2f2] bg-white focus:outline-[#c25452]'
+            }`}
             type="email"
             placeholder="test@example.com"
           ></input>
         </div>
-        <div className="flex flex-col gap-1">
-          <label className="text-lg text-[#e1e1e1]">Password</label>
+        <div
+          className={`flex flex-col gap-1 ${
+            theme === 'dark' ? 'text-[#e1e1e1]' : 'text-zinc-900'
+          }`}
+        >
+          <label className="text-lg">Password</label>
           <input
             ref={passRef}
-            className="rounded bg-zinc-800 bg-opacity-50 p-2 text-[#e1e1e1] shadow outline-none focus:border focus:border-zinc-500"
+            className={`rounded bg-opacity-50 p-2 shadow outline-none focus:outline focus:outline-1  ${
+              theme === 'dark'
+                ? 'bg-zinc-800 focus:outline-zinc-500'
+                : 'border border-[#f2f2f2] bg-white focus:outline-[#c25452]'
+            }`}
             type="password"
             placeholder="••••••••"
           ></input>
