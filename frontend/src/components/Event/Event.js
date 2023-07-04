@@ -54,9 +54,7 @@ const Event = (props) => {
       <Toaster />
       <div
         className={`relative flex h-48 max-w-[450px] flex-row items-center justify-center overflow-hidden rounded-md ${
-          theme === 'dark'
-            ? 'bg-zinc-900'
-            : 'border-[0.5px] border-[#f2f2f2] bg-white'
+          theme === 'dark' ? 'bg-zinc-900' : 'bg-white'
         }  shadow-lg sm:h-full sm:max-w-[15rem] sm:flex-col md:h-[12.5rem] md:max-w-[35em] md:flex-row lg:h-60`}
       >
         <img

@@ -117,9 +117,7 @@ const Filter = (props) => {
   return (
     <div
       className={`flex flex-col items-center justify-center gap-2 rounded-none ${
-        theme === 'dark'
-          ? 'bg-zinc-900'
-          : 'border-[0.5px] border-[#f2f2f2] bg-white'
+        theme === 'dark' ? 'bg-zinc-900' : 'bg-white'
       }  bg-opacity-80 py-4 shadow-lg md:flex-row md:gap-6 md:rounded-lg md:px-8 lg:gap-10 lg:px-12`}
     >
       <div className="grid grid-cols-3 gap-x-8 gap-y-2 md:flex md:flex-row md:gap-6 lg:gap-10">
