@@ -120,7 +120,11 @@ const NavBar = () => {
                   </NavLink>
                 </li>
                 {likedAmount !== 0 && (
-                  <span className="absolute -top-[0.2rem] -right-[0.5rem] z-20 grid h-[1.2rem] w-[1.2rem] place-items-center rounded-full bg-[#C25452] pb-[0.5px] text-[12px] font-bold leading-[14px] text-[#e1e1e1] text-opacity-90">
+                  <span
+                    className={`absolute -top-[0.2rem] -right-[0.5rem] z-20 grid h-[1.2rem] w-[1.2rem] place-items-center rounded-full bg-[#C25452] pb-[0.5px] text-[12px] font-bold leading-[14px]  text-opacity-90 ${
+                      theme === 'dark' ? 'text-[#e1e1e1]' : 'text-white'
+                    }`}
+                  >
                     {likedAmount}
                   </span>
                 )}
@@ -213,7 +217,7 @@ const NavBar = () => {
           {!toggle && (
             <button
               onClick={() => setToggle((prev) => !prev)}
-              className="rounded-lg p-1 shadow-sm"
+              className={`rounded-lg p-1`}
             >
               <HiOutlineMenuAlt3 className="text-3xl" />
             </button>
@@ -221,9 +225,9 @@ const NavBar = () => {
           {toggle && (
             <button
               onClick={() => setToggle((prev) => !prev)}
-              className="z-50 rounded-lg p-1 shadow-sm"
+              className={`rounded-lg p-1`}
             >
-              <IoMdClose className="z-50 text-3xl" />
+              <IoMdClose className="text-3xl" />
             </button>
           )}
 
@@ -276,7 +280,7 @@ const NavBar = () => {
                     className={({ isActive }) =>
                       isActive ? `opacity-100` : 'opacity-70'
                     }
-                    to="/events/search"
+                    to="/search"
                   >
                     <BiSearch />
                   </NavLink>

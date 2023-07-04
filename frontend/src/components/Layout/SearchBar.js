@@ -48,7 +48,7 @@ const SearchBar = (props) => {
               : 'border-[#f2f2f2] bg-white'
           }`}
         />
-        <button className="h-full rounded-r-lg bg-[#ffb560] px-4 shadow-lg transition-all duration-150 hover:opacity-80">
+        <button className="h-full rounded-r-lg bg-[#ffb560] px-4 shadow-lg transition-all duration-150 hover:bg-opacity-80 active:bg-[#eba04a]">
           <BiSearch className="cursor-pointer text-lg text-zinc-900 md:text-2xl" />
         </button>
       </form>
