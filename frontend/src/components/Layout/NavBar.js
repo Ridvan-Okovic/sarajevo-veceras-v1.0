@@ -47,7 +47,7 @@ const NavBar = () => {
         className={
           theme === 'dark'
             ? 'flex h-[6rem] w-full flex-row items-center justify-between border-b border-zinc-800 border-opacity-40 bg-zinc-900 px-[10%] uppercase text-[#e1e1e1] md:bg-opacity-80 md:shadow-lg md:backdrop-blur-lg md:backdrop-filter'
-            : 'flex h-[6rem] w-full flex-row items-center justify-between border-b border-zinc-300 border-opacity-40 bg-white px-[10%] uppercase text-zinc-900 md:shadow-lg md:backdrop-blur-lg md:backdrop-filter'
+            : 'flex h-[6rem] w-full flex-row items-center justify-between border-b border-zinc-300 border-opacity-40 bg-white px-[10%] uppercase text-zinc-900 md:shadow-sm md:backdrop-blur-lg md:backdrop-filter'
         }
       >
         <h1 className="text-3xl tracking-widest">Logo</h1>

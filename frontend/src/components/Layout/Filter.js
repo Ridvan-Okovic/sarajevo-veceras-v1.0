@@ -117,8 +117,10 @@ const Filter = (props) => {
   return (
     <div
       className={`flex flex-col items-center justify-center gap-2 rounded-none ${
-        theme === 'dark' ? 'bg-zinc-900' : 'bg-white'
-      }  bg-opacity-80 py-4 shadow-lg md:flex-row md:gap-6 md:rounded-lg md:px-8 lg:gap-10 lg:px-12`}
+        theme === 'dark'
+          ? 'bg-zinc-900 shadow-lg'
+          : 'bg-white shadow-[0_1.5px_5px_0_rgba(0,0,0,0.1)]'
+      }  bg-opacity-80 py-4  md:flex-row md:gap-6 md:rounded-lg md:px-8 lg:gap-10 lg:px-12`}
     >
       <div className="grid grid-cols-3 gap-x-8 gap-y-2 md:flex md:flex-row md:gap-6 lg:gap-10">
         {filter}
@@ -133,12 +135,12 @@ const Filter = (props) => {
                   theme === 'dark'
                     ? 'bg-zinc-800'
                     : 'border border-[#f2f2f2] bg-white text-zinc-900'
-                }  pl-3 pr-1 opacity-100 shadow-lg lg:w-32`
+                }  pl-3 pr-1 opacity-100 shadow-[0_0_5px_0_rgba(0,0,0,0.07)] lg:w-32`
               : `flex h-8 w-28 flex-row items-center justify-between rounded-md ${
                   theme === 'dark'
                     ? 'bg-zinc-800'
                     : 'border border-[#f2f2f2] bg-white text-zinc-900'
-                } pl-3 pr-1 opacity-80 shadow-lg hover:opacity-100 active:opacity-100 lg:w-32`
+                } pl-3 pr-1 opacity-80 shadow-[0_0_5px_0_rgba(0,0,0,0.07)] hover:opacity-100 active:opacity-100 lg:w-32`
           }
         >
           <p className={theme === 'dark' ? 'text-[#e1e1e1]' : 'text-zinc-900'}>
@@ -162,9 +164,9 @@ const Filter = (props) => {
           <div
             className={`absolute top-10 -left-2 z-20 w-32 space-y-1 rounded-md border-[1px] ${
               theme === 'dark'
-                ? 'border-zinc-700 bg-zinc-800'
-                : 'border-[#e1e1e1] bg-[#f2f2f2]'
-            }  border-opacity-50  bg-opacity-50 px-2 py-2 shadow-lg backdrop-blur-md backdrop-filter md:-left-6 md:w-40 lg:-left-4`}
+                ? 'border-zinc-700 bg-zinc-800 shadow-lg'
+                : 'border-[#e1e1e1] bg-[#f2f2f2] shadow-[0_2.5px_5px_0_rgba(0,0,0,0.25)]'
+            }  border-opacity-50  bg-opacity-50 px-2 py-2  backdrop-blur-md backdrop-filter md:-left-6 md:w-40 lg:-left-4`}
           >
             {daysFilter}
           </div>
