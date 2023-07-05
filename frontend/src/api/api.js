@@ -34,7 +34,11 @@ export async function createEvent(event) {
     {
       method: 'POST',
       body: JSON.stringify(newEvent),
+      mode: 'cors',
       headers: {
+        'Acces-Control-Allow-Headers': 'Content-Type',
+        'Acces-Control-Allow-Methods': 'POST',
+        'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application.json',
       },
     }
