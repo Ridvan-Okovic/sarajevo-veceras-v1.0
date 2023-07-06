@@ -86,19 +86,19 @@ const NavBar = () => {
               <div
                 className={
                   theme === 'dark'
-                    ? 'h-6 w-[1px] bg-[#e1e1e1]'
-                    : 'h-6 w-[1px] bg-zinc-900'
+                    ? 'h-6 w-[1px] bg-[#e1e1e1] opacity-70'
+                    : 'h-6 w-[1px] bg-zinc-900 opacity-70'
                 }
               ></div>
               {theme === 'dark' ? (
                 <BsSun
                   onClick={() => setTheme('light')}
-                  className="cursor-pointer text-xl"
+                  className="opacity-70capitalize cursor-pointer text-xl "
                 />
               ) : (
                 <BsMoon
                   onClick={() => setTheme('dark')}
-                  className="cursor-pointer text-xl"
+                  className="opacity-70capitalize cursor-pointer text-xl "
                 />
               )}
             </>
@@ -146,19 +146,19 @@ const NavBar = () => {
               <div
                 className={
                   theme === 'dark'
-                    ? 'h-6 w-[1px] bg-[#e1e1e1] opacity-80'
-                    : 'h-6 w-[1px] bg-zinc-900'
+                    ? 'h-6 w-[1px] bg-[#e1e1e1] opacity-70'
+                    : 'h-6 w-[1px] bg-zinc-900 opacity-70'
                 }
               ></div>
               {theme === 'dark' ? (
                 <BsSun
                   onClick={() => setTheme('light')}
-                  className="cursor-pointer text-xl"
+                  className="cursor-pointer text-xl opacity-70"
                 />
               ) : (
                 <BsMoon
                   onClick={() => setTheme('dark')}
-                  className="cursor-pointer text-xl"
+                  className="cursor-pointer text-xl opacity-70"
                 />
               )}
             </>
@@ -185,6 +185,24 @@ const NavBar = () => {
                   Add
                 </NavLink>
               </li>
+              <div
+                className={
+                  theme === 'dark'
+                    ? 'h-6 w-[1px] bg-[#e1e1e1] opacity-70'
+                    : 'h-6 w-[1px] bg-zinc-900 opacity-70'
+                }
+              ></div>
+              {theme === 'dark' ? (
+                <BsSun
+                  onClick={() => setTheme('light')}
+                  className="cursor-pointer text-xl opacity-70"
+                />
+              ) : (
+                <BsMoon
+                  onClick={() => setTheme('dark')}
+                  className="cursor-pointer text-xl opacity-70"
+                />
+              )}
             </>
           )}
           {!auth.currentUser ? (
@@ -193,8 +211,8 @@ const NavBar = () => {
                 to="/login"
                 className={({ isActive }) =>
                   isActive
-                    ? ` flex items-center justify-center rounded border border-[#C25452] bg-[#C25452] py-1 px-4 text-lg text-white`
-                    : 'flex items-center justify-center rounded border border-[#C25452] py-1 px-4 text-lg text-[#C25452] duration-200 hover:bg-[#C25452] hover:text-white active:bg-[#8f3836]'
+                    ? `flex  items-center justify-center rounded border border-[#C25452] bg-[#C25452] py-1 px-4 text-lg capitalize text-white`
+                    : 'flex items-center justify-center rounded border border-[#C25452] py-1 px-4 text-lg capitalize text-[#C25452] duration-200 hover:bg-[#C25452] hover:text-white active:bg-[#8f3836]'
                 }
               >
                 Sign in
@@ -208,7 +226,7 @@ const NavBar = () => {
                 }}
                 className="flex items-center justify-center rounded border border-[#C25452] py-1 px-4 text-lg text-[#C25452] duration-200 hover:bg-[#C25452] hover:text-white active:bg-[#8f3836]"
               >
-                Sign out
+                Logout
               </button>
             </li>
           )}
