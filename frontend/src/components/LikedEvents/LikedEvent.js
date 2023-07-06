@@ -9,6 +9,10 @@ import toast, { Toaster } from 'react-hot-toast';
 import { motion } from 'framer-motion';
 import { MdOutlineReadMore } from 'react-icons/md';
 import ThemeContext from '../../context/theme-context';
+import { doc, updateDoc, arrayRemove } from 'firebase/firestore';
+import { db } from '../../config/firebase-config';
+import { auth } from '../../config/firebase-config';
+import { VscGlobe } from 'react-icons/vsc';
 
 const LikedEvent = (props) => {
   const notify = () =>
@@ -22,6 +26,8 @@ const LikedEvent = (props) => {
     ctx.removeEvent(props.id);
     notify();
   };
+
+  console.log(props.datum);
 
   return (
     <motion.div
@@ -62,7 +68,21 @@ const LikedEvent = (props) => {
             whileTap={{ scale: 0.8 }}
             whileHover={{ scale: 1.1 }}
             className="absolute right-1 -top-1"
-            onClick={removeEventFromLiked}
+            onClick={() => {
+              const userRef = doc(db, 'users', auth.currentUser.uid);
+              updateDoc(userRef, {
+                likedEvents: arrayRemove({
+                  id: props.id,
+                  poster: props.poster,
+                  name: props.name,
+                  description: props.opis,
+                  address: props.address,
+                  time: props.time,
+                  datum: props.date,
+                  tip: props.type,
+                }),
+              });
+            }}
           >
             <TiDelete className="hidden cursor-pointer text-4xl text-[#C25452] hover:opacity-75 lg:inline-block" />
           </motion.button>
@@ -93,7 +113,25 @@ const LikedEvent = (props) => {
               whileTap={{ scale: 0.8 }}
               whileHover={{ scale: 1.1 }}
               className=" inline-block md:inline-block lg:hidden"
-              onClick={removeEventFromLiked}
+              onClick={() => {
+                const userRef = doc(db, 'users', auth.currentUser.uid);
+                updateDoc(
+                  userRef,
+                  {
+                    likedEvents: arrayRemove({
+                      id: props.id,
+                      poster: props.poster,
+                      name: props.name,
+                      description: props.opis,
+                      address: props.address,
+                      time: props.time,
+                      datum: props.datum,
+                      tip: props.type,
+                    }),
+                  },
+                  { merge: true }
+                );
+              }}
             >
               <TiDelete className="cursor-pointer text-3xl text-[#C25452] hover:opacity-75" />
             </motion.button>

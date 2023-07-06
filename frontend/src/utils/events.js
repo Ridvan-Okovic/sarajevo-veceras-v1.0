@@ -54,7 +54,8 @@ export function renderLikedEvents(events) {
         opis={eventInfo.description}
         time={eventInfo.time}
         address={eventInfo.address}
-        date={new Date(eventInfo.datum)}
+        datum={eventInfo.datum}
+        date={new Date(eventInfo.datum.seconds)}
         type={eventInfo.tip}
         index={index}
       />

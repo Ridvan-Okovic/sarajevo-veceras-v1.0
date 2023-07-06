@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { FaChevronLeft } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,19 +8,33 @@ import { renderLikedEvents } from '../../utils/events';
 import { filterBycheckBoxInput, filterByDaySelected } from '../../utils/filter';
 import { motion } from 'framer-motion';
 import ThemeContext from '../../context/theme-context';
+import { doc, getDoc } from 'firebase/firestore';
+import { auth } from '../../config/firebase-config';
+import { db } from '../../config/firebase-config';
 
 const LikedEventContainer = () => {
   const [selectedTypeFilter, setSelectedTypeFilter] = useState([]);
   const [selectedDayFilter, setSelectedDayFilter] = useState([]);
+  const [firestoreLikedEvents, setFirestoreLikedEvents] = useState([]);
 
   const navigate = useNavigate();
   const ctx = useContext(LikedContext);
+
+  useEffect(() => {
+    getDoc(doc(db, 'users', auth.currentUser.uid)).then((docSnap) => {
+      if (docSnap.exists()) {
+        setFirestoreLikedEvents(docSnap.data().likedEvents);
+      } else {
+        return;
+      }
+    });
+  }, []);
 
   const events = ctx.events;
 
   const { theme } = useContext(ThemeContext);
 
-  const likedEvents = renderLikedEvents(events);
+  const likedEvents = renderLikedEvents(firestoreLikedEvents);
 
   const likedCheckboxFilter = filterBycheckBoxInput(events, selectedTypeFilter);
   const checkboxFilteredLikedEvents = renderLikedEvents(likedCheckboxFilter);
@@ -91,7 +105,7 @@ const LikedEventContainer = () => {
             onClick={() => navigate('/events')}
             className={`text-md absolute top-[34px] -left-16 mr-4 flex cursor-pointer flex-row items-center justify-center rounded-lg ${
               theme === 'dark'
-                ? 'bg-zinc-900 text-[e1e1e1]'
+                ? 'bg-zinc-900 text-[#e1e1e1]'
                 : 'border-[0.5px] border-[#f2f2f2] bg-white text-zinc-900 shadow-lg'
             } px-4 py-2 md:top-2 md:-left-20 md:text-lg`}
           >

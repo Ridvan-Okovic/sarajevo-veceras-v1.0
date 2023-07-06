@@ -39,7 +39,10 @@ const AuthProvider = (props) => {
   const emailAuth = (email, pass) => {
     signInWithEmailAndPassword(auth, email, pass)
       .then((res) => {
-        const newUser = { name: res.user.email, role: 'author' };
+        const newUser = {
+          name: res.user.email,
+          role: 'author',
+        };
         createUser(res.user.uid, newUser);
       })
 
@@ -51,7 +54,10 @@ const AuthProvider = (props) => {
   const googleAuth = () => {
     signInWithPopup(auth, googleProvider)
       .then((res) => {
-        const newUser = { name: res.user.displayName, role: 'viewer' };
+        const newUser = {
+          name: res.user.displayName,
+          role: 'viewer',
+        };
         createUser(res.user.uid, newUser);
       })
       .catch((error) => {

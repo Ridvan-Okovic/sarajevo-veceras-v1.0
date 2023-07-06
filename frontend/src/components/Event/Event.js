@@ -4,45 +4,27 @@ import LikedContext from '../../context/liked-context';
 import { FaMapPin, FaClock, FaCalendar, FaHeart } from 'react-icons/fa';
 import { MdCelebration } from 'react-icons/md';
 import { Link } from 'react-router-dom';
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 import { motion } from 'framer-motion';
 import { VscHeart } from 'react-icons/vsc';
 import { MdOutlineReadMore } from 'react-icons/md';
 import ThemeContext from '../../context/theme-context';
+import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
+import { db } from '../../config/firebase-config';
+import { auth } from '../../config/firebase-config';
 
 const Event = (props) => {
-  const notifySuccess = () =>
-    toast.success('Event added to liked.', { duration: 800 });
+  // const notifySuccess = () =>
+  //   toast.success('Event added to liked.', { duration: 800 });
 
-  const notifyError = () =>
-    toast.error('Event already added to liked', { duration: 800 });
+  // const notifyError = () =>
+  //   toast.error('Event already added to liked', { duration: 800 });
 
   const ctx = useContext(LikedContext);
 
   const { theme } = useContext(ThemeContext);
 
   let likedEventsIds = ctx.events.map((eventInfo) => eventInfo.id);
-
-  const addEventToLiked = () => {
-    ctx.addEvent({
-      key: props.id,
-      id: props.id,
-      poster: props.poster,
-      name: props.name,
-      description: props.opis,
-      address: props.address,
-      time: props.time,
-      datum: props.date,
-      amount: 1,
-      tip: props.type,
-    });
-
-    if (!likedEventsIds.includes(props.id)) {
-      notifySuccess();
-    } else {
-      notifyError();
-    }
-  };
 
   return (
     <motion.div
@@ -105,7 +87,25 @@ const Event = (props) => {
             <motion.button
               whileTap={{ scale: 0.85 }}
               whileHover={{ scale: 1.1 }}
-              onClick={addEventToLiked}
+              onClick={() => {
+                const userRef = doc(db, 'users', auth.currentUser.uid);
+                updateDoc(
+                  userRef,
+                  {
+                    likedEvents: arrayUnion({
+                      id: props.id,
+                      poster: props.poster,
+                      name: props.name,
+                      description: props.opis,
+                      address: props.address,
+                      time: props.time,
+                      datum: props.date,
+                      tip: props.type,
+                    }),
+                  },
+                  { merge: true }
+                );
+              }}
             >
               {likedEventsIds.includes(props.id) && (
                 <FaHeart className="cursor-pointer text-[#C25452]" />
