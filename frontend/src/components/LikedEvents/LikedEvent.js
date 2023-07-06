@@ -12,7 +12,6 @@ import ThemeContext from '../../context/theme-context';
 import { doc, updateDoc, arrayRemove } from 'firebase/firestore';
 import { db } from '../../config/firebase-config';
 import { auth } from '../../config/firebase-config';
-import { VscGlobe } from 'react-icons/vsc';
 
 const LikedEvent = (props) => {
   const notify = () =>
@@ -26,8 +25,6 @@ const LikedEvent = (props) => {
     ctx.removeEvent(props.id);
     notify();
   };
-
-  console.log(props.datum);
 
   return (
     <motion.div

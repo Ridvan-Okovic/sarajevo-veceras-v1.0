@@ -21,11 +21,15 @@ const LikedEventContainer = () => {
   const ctx = useContext(LikedContext);
 
   useEffect(() => {
-    getDoc(doc(db, 'users', auth.currentUser.uid)).then((docSnap) => {
+    getDoc(doc(db, 'users', auth?.currentUser?.uid)).then((docSnap) => {
       if (docSnap.exists()) {
-        setFirestoreLikedEvents(docSnap.data().likedEvents);
+        if (docSnap.data().likedEvents) {
+          setFirestoreLikedEvents(docSnap.data().likedEvents);
+        } else {
+          setFirestoreLikedEvents([]);
+        }
       } else {
-        return;
+        throw new Error('Document does not exist.');
       }
     });
   }, []);

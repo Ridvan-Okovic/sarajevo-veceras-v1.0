@@ -12,6 +12,7 @@ import ThemeContext from '../../context/theme-context';
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../../config/firebase-config';
 import { auth } from '../../config/firebase-config';
+import AuthContext from '../../context/auth-context';
 
 const Event = (props) => {
   // const notifySuccess = () =>
@@ -21,6 +22,7 @@ const Event = (props) => {
   //   toast.error('Event already added to liked', { duration: 800 });
 
   const ctx = useContext(LikedContext);
+  const { role } = useContext(AuthContext);
 
   const { theme } = useContext(ThemeContext);
 
@@ -84,36 +86,38 @@ const Event = (props) => {
             <EventDate datum={props.date} />
           </div>
           <div className="flex h-10 w-full items-baseline justify-end gap-2 px-4 text-2xl sm:py-1 md:py-0 lg:px-6 lg:py-1">
-            <motion.button
-              whileTap={{ scale: 0.85 }}
-              whileHover={{ scale: 1.1 }}
-              onClick={() => {
-                const userRef = doc(db, 'users', auth.currentUser.uid);
-                updateDoc(
-                  userRef,
-                  {
-                    likedEvents: arrayUnion({
-                      id: props.id,
-                      poster: props.poster,
-                      name: props.name,
-                      description: props.opis,
-                      address: props.address,
-                      time: props.time,
-                      datum: props.date,
-                      tip: props.type,
-                    }),
-                  },
-                  { merge: true }
-                );
-              }}
-            >
-              {likedEventsIds.includes(props.id) && (
-                <FaHeart className="cursor-pointer text-[#C25452]" />
-              )}
-              {!likedEventsIds.includes(props.id) && (
-                <VscHeart className="cursor-pointer text-[#C25452]" />
-              )}
-            </motion.button>
+            {role === 'viewer' && (
+              <motion.button
+                whileTap={{ scale: 0.85 }}
+                whileHover={{ scale: 1.1 }}
+                onClick={() => {
+                  const userRef = doc(db, 'users', auth.currentUser.uid);
+                  updateDoc(
+                    userRef,
+                    {
+                      likedEvents: arrayUnion({
+                        id: props.id,
+                        poster: props.poster,
+                        name: props.name,
+                        description: props.opis,
+                        address: props.address,
+                        time: props.time,
+                        datum: props.date,
+                        tip: props.type,
+                      }),
+                    },
+                    { merge: true }
+                  );
+                }}
+              >
+                {likedEventsIds.includes(props.id) && (
+                  <FaHeart className="cursor-pointer text-[#C25452]" />
+                )}
+                {!likedEventsIds.includes(props.id) && (
+                  <VscHeart className="cursor-pointer text-[#C25452]" />
+                )}
+              </motion.button>
+            )}
             <Link to={`/events/${props.id}`}>
               <motion.button
                 whileTap={{ scale: 0.85 }}
