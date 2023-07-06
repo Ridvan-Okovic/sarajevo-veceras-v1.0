@@ -111,9 +111,7 @@ const NavBar = () => {
                 <li>
                   <NavLink
                     className={({ isActive }) =>
-                      isActive
-                        ? `border-b-[0.1rem] border-white opacity-100`
-                        : 'opacity-70'
+                      isActive ? `opacity-100` : 'opacity-70'
                     }
                     to="/liked"
                   >
