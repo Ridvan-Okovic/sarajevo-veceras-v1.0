@@ -3,7 +3,7 @@ import { useState } from 'react';
 import ThemeContext from './theme-context';
 
 const ThemeProvider = (props) => {
-  const [theme, setTheme] = useState('');
+  const [theme, setTheme] = useState('dark');
 
   const themeContext = {
     theme,

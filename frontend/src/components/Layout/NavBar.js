@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect, useRef } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { BiSearch } from 'react-icons/bi';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi';
 import { IoMdClose } from 'react-icons/io';
@@ -15,11 +15,12 @@ import { BsSun, BsMoon } from 'react-icons/bs';
 
 const NavBar = () => {
   const [toggle, setToggle] = useState(false);
+  const navigate = useNavigate();
   const ctx = useContext(LikedContext);
   const authContext = useContext(AuthContext);
   const { theme, setTheme } = useContext(ThemeContext);
 
-  const role = authContext.role?.user?.role || '';
+  const role = authContext.role || '';
 
   const likedAmount = ctx.amount;
 
@@ -223,6 +224,7 @@ const NavBar = () => {
               <button
                 onClick={() => {
                   signOut(auth);
+                  navigate('/');
                 }}
                 className="flex items-center justify-center rounded border border-[#C25452] py-1 px-4 text-lg text-[#C25452] duration-200 hover:bg-[#C25452] hover:text-white active:bg-[#8f3836]"
               >

@@ -15,6 +15,8 @@ import SearchPage from './components/Pages/SearchPage';
 import AddEventPage from './components/Pages/AddEventPage';
 import Error from './components/Pages/Error';
 import Login from './components/Pages/Login';
+import Author from './components/Pages/Author';
+import Viewer from './components/Pages/Viewer';
 
 const EventDetailsPage = lazy(() =>
   import('./components/Pages/EventDetailsPage')
@@ -53,7 +55,14 @@ const router = createBrowserRouter([
             element: <PlaceDetailsPage />,
           },
 
-          { path: 'new', element: <AddEventPage /> },
+          {
+            path: 'new',
+            element: (
+              <Author>
+                <AddEventPage />
+              </Author>
+            ),
+          },
         ],
       },
       {
@@ -66,7 +75,11 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <LikedEvents />,
+            element: (
+              <Viewer>
+                <LikedEvents />,
+              </Viewer>
+            ),
           },
         ],
       },
