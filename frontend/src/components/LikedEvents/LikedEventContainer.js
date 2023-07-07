@@ -15,6 +15,7 @@ const LikedEventContainer = () => {
   const [selectedTypeFilter, setSelectedTypeFilter] = useState([]);
   const [selectedDayFilter, setSelectedDayFilter] = useState([]);
   const [firestoreLikedEvents, setFirestoreLikedEvents] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
   const ctx = useContext(LikedContext);
@@ -22,14 +23,18 @@ const LikedEventContainer = () => {
   const uid = localStorage.getItem('uid');
 
   useEffect(() => {
+    setIsLoading(true);
     getDoc(doc(db, 'users', uid)).then((docSnap) => {
       if (docSnap.exists()) {
         if (docSnap.data().likedEvents) {
           setFirestoreLikedEvents(docSnap.data().likedEvents);
+          setIsLoading(false);
         } else {
           setFirestoreLikedEvents([]);
+          setIsLoading(false);
         }
       } else {
+        setIsLoading(false);
         throw new Error('Document does not exist.');
       }
     });
@@ -42,7 +47,12 @@ const LikedEventContainer = () => {
 
   const likedEvents = renderLikedEvents(firestoreLikedEvents);
 
-  const likedCheckboxFilter = filterBycheckBoxInput(events, selectedTypeFilter);
+  console.log(firestoreLikedEvents);
+
+  const likedCheckboxFilter = filterBycheckBoxInput(
+    firestoreLikedEvents,
+    selectedTypeFilter
+  );
   const checkboxFilteredLikedEvents = renderLikedEvents(likedCheckboxFilter);
 
   const likedDayFilter = filterByDaySelected(events, selectedDayFilter);
@@ -128,11 +138,17 @@ const LikedEventContainer = () => {
         <div className="mx-6 grid grid-cols-1 place-items-center gap-4 text-center sm:grid-cols-2 sm:gap-8 md:gap-8 md:px-8 xl:px-12 2xl:grid-cols-3">
           {content}
         </div>
-        {!isTypeChecked && !isDayChecked && likedEvents.length === 0 && (
+        {isLoading && likedEvents.length === 0 && (
+          <p className="text-center font-montserrat font-normal text-[#e1e1e1] sm:text-xl md:text-2xl lg:text-3xl">
+            Loading events...
+          </p>
+        )}
+        {likedEvents.length === 0 && !isLoading && (
           <p className="text-center font-montserrat font-normal text-[#e1e1e1] sm:text-xl md:text-2xl lg:text-3xl">
             Trenutno nemate lajkanih eventova!
           </p>
         )}
+
         {emptyFilterMessage && (
           <p className="text-center font-montserrat text-3xl font-normal text-[#e1e1e1]">
             {emptyFilterMessage}
