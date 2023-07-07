@@ -21,12 +21,14 @@ const AuthProvider = (props) => {
       if (!currentUser) {
         setLoginSuccess(false);
         localStorage.removeItem('role');
+        localStorage.removeItem('uid');
         setRole('');
         return;
       }
       getDoc(doc(db, 'users', currentUser.uid)).then((docSnap) => {
         if (docSnap.exists()) {
           localStorage.setItem('role', docSnap.data().user.role);
+          localStorage.setItem('uid', auth.currentUser.uid);
           setRole(docSnap.data().user.role);
         } else {
           console.log('No such document');

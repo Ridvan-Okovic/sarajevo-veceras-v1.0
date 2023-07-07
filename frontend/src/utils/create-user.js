@@ -3,7 +3,7 @@ import { setDoc, doc } from 'firebase/firestore';
 
 export const createUser = async (uid, user) => {
   try {
-    await setDoc(doc(db, 'users', uid), { user });
+    await setDoc(doc(db, 'users', uid), { user }, { merge: true });
   } catch (error) {
     console.log(error);
   }

@@ -9,7 +9,6 @@ import { filterBycheckBoxInput, filterByDaySelected } from '../../utils/filter';
 import { motion } from 'framer-motion';
 import ThemeContext from '../../context/theme-context';
 import { doc, getDoc } from 'firebase/firestore';
-import { auth } from '../../config/firebase-config';
 import { db } from '../../config/firebase-config';
 
 const LikedEventContainer = () => {
@@ -20,8 +19,10 @@ const LikedEventContainer = () => {
   const navigate = useNavigate();
   const ctx = useContext(LikedContext);
 
+  const uid = localStorage.getItem('uid');
+
   useEffect(() => {
-    getDoc(doc(db, 'users', auth?.currentUser?.uid)).then((docSnap) => {
+    getDoc(doc(db, 'users', uid)).then((docSnap) => {
       if (docSnap.exists()) {
         if (docSnap.data().likedEvents) {
           setFirestoreLikedEvents(docSnap.data().likedEvents);
@@ -32,6 +33,7 @@ const LikedEventContainer = () => {
         throw new Error('Document does not exist.');
       }
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const events = ctx.events;
