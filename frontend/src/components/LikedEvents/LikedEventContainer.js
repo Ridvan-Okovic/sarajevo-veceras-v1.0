@@ -2,60 +2,33 @@ import { useContext, useEffect, useState } from 'react';
 import { FaChevronLeft } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
-import LikedContext from '../../context/liked-context';
 import Filter from '../Layout/Filter';
 import { renderLikedEvents } from '../../utils/events';
 import { filterBycheckBoxInput, filterByDaySelected } from '../../utils/filter';
 import { motion } from 'framer-motion';
 import ThemeContext from '../../context/theme-context';
-import { doc, getDoc } from 'firebase/firestore';
-import { db } from '../../config/firebase-config';
+import LikedContext from '../../context/liked-context';
 
 const LikedEventContainer = () => {
   const [selectedTypeFilter, setSelectedTypeFilter] = useState([]);
   const [selectedDayFilter, setSelectedDayFilter] = useState([]);
-  const [firestoreLikedEvents, setFirestoreLikedEvents] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const { likedEvents } = useContext(LikedContext);
+
+  console.log(likedEvents);
 
   const navigate = useNavigate();
-  const ctx = useContext(LikedContext);
-
-  const uid = localStorage.getItem('uid');
-
-  useEffect(() => {
-    setIsLoading(true);
-    getDoc(doc(db, 'users', uid)).then((docSnap) => {
-      if (docSnap.exists()) {
-        if (docSnap.data().likedEvents) {
-          setFirestoreLikedEvents(docSnap.data().likedEvents);
-          setIsLoading(false);
-        } else {
-          setFirestoreLikedEvents([]);
-          setIsLoading(false);
-        }
-      } else {
-        setIsLoading(false);
-        throw new Error('Document does not exist.');
-      }
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const events = ctx.events;
 
   const { theme } = useContext(ThemeContext);
 
-  const likedEvents = renderLikedEvents(firestoreLikedEvents);
-
-  console.log(firestoreLikedEvents);
+  const renderedLikedEvents = renderLikedEvents(likedEvents);
 
   const likedCheckboxFilter = filterBycheckBoxInput(
-    firestoreLikedEvents,
+    likedEvents,
     selectedTypeFilter
   );
   const checkboxFilteredLikedEvents = renderLikedEvents(likedCheckboxFilter);
 
-  const likedDayFilter = filterByDaySelected(events, selectedDayFilter);
+  const likedDayFilter = filterByDaySelected(likedEvents, selectedDayFilter);
   const likedDayFilteredEvents = renderLikedEvents(likedDayFilter);
 
   const typeAndDayFilter = filterByDaySelected(
@@ -70,7 +43,7 @@ const LikedEventContainer = () => {
   let content;
 
   if (likedEvents.length > 0) {
-    content = likedEvents;
+    content = renderedLikedEvents;
   }
 
   if (isTypeChecked && likedCheckboxFilter.length > 0) {
@@ -138,12 +111,8 @@ const LikedEventContainer = () => {
         <div className="mx-6 grid grid-cols-1 place-items-center gap-4 text-center sm:grid-cols-2 sm:gap-8 md:gap-8 md:px-8 xl:px-12 2xl:grid-cols-3">
           {content}
         </div>
-        {isLoading && likedEvents.length === 0 && (
-          <p className="text-center font-montserrat font-normal text-[#e1e1e1] sm:text-xl md:text-2xl lg:text-3xl">
-            Loading events...
-          </p>
-        )}
-        {likedEvents.length === 0 && !isLoading && (
+
+        {renderLikedEvents.length === 0 && (
           <p className="text-center font-montserrat font-normal text-[#e1e1e1] sm:text-xl md:text-2xl lg:text-3xl">
             Trenutno nemate lajkanih eventova!
           </p>

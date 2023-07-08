@@ -3,7 +3,10 @@ import {
   Navigate,
   RouterProvider,
 } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useContext, useEffect } from 'react';
+
+import { getDoc, doc } from 'firebase/firestore';
+import { db } from './config/firebase-config';
 
 import EventsPage, {
   loader as eventsLoader,
@@ -17,6 +20,8 @@ import Error from './components/Pages/Error';
 import Login from './components/Pages/Login';
 import Author from './components/Pages/Author';
 import Viewer from './components/Pages/Viewer';
+
+import LikedContext from './context/liked-context';
 
 const EventDetailsPage = lazy(() =>
   import('./components/Pages/EventDetailsPage')
@@ -93,6 +98,23 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
+  const { setLikedEvents } = useContext(LikedContext);
+  const uid = localStorage.getItem('uid');
+
+  useEffect(() => {
+    getDoc(doc(db, 'users', uid)).then((docSnap) => {
+      if (docSnap.exists()) {
+        if (docSnap.data().likedEvents) {
+          setLikedEvents(docSnap.data().likedEvents);
+        } else {
+          setLikedEvents([]);
+        }
+      } else {
+        throw new Error('Document does not exist.');
+      }
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return <RouterProvider router={router} />;
 };
 

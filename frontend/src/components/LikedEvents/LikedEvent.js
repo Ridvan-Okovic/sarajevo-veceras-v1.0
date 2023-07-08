@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaMapPin, FaCalendar, FaClock } from 'react-icons/fa';
 import { MdCelebration } from 'react-icons/md';
 import { TiDelete } from 'react-icons/ti';
-import LikedContext from '../../context/liked-context';
 import EventDate from '../Event/EventDate';
-import toast, { Toaster } from 'react-hot-toast';
 import { motion } from 'framer-motion';
 import { MdOutlineReadMore } from 'react-icons/md';
 import ThemeContext from '../../context/theme-context';
@@ -14,17 +12,7 @@ import { db } from '../../config/firebase-config';
 import { auth } from '../../config/firebase-config';
 
 const LikedEvent = (props) => {
-  const notify = () =>
-    toast.error('Event removed from liked.', { duration: 800 });
-
-  const ctx = useContext(LikedContext);
-
   const { theme } = useContext(ThemeContext);
-
-  const removeEventFromLiked = () => {
-    ctx.removeEvent(props.id);
-    notify();
-  };
 
   return (
     <motion.div
@@ -33,7 +21,6 @@ const LikedEvent = (props) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 20 }}
     >
-      <Toaster />
       <div
         className={`${
           theme === 'dark' ? 'bg-zinc-900' : 'border-[0.5px] bg-white'
@@ -103,7 +90,7 @@ const LikedEvent = (props) => {
           </h3>
           <div className="mx-3 mb-2 flex flex-row items-center border-b-[1px] border-gray-300  border-opacity-70  text-opacity-70 sm:mx-4 lg:mx-6">
             <FaCalendar className="mr-2 text-[#ffb560]" />
-            <EventDate datum={props.date} />
+            <EventDate datum={props.datum} />
           </div>
           <div className="flex h-10 w-full items-baseline justify-end gap-1 px-4 text-2xl sm:gap-1 sm:py-1 md:py-0 lg:px-6 lg:py-1">
             <motion.button

@@ -21,12 +21,13 @@ const Event = (props) => {
   // const notifyError = () =>
   //   toast.error('Event already added to liked', { duration: 800 });
 
-  const ctx = useContext(LikedContext);
   const { role } = useContext(AuthContext);
 
   const { theme } = useContext(ThemeContext);
 
-  let likedEventsIds = ctx.events.map((eventInfo) => eventInfo.id);
+  const { likedEvents } = useContext(LikedContext);
+
+  const likedEventIds = likedEvents.map((eventInfo) => eventInfo.id);
 
   return (
     <motion.div
@@ -110,10 +111,10 @@ const Event = (props) => {
                   );
                 }}
               >
-                {likedEventsIds.includes(props.id) && (
+                {likedEventIds.includes(props.id) && (
                   <FaHeart className="cursor-pointer text-[#C25452]" />
                 )}
-                {!likedEventsIds.includes(props.id) && (
+                {!likedEventIds.includes(props.id) && (
                   <VscHeart className="cursor-pointer text-[#C25452]" />
                 )}
               </motion.button>
