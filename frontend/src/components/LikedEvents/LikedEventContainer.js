@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { FaChevronLeft } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,8 +13,6 @@ const LikedEventContainer = () => {
   const [selectedTypeFilter, setSelectedTypeFilter] = useState([]);
   const [selectedDayFilter, setSelectedDayFilter] = useState([]);
   const { likedEvents } = useContext(LikedContext);
-
-  console.log(likedEvents);
 
   const navigate = useNavigate();
 
@@ -112,7 +110,7 @@ const LikedEventContainer = () => {
           {content}
         </div>
 
-        {renderLikedEvents.length === 0 && (
+        {likedEvents.length === 0 && (
           <p className="text-center font-montserrat font-normal text-[#e1e1e1] sm:text-xl md:text-2xl lg:text-3xl">
             Trenutno nemate lajkanih eventova!
           </p>
