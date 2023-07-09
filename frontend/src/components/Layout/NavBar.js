@@ -16,13 +16,13 @@ import { BsSun, BsMoon } from 'react-icons/bs';
 const NavBar = () => {
   const [toggle, setToggle] = useState(false);
   const navigate = useNavigate();
-  const ctx = useContext(LikedContext);
+  const { likedEvents } = useContext(LikedContext);
   const authContext = useContext(AuthContext);
   const { theme, setTheme } = useContext(ThemeContext);
 
   const role = authContext.role || '';
 
-  const likedAmount = ctx.amount;
+  const amount = likedEvents.length;
 
   const menuRef = useRef();
 
@@ -118,13 +118,13 @@ const NavBar = () => {
                     Liked
                   </NavLink>
                 </li>
-                {likedAmount !== 0 && (
+                {amount !== 0 && (
                   <span
                     className={`absolute -top-[0.2rem] -right-[0.5rem] z-20 grid h-[1.2rem] w-[1.2rem] place-items-center rounded-full bg-[#C25452] pb-[0.5px] text-[12px] font-bold leading-[14px]  text-opacity-90 ${
                       theme === 'dark' ? 'text-[#e1e1e1]' : 'text-white'
                     }`}
                   >
-                    {likedAmount}
+                    {amount}
                   </span>
                 )}
               </div>
@@ -287,9 +287,9 @@ const NavBar = () => {
                       Liked
                     </NavLink>
                   </li>
-                  {likedAmount !== 0 && (
+                  {amount !== 0 && (
                     <span className="absolute -top-[0.2rem] -right-[0.5rem] z-20 grid h-[1rem] w-[1rem] place-items-center rounded-full bg-[#C25452] pt-[0.2px] text-[10px] font-bold leading-[14px] text-[#e1e1e1] text-opacity-90">
-                      {likedAmount}
+                      {amount}
                     </span>
                   )}
                 </div>

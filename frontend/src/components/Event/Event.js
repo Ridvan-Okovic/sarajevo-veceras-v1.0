@@ -15,17 +15,11 @@ import { auth } from '../../config/firebase-config';
 import AuthContext from '../../context/auth-context';
 
 const Event = (props) => {
-  // const notifySuccess = () =>
-  //   toast.success('Event added to liked.', { duration: 800 });
-
-  // const notifyError = () =>
-  //   toast.error('Event already added to liked', { duration: 800 });
-
   const { role } = useContext(AuthContext);
 
   const { theme } = useContext(ThemeContext);
 
-  const { likedEvents } = useContext(LikedContext);
+  const { likedEvents, setLikedEvents } = useContext(LikedContext);
 
   const likedEventIds = likedEvents.map((eventInfo) => eventInfo.id);
 
@@ -93,6 +87,19 @@ const Event = (props) => {
                 whileHover={{ scale: 1.1 }}
                 onClick={() => {
                   const userRef = doc(db, 'users', auth.currentUser.uid);
+                  setLikedEvents((prev) => [
+                    ...prev,
+                    {
+                      id: props.id,
+                      poster: props.poster,
+                      name: props.name,
+                      description: props.opis,
+                      address: props.address,
+                      time: props.time,
+                      datum: props.date,
+                      tip: props.type,
+                    },
+                  ]);
                   updateDoc(
                     userRef,
                     {
