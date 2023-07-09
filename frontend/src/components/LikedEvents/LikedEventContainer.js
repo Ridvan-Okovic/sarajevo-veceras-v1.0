@@ -4,7 +4,10 @@ import { useNavigate } from 'react-router-dom';
 
 import Filter from '../Layout/Filter';
 import { renderLikedEvents } from '../../utils/events';
-import { filterBycheckBoxInput, filterByDaySelected } from '../../utils/filter';
+import {
+  filterBycheckBoxInput,
+  filterLikedByDaySelected,
+} from '../../utils/filter';
 import { motion } from 'framer-motion';
 import ThemeContext from '../../context/theme-context';
 import LikedContext from '../../context/liked-context';
@@ -26,10 +29,13 @@ const LikedEventContainer = () => {
   );
   const checkboxFilteredLikedEvents = renderLikedEvents(likedCheckboxFilter);
 
-  const likedDayFilter = filterByDaySelected(likedEvents, selectedDayFilter);
+  const likedDayFilter = filterLikedByDaySelected(
+    likedEvents,
+    selectedDayFilter
+  );
   const likedDayFilteredEvents = renderLikedEvents(likedDayFilter);
 
-  const typeAndDayFilter = filterByDaySelected(
+  const typeAndDayFilter = filterLikedByDaySelected(
     likedCheckboxFilter,
     selectedDayFilter
   );

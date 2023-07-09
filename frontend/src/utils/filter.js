@@ -43,7 +43,16 @@ export function filterBycheckBoxInput(events, filter) {
 export function filterByDaySelected(events, filter) {
   const lowercase = filter.map((item) => item.toLocaleLowerCase());
   const checkboxFilter = events.filter((eventInfo) => {
-    const date = new Date(eventInfo.datum.seconds);
+    const day = days[eventInfo.datum.getDay()];
+    return lowercase.includes(day);
+  });
+  return checkboxFilter;
+}
+
+export function filterLikedByDaySelected(events, filter) {
+  const lowercase = filter.map((item) => item.toLocaleLowerCase());
+  const checkboxFilter = events.filter((eventInfo) => {
+    const date = new Date(eventInfo.datum.seconds * 1000);
     const day = days[date.getDay()];
     return lowercase.includes(day);
   });

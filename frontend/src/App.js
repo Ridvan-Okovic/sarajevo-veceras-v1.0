@@ -98,7 +98,7 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-  const { likedEvents, setLikedEvents } = useContext(LikedContext);
+  const { setLikedEvents } = useContext(LikedContext);
   const uid = localStorage.getItem('uid');
 
   useEffect(() => {
@@ -114,7 +114,7 @@ const App = () => {
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [likedEvents, setLikedEvents]);
+  }, []);
   return <RouterProvider router={router} />;
 };
 
