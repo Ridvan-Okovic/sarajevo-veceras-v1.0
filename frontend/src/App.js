@@ -22,6 +22,7 @@ import Author from './components/Pages/Author';
 import Viewer from './components/Pages/Viewer';
 
 import LikedContext from './context/liked-context';
+import MyEventsPage from './components/Pages/MyEventsPage';
 
 const EventDetailsPage = lazy(() =>
   import('./components/Pages/EventDetailsPage')
@@ -65,6 +66,14 @@ const router = createBrowserRouter([
             element: (
               <Author>
                 <AddEventPage />
+              </Author>
+            ),
+          },
+          {
+            path: 'my-events',
+            element: (
+              <Author>
+                <MyEventsPage />
               </Author>
             ),
           },
