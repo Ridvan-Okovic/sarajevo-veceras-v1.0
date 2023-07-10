@@ -3,7 +3,7 @@ import {
   Navigate,
   RouterProvider,
 } from 'react-router-dom';
-import { lazy, Suspense, useContext, useEffect } from 'react';
+import { lazy, Suspense, useContext } from 'react';
 
 import { getDoc, doc } from 'firebase/firestore';
 import { db } from './config/firebase-config';
@@ -110,24 +110,21 @@ const App = () => {
   const { setLikedEvents } = useContext(LikedContext);
   const uid = localStorage.getItem('uid') || '';
 
-  useEffect(() => {
-    if (uid) {
-      getDoc(doc(db, 'users', uid)).then((docSnap) => {
-        if (docSnap.exists()) {
-          if (docSnap.data().likedEvents) {
-            setLikedEvents(docSnap.data().likedEvents);
-          } else {
-            setLikedEvents([]);
-          }
+  if (uid) {
+    getDoc(doc(db, 'users', uid)).then((docSnap) => {
+      if (docSnap.exists()) {
+        if (docSnap.data().likedEvents) {
+          setLikedEvents(docSnap.data().likedEvents);
         } else {
-          throw new Error('Document does not exist.');
+          setLikedEvents([]);
         }
-      });
-    } else {
-      setLikedEvents([]);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+      } else {
+        throw new Error('Document does not exist.');
+      }
+    });
+  } else {
+    setLikedEvents([]);
+  }
 
   return <RouterProvider router={router} />;
 };
