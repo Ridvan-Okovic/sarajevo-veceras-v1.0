@@ -11,7 +11,7 @@ import LikedContext from '../../context/liked-context';
 import AuthContext from '../../context/auth-context';
 import ThemeContext from '../../context/theme-context';
 
-import { BsSun, BsMoon } from 'react-icons/bs';
+import { BsFillPersonFill, BsSun, BsMoon } from 'react-icons/bs';
 
 const NavBar = () => {
   const [toggle, setToggle] = useState(false);
@@ -237,15 +237,28 @@ const NavBar = () => {
             </li>
           ) : (
             <li>
-              <button
-                onClick={() => {
-                  signOut(auth);
-                  navigate('/');
-                }}
-                className="flex items-center justify-center rounded border border-[#C25452] py-1 px-4 text-lg text-[#C25452] duration-200 hover:bg-[#C25452] hover:text-white active:bg-[#8f3836]"
-              >
-                Logout
-              </button>
+              {role === 'author' ? (
+                <button
+                  onClick={() => {
+                    signOut(auth);
+                    navigate('/');
+                  }}
+                  className="flex items-center justify-center rounded border border-[#C25452] py-1 px-4 text-lg text-[#C25452] duration-200 hover:bg-[#C25452] hover:text-white active:bg-[#8f3836]"
+                >
+                  Logout
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    signOut(auth);
+                    navigate('/');
+                  }}
+                  className="flex items-center justify-center gap-1 rounded border bg-[#C25452] py-1 px-4 text-lg text-white duration-200 hover:bg-[#C25452] hover:text-white active:bg-[#8f3836]"
+                >
+                  <BsFillPersonFill className="mb-[1px]" />
+                  {auth.currentUser.displayName}
+                </button>
+              )}
             </li>
           )}
         </ul>

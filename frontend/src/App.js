@@ -108,7 +108,7 @@ const router = createBrowserRouter([
 
 const App = () => {
   const { setLikedEvents } = useContext(LikedContext);
-  const uid = localStorage.getItem('uid');
+  const uid = localStorage.getItem('uid') || '';
 
   useEffect(() => {
     if (uid) {
@@ -123,9 +123,12 @@ const App = () => {
           throw new Error('Document does not exist.');
         }
       });
+    } else {
+      setLikedEvents([]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return <RouterProvider router={router} />;
 };
 

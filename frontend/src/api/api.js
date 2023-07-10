@@ -1,6 +1,9 @@
 import json from 'react';
 
-import { auth } from '../config/firebase-config';
+import { auth, db } from '../config/firebase-config';
+import { doc, getDoc } from 'firebase/firestore';
+
+const uid = localStorage.getItem('uid') || '';
 
 export async function getEvents() {
   const res = await fetch(
@@ -13,6 +16,20 @@ export async function getEvents() {
     const resData = await res.json();
     return resData;
   }
+}
+
+export async function getLikedEvents() {
+  await getDoc(doc(db, 'users', uid)).then((docSnap) => {
+    if (docSnap.exists()) {
+      if (docSnap.data().likedEvents) {
+        return docSnap.data().likedEvents;
+      } else {
+        return [];
+      }
+    } else {
+      throw new Error('Document does not exist.');
+    }
+  });
 }
 
 export async function getEventDetails(eventId) {
