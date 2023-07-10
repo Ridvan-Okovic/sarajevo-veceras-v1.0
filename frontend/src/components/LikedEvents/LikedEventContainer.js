@@ -99,7 +99,7 @@ const LikedEventContainer = () => {
             className={`text-md absolute top-[34px] -left-16 mr-4 flex cursor-pointer flex-row items-center justify-center rounded-lg ${
               theme === 'dark'
                 ? 'bg-zinc-900 text-[#e1e1e1]'
-                : 'border-[0.5px] border-[#f2f2f2] bg-white text-zinc-900 shadow-lg'
+                : 'border-[#f2f2f2] bg-white text-zinc-900 shadow-[0_0_5px_0_rgba(0,0,0,0.1)]'
             } px-4 py-2 md:top-2 md:-left-20 md:text-lg`}
           >
             <FaChevronLeft />
@@ -116,8 +116,12 @@ const LikedEventContainer = () => {
           {content}
         </div>
 
-        {likedEvents.length === 0 && (
-          <p className="text-center font-montserrat font-normal text-[#e1e1e1] sm:text-xl md:text-2xl lg:text-3xl">
+        {likedEvents.length === 0 && !isDayChecked && !isTypeChecked && (
+          <p
+            className={`text-center font-montserrat font-normal ${
+              theme === 'dark' ? 'text-[#e1e1e1]' : 'text-zinc-900'
+            }  sm:text-xl md:text-2xl lg:text-3xl`}
+          >
             Trenutno nemate lajkanih eventova!
           </p>
         )}

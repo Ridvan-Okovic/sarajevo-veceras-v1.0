@@ -34,7 +34,7 @@ const SearchBar = (props) => {
           className={`text-md mr-4 flex cursor-pointer flex-row items-center justify-center rounded-lg  px-4 py-2 shadow-lg sm:mr-6 md:mr-8 md:text-lg ${
             theme === 'dark'
               ? 'bg-zinc-900 text-[#e1e1e1]'
-              : 'border-[0.5px] border-[#f2f2f2] bg-white text-zinc-900'
+              : ' border-[#f2f2f2] bg-white text-zinc-900 shadow-[0_0_5px_0_rgba(0,0,0,0.1)]'
           }`}
         >
           <FaChevronLeft />
@@ -42,13 +42,15 @@ const SearchBar = (props) => {
         <input
           placeholder="Das Ist Walter..."
           onChange={searchChangeHandler}
-          className={`h-full w-[80%] rounded-l-lg rounded-r-none border border-r-0   px-4 py-2  shadow-lg outline-none transition-colors focus:border-[#ffb560] lg:w-[40rem] ${
+          className={`h-full w-[80%] rounded-l-lg rounded-r-none border border-r-0 px-4 py-2 shadow-md outline-none transition-colors focus:border-[#ffb560] lg:w-[40rem] ${
             theme === 'dark'
               ? 'border-[#363636] bg-zinc-900 text-[#FAF7FF] focus:bg-zinc-800'
               : 'border-[#f2f2f2] bg-white'
           }`}
         />
-        <button className="h-full rounded-r-lg bg-[#ffb560] px-4 shadow-lg transition-all duration-150 hover:bg-opacity-80 active:bg-[#eba04a]">
+        <button
+          className={`h-full rounded-r-lg bg-[#ffb560] px-4 shadow-md transition-all duration-150 hover:bg-opacity-80 active:bg-[#eba04a]`}
+        >
           <BiSearch className="cursor-pointer text-lg text-zinc-900 md:text-2xl" />
         </button>
       </form>
