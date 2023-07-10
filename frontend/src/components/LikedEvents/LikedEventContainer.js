@@ -123,7 +123,11 @@ const LikedEventContainer = () => {
         )}
 
         {emptyFilterMessage && (
-          <p className="text-center font-montserrat text-3xl font-normal text-[#e1e1e1]">
+          <p
+            className={`text-center font-montserrat text-3xl font-normal ${
+              theme === 'dark' ? 'text-[#e1e1e1]' : 'text-zinc-900'
+            } `}
+          >
             {emptyFilterMessage}
           </p>
         )}
