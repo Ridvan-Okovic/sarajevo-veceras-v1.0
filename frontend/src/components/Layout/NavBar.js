@@ -93,12 +93,18 @@ const NavBar = () => {
               ></div>
               {theme === 'dark' ? (
                 <BsSun
-                  onClick={() => setTheme('light')}
+                  onClick={() => {
+                    localStorage.setItem('theme', 'light');
+                    setTheme('light');
+                  }}
                   className="opacity-70capitalize cursor-pointer text-xl "
                 />
               ) : (
                 <BsMoon
-                  onClick={() => setTheme('dark')}
+                  onClick={() => {
+                    localStorage.setItem('theme', 'dark');
+                    setTheme('dark');
+                  }}
                   className="opacity-70capitalize cursor-pointer text-xl "
                 />
               )}
@@ -151,12 +157,18 @@ const NavBar = () => {
               ></div>
               {theme === 'dark' ? (
                 <BsSun
-                  onClick={() => setTheme('light')}
+                  onClick={() => {
+                    localStorage.setItem('theme', 'light');
+                    setTheme('light');
+                  }}
                   className="cursor-pointer text-xl opacity-70"
                 />
               ) : (
                 <BsMoon
-                  onClick={() => setTheme('dark')}
+                  onClick={() => {
+                    localStorage.setItem('theme', 'dark');
+                    setTheme('dark');
+                  }}
                   className="cursor-pointer text-xl opacity-70"
                 />
               )}
@@ -193,12 +205,18 @@ const NavBar = () => {
               ></div>
               {theme === 'dark' ? (
                 <BsSun
-                  onClick={() => setTheme('light')}
+                  onClick={() => {
+                    localStorage.setItem('theme', 'light');
+                    setTheme('light');
+                  }}
                   className="cursor-pointer text-xl opacity-70"
                 />
               ) : (
                 <BsMoon
-                  onClick={() => setTheme('dark')}
+                  onClick={() => {
+                    localStorage.setItem('theme', 'dark');
+                    setTheme('dark');
+                  }}
                   className="cursor-pointer text-xl opacity-70"
                 />
               )}
