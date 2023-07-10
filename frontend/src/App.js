@@ -111,17 +111,19 @@ const App = () => {
   const uid = localStorage.getItem('uid');
 
   useEffect(() => {
-    getDoc(doc(db, 'users', uid)).then((docSnap) => {
-      if (docSnap.exists()) {
-        if (docSnap.data().likedEvents) {
-          setLikedEvents(docSnap.data().likedEvents);
+    if (uid) {
+      getDoc(doc(db, 'users', uid)).then((docSnap) => {
+        if (docSnap.exists()) {
+          if (docSnap.data().likedEvents) {
+            setLikedEvents(docSnap.data().likedEvents);
+          } else {
+            setLikedEvents([]);
+          }
         } else {
-          setLikedEvents([]);
+          throw new Error('Document does not exist.');
         }
-      } else {
-        throw new Error('Document does not exist.');
-      }
-    });
+      });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return <RouterProvider router={router} />;
