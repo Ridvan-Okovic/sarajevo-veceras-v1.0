@@ -9,10 +9,11 @@ import { MdOutlineReadMore } from 'react-icons/md';
 import ThemeContext from '../../context/theme-context';
 import { doc, updateDoc, arrayRemove } from 'firebase/firestore';
 import { db } from '../../config/firebase-config';
-import { auth } from '../../config/firebase-config';
+import LikedContext from '../../context/liked-context';
 
 const LikedEvent = (props) => {
   const { theme } = useContext(ThemeContext);
+  const { likedEvents, setLikedEvents } = useContext(LikedContext);
 
   return (
     <motion.div
@@ -53,19 +54,25 @@ const LikedEvent = (props) => {
             whileHover={{ scale: 1.1 }}
             className="absolute right-1 -top-1"
             onClick={() => {
-              const userRef = doc(db, 'users', auth.currentUser.uid);
+              const userRef = doc(db, 'users', localStorage.getItem('uid'));
               updateDoc(userRef, {
                 likedEvents: arrayRemove({
-                  id: props.id,
-                  poster: props.poster,
-                  name: props.name,
-                  description: props.opis,
                   address: props.address,
+                  datum: props.datum,
+                  description: props.opis,
+                  id: props.id,
+                  name: props.name,
+                  poster: props.poster,
                   time: props.time,
-                  datum: props.date,
                   tip: props.type,
                 }),
               });
+
+              const filtertedLikedEvents = likedEvents.filter((eventInfo) => {
+                return eventInfo.id !== props.id;
+              });
+
+              setLikedEvents(filtertedLikedEvents);
             }}
           >
             <TiDelete className="hidden cursor-pointer text-4xl text-[#C25452] hover:opacity-75 lg:inline-block" />
@@ -90,7 +97,7 @@ const LikedEvent = (props) => {
           </h3>
           <div className="mx-3 mb-2 flex flex-row items-center border-b-[1px] border-gray-300  border-opacity-70  text-opacity-70 sm:mx-4 lg:mx-6">
             <FaCalendar className="mr-2 text-[#ffb560]" />
-            <EventDate datum={props.datum} />
+            <EventDate datum={props.date} />
           </div>
           <div className="flex h-10 w-full items-baseline justify-end gap-1 px-4 text-2xl sm:gap-1 sm:py-1 md:py-0 lg:px-6 lg:py-1">
             <motion.button
@@ -98,7 +105,7 @@ const LikedEvent = (props) => {
               whileHover={{ scale: 1.1 }}
               className=" inline-block md:inline-block lg:hidden"
               onClick={() => {
-                const userRef = doc(db, 'users', auth.currentUser.uid);
+                const userRef = doc(db, 'users', localStorage.getItem('uid'));
                 updateDoc(
                   userRef,
                   {
