@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { auth } from '../config/firebase-config';
 import { googleProvider } from '../config/firebase-config';
 import {
@@ -11,31 +11,40 @@ import { doc, getDoc } from 'firebase/firestore';
 import AuthContext from './auth-context';
 import { createUser } from '../utils/create-user';
 import { db } from '../config/firebase-config';
+import LikedContext from './liked-context';
 
 const AuthProvider = (props) => {
   const [loginSuccess, setLoginSuccess] = useState(null);
   const [role, setRole] = useState('');
+  const { setLikedEvents } = useContext(LikedContext);
+
+  function removeUser() {
+    localStorage.removeItem('role');
+    localStorage.removeItem('uid');
+    setLikedEvents([]);
+    setRole('');
+    return;
+  }
 
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
       if (!currentUser) {
-        setLoginSuccess(false);
-        localStorage.removeItem('role');
-        localStorage.removeItem('uid');
-        setRole('');
-        return;
+        removeUser();
       }
       getDoc(doc(db, 'users', currentUser.uid)).then((docSnap) => {
         if (docSnap.exists()) {
           localStorage.setItem('role', docSnap.data().user.role);
           localStorage.setItem('uid', auth.currentUser.uid);
           setRole(docSnap.data().user.role);
+          const events = docSnap.data().likedEvents;
+          setLikedEvents(events);
         } else {
           console.log('No such document');
         }
       });
       setLoginSuccess(true);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const emailAuth = (email, pass) => {

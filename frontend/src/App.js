@@ -3,10 +3,7 @@ import {
   Navigate,
   RouterProvider,
 } from 'react-router-dom';
-import { lazy, Suspense, useContext } from 'react';
-
-import { getDoc, doc } from 'firebase/firestore';
-import { db } from './config/firebase-config';
+import { lazy, Suspense } from 'react';
 
 import EventsPage, {
   loader as eventsLoader,
@@ -21,7 +18,6 @@ import Login from './components/Pages/Login';
 import Author from './components/Pages/Author';
 import Viewer from './components/Pages/Viewer';
 
-import LikedContext from './context/liked-context';
 import MyEventsPage from './components/Pages/MyEventsPage';
 
 const EventDetailsPage = lazy(() =>
@@ -107,25 +103,6 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-  const { setLikedEvents } = useContext(LikedContext);
-  const uid = localStorage.getItem('uid') || '';
-
-  if (uid) {
-    getDoc(doc(db, 'users', uid)).then((docSnap) => {
-      if (docSnap.exists()) {
-        if (docSnap.data().likedEvents) {
-          setLikedEvents(docSnap.data().likedEvents);
-        } else {
-          setLikedEvents([]);
-        }
-      } else {
-        throw new Error('Document does not exist.');
-      }
-    });
-  } else {
-    setLikedEvents([]);
-  }
-
   return <RouterProvider router={router} />;
 };
 

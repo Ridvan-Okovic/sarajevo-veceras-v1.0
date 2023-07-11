@@ -9,15 +9,15 @@ import ThemeProvider from './context/ThemeProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <AuthProvider>
-    <EventProvider>
-      <LikedProvider>
+  <LikedProvider>
+    <AuthProvider>
+      <EventProvider>
         <ThemeProvider>
           <React.StrictMode>
             <App />
           </React.StrictMode>
         </ThemeProvider>
-      </LikedProvider>
-    </EventProvider>
-  </AuthProvider>
+      </EventProvider>
+    </AuthProvider>
+  </LikedProvider>
 );
