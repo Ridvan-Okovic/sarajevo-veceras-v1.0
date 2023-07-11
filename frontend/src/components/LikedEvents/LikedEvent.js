@@ -106,22 +106,23 @@ const LikedEvent = (props) => {
               className=" inline-block md:inline-block lg:hidden"
               onClick={() => {
                 const userRef = doc(db, 'users', localStorage.getItem('uid'));
-                updateDoc(
-                  userRef,
-                  {
-                    likedEvents: arrayRemove({
-                      id: props.id,
-                      poster: props.poster,
-                      name: props.name,
-                      description: props.opis,
-                      address: props.address,
-                      time: props.time,
-                      datum: props.datum,
-                      tip: props.type,
-                    }),
-                  },
-                  { merge: true }
-                );
+                updateDoc(userRef, {
+                  likedEvents: arrayRemove({
+                    address: props.address,
+                    datum: props.datum,
+                    description: props.opis,
+                    id: props.id,
+                    name: props.name,
+                    poster: props.poster,
+                    time: props.time,
+                    tip: props.type,
+                  }),
+                });
+                const filtertedLikedEvents = likedEvents.filter((eventInfo) => {
+                  return eventInfo.id !== props.id;
+                });
+
+                setLikedEvents(filtertedLikedEvents);
               }}
             >
               <TiDelete className="cursor-pointer text-3xl text-[#C25452] hover:opacity-75" />

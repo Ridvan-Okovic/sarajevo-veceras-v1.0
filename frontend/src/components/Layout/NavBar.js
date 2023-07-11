@@ -243,7 +243,7 @@ const NavBar = () => {
                     signOut(auth);
                     navigate('/');
                   }}
-                  className="flex items-center justify-center rounded border border-[#C25452] py-1 px-4 text-lg text-[#C25452] duration-200 hover:bg-[#C25452] hover:text-white active:bg-[#8f3836]"
+                  className="flex items-center justify-center rounded border-[#C25452] py-1 px-4 text-lg text-[#C25452] duration-200 hover:bg-[#C25452] hover:text-white active:bg-[#8f3836]"
                 >
                   Logout
                 </button>
@@ -253,7 +253,7 @@ const NavBar = () => {
                     signOut(auth);
                     navigate('/');
                   }}
-                  className="flex items-center justify-center gap-1 rounded border bg-[#C25452] py-1 px-4 text-lg text-white duration-200 hover:bg-[#C25452] hover:text-white active:bg-[#8f3836]"
+                  className="flex items-center justify-center gap-1 rounded bg-[#C25452] py-1 px-4 text-lg text-white duration-200 hover:bg-[#C25452] hover:text-white active:bg-[#8f3836]"
                 >
                   <BsFillPersonFill className="mb-[1px]" />
                   {auth.currentUser.displayName}

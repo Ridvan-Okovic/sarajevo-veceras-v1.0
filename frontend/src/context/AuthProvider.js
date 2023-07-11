@@ -30,19 +30,23 @@ const AuthProvider = (props) => {
     onAuthStateChanged(auth, (currentUser) => {
       if (!currentUser) {
         removeUser();
+      } else {
+        getDoc(doc(db, 'users', currentUser.uid)).then((docSnap) => {
+          if (docSnap.exists()) {
+            localStorage.setItem('role', docSnap.data().user.role);
+            localStorage.setItem('uid', auth.currentUser.uid);
+            setRole(docSnap.data().user.role);
+            if (docSnap.data().likedEvents) {
+              setLikedEvents(docSnap.data().likedEvents);
+            } else {
+              setLikedEvents([]);
+            }
+          } else {
+            console.log('No such document');
+          }
+        });
+        setLoginSuccess(true);
       }
-      getDoc(doc(db, 'users', currentUser.uid)).then((docSnap) => {
-        if (docSnap.exists()) {
-          localStorage.setItem('role', docSnap.data().user.role);
-          localStorage.setItem('uid', auth.currentUser.uid);
-          setRole(docSnap.data().user.role);
-          const events = docSnap.data().likedEvents;
-          setLikedEvents(events);
-        } else {
-          console.log('No such document');
-        }
-      });
-      setLoginSuccess(true);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
