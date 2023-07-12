@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { createEvent } from '../../api/api';
+import ThemeContext from '../../context/theme-context';
 
 import { motion } from 'framer-motion';
 
 const AddEventPage = () => {
+  const { theme } = useContext(ThemeContext);
+
   const [eventDetails, setEventDetails] = useState({
     address: '',
     date: '',
