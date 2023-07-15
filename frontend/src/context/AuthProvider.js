@@ -30,7 +30,9 @@ const AuthProvider = (props) => {
     onAuthStateChanged(auth, (currentUser) => {
       if (!currentUser) {
         removeUser();
+        setLoginSuccess(false);
       } else {
+        setLoginSuccess(true);
         getDoc(doc(db, 'users', currentUser.uid)).then((docSnap) => {
           if (docSnap.exists()) {
             localStorage.setItem('role', docSnap.data().user.role);
@@ -45,7 +47,6 @@ const AuthProvider = (props) => {
             console.log('No such document');
           }
         });
-        setLoginSuccess(true);
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
