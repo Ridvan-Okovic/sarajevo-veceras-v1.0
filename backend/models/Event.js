@@ -37,11 +37,11 @@ const EventSchema = new mongoose.Schema(
       type: Date,
       required: true,
     },
-    createdBy: {
-      type: mongoose.Types.ObjectId,
-      ref: 'User',
-      required: [true, 'Please provide a user.'],
-    },
+    // createdBy: {
+    //   type: mongoose.Types.ObjectId,
+    //   ref: 'User',
+    //   required: [true, 'Please provide a user.'],
+    // },
   },
   { timestamps: true }
 );
